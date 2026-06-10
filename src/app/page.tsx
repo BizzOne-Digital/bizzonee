@@ -8,6 +8,7 @@ import Work from "@/components/sections/Work";
 import Results from "@/components/sections/Results";
 import AIAutomation from "@/components/sections/AIAutomation";
 import Testimonials from "@/components/sections/Testimonials";
+import TrustReviews from "@/components/sections/TrustReviews";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 
@@ -22,8 +23,9 @@ export default function Home() {
         <Services />
         <Process />
         <Work />
-      
+        <Results />
         <AIAutomation />
+        <TrustReviews />
         <FinalCTA />
       </main>
       <Footer />
