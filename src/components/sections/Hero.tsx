@@ -22,7 +22,7 @@ export default function Hero() {
 
       <div className="section grid items-center gap-10 lg:grid-cols-2">
         {/* Left copy */}
-        <div className="relative z-10 order-2 lg:order-1">
+        <div className="relative z-10 order-1">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-mint">
               <Sparkles size={13} /> AI Automation &amp; Digital Growth Agency
@@ -70,7 +70,7 @@ export default function Hero() {
 
         {/* Right: animated orb composition */}
         <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease }}
-          className="relative order-1 h-[460px] sm:h-[560px] lg:order-2 lg:h-[640px]">
+          className="relative order-2 h-[460px] sm:h-[560px] lg:h-[640px]">
           <HeroOrb />
         </motion.div>
       </div>
