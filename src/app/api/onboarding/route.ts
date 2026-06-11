@@ -50,6 +50,27 @@ export async function POST(req: Request) {
     const LIST = (process.env.CLICKUP_LIST_ID || "").trim();
     if (!TOKEN || !LIST) return NextResponse.json({ error: "Not configured." }, { status: 500 });
 
+    // GoHighLevel webhook
+    const GHL_WEBHOOK = "https://services.leadconnectorhq.com/hooks/gSKYbmYEz3uDdVAuThaS/webhook-trigger/a57cd9da-341a-401c-9675-237c53c620be";
+    try {
+      const nameParts = name.split(" ");
+      const ghlRes = await fetch(GHL_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: nameParts[0] || name,
+          lastName: nameParts.slice(1).join(" ") || "",
+          name, email, phone,
+          companyName: business,
+          source: "BizzOne Digital Website — Onboarding",
+        }),
+      });
+      const ghlBody = await ghlRes.text().catch(() => "");
+      console.log(`GHL: ${ghlRes.status} ${ghlBody}`);
+    } catch (e) {
+      console.error("GHL error:", e);
+    }
+
     const prio = String(d.priority || "").toLowerCase();
     const priority = prio.startsWith("urgent") ? 1 : prio.startsWith("high") ? 2 : prio.startsWith("low") ? 4 : 3;
     const due = d.launch ? Date.parse(String(d.launch)) : NaN;

@@ -36,7 +36,7 @@ export default function AIAutomation() {
       <div className="section">
         <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
-            <SectionLabel>AI Automation</SectionLabel>
+            <SectionLabel>AI & Automation</SectionLabel>
             <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
               Work <span className="text-gradient">Smarter</span>.<br />Scale <span className="text-gradient">Faster</span>.
             </h2>

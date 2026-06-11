@@ -23,7 +23,6 @@ export default function Home() {
         <Services />
         <Process />
         <Work />
-        <Results />
         <AIAutomation />
         <TrustReviews />
         <FinalCTA />
