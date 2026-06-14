@@ -152,9 +152,8 @@ export default function OnboardForm() {
 
       <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
         <span className="text-xs text-white/40">🔒 Secure &amp; private — used only for your project.</span>
-        <button onClick={submit} disabled={status === "sending"}
-          className="group inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 disabled:opacity-60 sm:w-auto"
-          style={{ background: "linear-gradient(100deg, var(--brand-mint), var(--brand-purple-light))" }}>
+           <button onClick={submit} disabled={status === "sending"}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 sm:w-auto">
           <Send size={16} /> {status === "sending" ? "Submitting..." : "Submit Onboarding"}
         </button>
       </div>

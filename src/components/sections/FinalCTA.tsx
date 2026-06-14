@@ -48,7 +48,6 @@ export default function FinalCTA() {
             <div className="pointer-events-none absolute -right-10 bottom-0 h-72 w-72 rounded-full bg-brand-mint/20 blur-[100px]" />
 
             <div className="relative grid items-start gap-10 lg:grid-cols-2">
-              {/* left: heading + trust */}
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-mint shadow-glow-mint" /> Get In Touch
@@ -69,7 +68,6 @@ export default function FinalCTA() {
                 </ul>
               </div>
 
-              {/* right: form */}
               <div className="rounded-3xl glass-strong p-6 sm:p-7">
                 {status === "sent" ? (
                   <div className="flex min-h-[360px] flex-col items-center justify-center text-center">
@@ -93,29 +91,24 @@ export default function FinalCTA() {
                         <input type="tel" className={fieldCls} value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (___) ___-____" />
                       </div>
                     </div>
-
                     <div className="mt-4">
                       <label className="mb-1.5 block text-sm font-medium text-white/80">Email <span className="text-brand-mint">*</span></label>
                       <input type="email" className={fieldCls} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@business.com" />
                     </div>
-
                     <div className="mt-4">
                       <label className="mb-1.5 block text-sm font-medium text-white/80">Service you&apos;re interested in</label>
                       <select className={fieldCls} value={form.service} onChange={(e) => set("service", e.target.value)}>
                         {SERVICE_OPTIONS.map((opt) => <option key={opt} value={opt} style={{ background: "#0f0a1a", color: "#e9e6f2" }}>{opt}</option>)}
                       </select>
                     </div>
-
                     <div className="mt-4">
                       <label className="mb-1.5 block text-sm font-medium text-white/80">Message <span className="text-brand-mint">*</span></label>
                       <textarea className={`${fieldCls} min-h-[110px] resize-y leading-relaxed`} value={form.message} onChange={(e) => set("message", e.target.value)} placeholder="Tell us a little about your project or goals..." />
                     </div>
-
                     {status === "error" && <p className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{errorMsg}</p>}
-
+                    {/* solid button — no gradient */}
                     <button onClick={submit} disabled={status === "sending"}
-                      className="group mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 disabled:opacity-60"
-                      style={{ background: "linear-gradient(100deg, var(--brand-mint), var(--brand-purple-light))" }}>
+                      className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60">
                       <Send size={16} /> {status === "sending" ? "Sending..." : "Send Message"}
                     </button>
                   </>
