@@ -1,6 +1,6 @@
 "use client";
 
-const WHATSAPP_NUMBER = "1234567890"; // Replace with your WhatsApp number (no +, no spaces)
+const WHATSAPP_NUMBER = "4121562"; // Replace with your WhatsApp number (no +, no spaces)
 const WHATSAPP_MESSAGE = "Hi BizzOne Digital! I'm interested in your services.";
 
 export default function WhatsAppButton() {

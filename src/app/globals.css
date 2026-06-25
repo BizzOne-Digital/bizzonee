@@ -20,7 +20,7 @@ html {
 
 body {
   background-color: var(--bg);
-  color: #d8dbe8;
+  color: #e8eaf4;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -47,7 +47,7 @@ body {
 
 @layer components {
   .glass {
-    background: linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015));
+    background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
     backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(255,255,255,0.08);
   }
@@ -86,4 +86,7 @@ body {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #06070d; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(#8C00FF, #4C0A8F); border-radius: 999px; }
+/* Global paragraph readability */
+p { color: #ffffff; }
+
 ::selection { background: rgba(200,243,29,0.28); color: #fff; }

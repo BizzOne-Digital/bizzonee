@@ -102,9 +102,11 @@ export default function HeroOrb() {
               </div>
               <span className="absolute left-[18%] top-[12%] h-[28%] w-[40%] -rotate-12 rounded-full bg-white/25 blur-xl" />
             </div>
-            <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-              <span className="font-display text-5xl font-black text-gradient drop-shadow-[0_0_24px_rgba(200,243,29,0.7)] sm:text-6xl lg:text-7xl">B</span>
-            </div>
+           <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
+  <span className="font-display text-5xl font-black text-[#C8F31D] drop-shadow-[0_0_24px_rgba(200,243,29,0.7)] sm:text-6xl lg:text-7xl">
+    B1
+  </span>
+</div>
           </motion.div>
         </div>
 

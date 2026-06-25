@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter, Youtube, Send } from "lucide-react";
 import { COMPANY, NAV_LINKS } from "@/lib/content";
 
-const SERVICES_LINKS = ["Paid Advertising", "Design & Branding", "Content Creation", "Content Strategy", "Social Media Management"];
+const SERVICES_LINKS = ["Paid Advertising", "Design & Branding", "Video Editing & Production", "Content Strategy", "Social Media Management", "AI Automation"];
 const SOCIALS = [Facebook, Instagram, Linkedin, Twitter, Youtube];
 
 export default function Footer() {

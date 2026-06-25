@@ -1,9 +1,10 @@
 import {
   Megaphone,
   Palette,
-  Clapperboard,
+  Video,
   FileText,
   Share2,
+  Bot,
   type LucideIcon,
 } from "lucide-react";
 
@@ -45,15 +46,15 @@ export const SERVICES: Service[] = [
     tagline: "Designs crafted to reflect your brand — and stop the scroll.",
     overview: [
       "From logos and brand guidelines to social media creatives, ad banners and promotional materials — we craft every design to reflect your brand and capture attention.",
-      "Consistent, premium visuals across every touchpoint — built around a system, not one-off posts. Your brand will look as good as it performs.",
+      "Consistent, premium visuals across every touchpoint — built around a system, not one-off posts.",
     ],
     features: ["Logo & brand identity", "Brand guidelines & kit", "Social media creatives", "Ad & banner design", "Brochures & print", "Design system"],
   },
   {
-    slug: "content-creation",
-    icon: Clapperboard,
-    title: "Content Creation",
-    short: "Professional video editing, videography and visual content that engages and converts.",
+    slug: "video-editing-and-production",
+    icon: Video,
+    title: "Video Editing & Production",
+    short: "Professional video editing, production and visual content that engages and converts.",
     badgeLabel: "Views",
     badgeValue: "5M+",
     tagline: "Scroll-stopping content — from raw footage to polished, platform-ready delivery.",
@@ -73,7 +74,7 @@ export const SERVICES: Service[] = [
     tagline: "Content strategies that do more than fill space — they drive growth.",
     overview: [
       "We build content strategies that do more than just fill space — they tell your brand's story and drive measurable growth across every channel.",
-      "Research-led planning, a clear content calendar and messaging that turns attention into action. Every post, every piece, every channel — aligned with your goals.",
+      "Research-led planning, a clear content calendar and messaging that turns attention into action.",
     ],
     features: ["Content audit & research", "Messaging & tone of voice", "Editorial calendar", "Channel strategy", "Performance tracking", "Ongoing optimization"],
   },
@@ -91,7 +92,24 @@ export const SERVICES: Service[] = [
     ],
     features: ["Content calendar & scheduling", "On-brand post design", "Community management", "Hashtag & growth strategy", "Engagement & DMs", "Monthly performance reports"],
   },
+  {
+    slug: "ai-automation",
+    icon: Bot,
+    title: "AI Automation",
+    short: "Smart automation systems that save time, reduce manual work and scale your business.",
+    badgeLabel: "Time Saved",
+    badgeValue: "80%",
+    tagline: "Work smarter — automate the repetitive so you can focus on what matters.",
+    overview: [
+      "We build custom AI automation systems that handle your repetitive tasks — from lead follow-up and CRM workflows to content generation, reporting and customer communication.",
+      "Whether it's GoHighLevel automations, AI chatbots, or custom-built pipelines — we design systems that run 24/7 so your team doesn't have to.",
+    ],
+    features: ["GHL workflow automation", "AI chatbot setup", "Lead follow-up sequences", "CRM & pipeline automation", "Reporting automation", "Custom AI integrations"],
+  },
 ];
 
 export const getService = (slug: string): Service | undefined =>
   SERVICES.find((s) => s.slug === slug);
+
+/* Flat string array for dropdowns / selects */
+export const SERVICES_LIST = SERVICES.map((s) => s.title);

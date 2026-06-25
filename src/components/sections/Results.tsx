@@ -14,7 +14,7 @@ export default function Results() {
           <Reveal>
             <SectionLabel>Our Results</SectionLabel>
             <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Numbers That Speak For <span className="text-gradient">Our Work</span>.
+              Numbers That Speak For <span className="text-gradient">Our Workk</span>.
             </h2>
           </Reveal>
 
