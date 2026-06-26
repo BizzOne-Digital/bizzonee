@@ -203,7 +203,7 @@ export default function WebDevelopment() {
               High-Performance Websites Built To <span className="text-gradient">Grow Your Business</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-              Visually stunning, fully optimized and modern websites that turn visitors into customers — fast, responsive and built to scale.
+              Visually stunning, fully optimized and modern websites that turn visitors into customers  fast, responsive and built to scale.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <NeonButton href="#onboard" variant="primary">Start Your Project <ArrowRight size={16} /></NeonButton>
