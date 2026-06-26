@@ -17,14 +17,14 @@ const CATS = [
     accent: "#4C0A8F",
     images: [
       { src: "/portfolio/logo/1.png", span: "col-span-1 row-span-2" },
-      { src: "/portfolio/logo/2.png", span: "col-span-1" },
+      { src: "/portfolio/logo/2.png", span: "col-span-1 row-span-2" },
       { src: "/portfolio/logo/3.png", span: "col-span-1" },
       { src: "/portfolio/logo/4.png", span: "col-span-1" },
-      { src: "/portfolio/logo/5.png", span: "col-span-1" },
+      { src: "/portfolio/logo/5.png", span: "col-span-1 row-span-2" },
       { src: "/portfolio/logo/6.png", span: "col-span-1" },
       { src: "/portfolio/logo/7.png", span: "col-span-1" },
       { src: "/portfolio/logo/8.png", span: "col-span-1" },
-      { src: "/portfolio/logo/9.png", span: "col-span-1" },
+      { src: "/portfolio/logo/9.png", span: "col-span-1 row-span-2" },
       { src: "/portfolio/logo/10.png", span: "col-span-1" },
       { src: "/portfolio/logo/11.png", span: "col-span-1" },
       { src: "/portfolio/logo/12.png", span: "col-span-1" },
@@ -57,6 +57,17 @@ const CATS = [
       { src: "/portfolio/media/1.png", span: "col-span-1" },
       { src: "/portfolio/media/2.png", span: "col-span-1" },
       { src: "/portfolio/media/3.png", span: "col-span-1" },
+       { src: "/portfolio/media/4.png", span: "col-span-1 row-span-2"  },
+      { src: "/portfolio/media/5.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/6.png", span: "col-span-1 row-span-2" },
+       { src: "/portfolio/media/7.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/8.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/9.png", span: "col-span-1 row-span-2" },
+       { src: "/portfolio/media/10.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/11.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/12.png", span: "col-span-1 row-span-2" },
+       { src: "/portfolio/media/13.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/media/14.png", span: "col-span-1 row-span-2" },
     ],
   },
   {
@@ -66,17 +77,12 @@ const CATS = [
     color: "#FBBC05",
     accent: "#4e3a00",
     images: [
-      { src: "/portfolio/content/reel1.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/1.png", span: "col-span-1" },
-      { src: "/portfolio/content/2.png", span: "col-span-1" },
+      
+      { src: "/portfolio/content/1.png", span: "col-span-1 row-span-2" },
+      { src: "/portfolio/content/2.png", span: "col-span-1 row-span-2" },
       { src: "/portfolio/content/3.png", span: "col-span-1" },
       { src: "/portfolio/content/4.png", span: "col-span-1" },
-      { src: "/portfolio/content/reel2.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/reel3.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/reel4.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/reel5.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/reel6.mp4", span: "col-span-1 row-span-2", video: true },
-      { src: "/portfolio/content/reel7.mp4", span: "col-span-1 row-span-2", video: true },
+   
     ],
   },
 ];
@@ -209,7 +215,7 @@ function CategorySection({ cat, onImageClick }: { cat: Cat; onImageClick: (i: nu
       </Reveal>
 
       <Reveal delay={0.1}>
-        <div className="grid auto-rows-[200px] grid-cols-3 gap-3">
+        <div className="grid auto-rows-[200px] grid-cols-1 sm:grid-cols-3 gap-3">
           {cat.images.map((img, i) => (
             <motion.button key={i} onClick={() => onImageClick(i)}
               whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
