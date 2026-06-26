@@ -87,7 +87,6 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const n = projects.length;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
   useEffect(() => {
     if (!n || paused) return;
