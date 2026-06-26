@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, ExternalLink, Layers, Gauge, Globe } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, ChevronLeft, ChevronRight, Layers, Gauge, Globe } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import NeonButton from "@/components/ui/NeonButton";
@@ -10,39 +10,170 @@ import WebProcess from "@/components/sections/WebProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
 import OnboardForm from "@/components/sections/OnboardForm";
 
-interface Project { name: string; category: string; description: string; url: string }
-const PROJECTS: Project[] = [
-  { name: "M2M Pro", category: "Business Platform", description: "Conversion-focused business platform with a bold, modern interface.", url: "https://www.m2mprocleaners.ca" },
-  { name: "Cobb Church", category: "Community", description: "Warm community website with events, media and easy navigation.", url: "https://www.cobbchurchnetwork.org" },
-  { name: "A1 Furnished", category: "Real Estate", description: "Premium furnished-rentals site with rich listings.", url: "https://www.a1furnished.ca" },
-  { name: "Global Paradon", category: "Corporate", description: "Professional corporate site built to win clients.", url: "https://www.globalpardonwaivers.com" },
-  { name: "AEM Quality ISO", category: "Quality Consulting", description: "Clean, credible site for quality consulting that builds instant trust.", url: "https://www.aemqualityiso.com" },
-  { name: "Bariis Pizza", category: "Restaurant", description: "Appetizing restaurant site with a smooth ordering experience.", url: "https://www.bariishalalpizza.com" },
-  { name: "Corner Store", category: "Retail", description: "Neon-styled retail storefront with slick product browsing.", url: "https://www.cornerstoreatlinwood.com" },
-  { name: "Toronto Notary", category: "Local Business", description: "Modern local-business site that converts.", url: "https://www.torontonotaryoffice.ca" },
-];
+const BASE_W = 1440;
 
-function MiniFrame({ url, name }: { url: string; name: string }) {
+/* ── live iframe frame ── */
+function LiveFrame({ url, name }: { url: string; name: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.25);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setScale(el.clientWidth / BASE_W);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#120c20] shadow-2xl">
-      <div className="flex items-center gap-1 border-b border-white/5 px-2.5 py-1.5">
-        <span className="h-2 w-2 rounded-full bg-red-400/70" />
-        <span className="h-2 w-2 rounded-full bg-yellow-400/70" />
-        <span className="h-2 w-2 rounded-full bg-green-400/70" />
-        <span className="ml-2 hidden truncate text-[8px] text-white/30 sm:block">{url.replace("https://www.", "")}</span>
+    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0814] shadow-xl">
+      {/* browser bar */}
+      <div className="flex items-center gap-1.5 border-b border-white/5 bg-[#0f0a1e] px-3 py-2">
+        <span className="h-2 w-2 rounded-full bg-red-400/60" />
+        <span className="h-2 w-2 rounded-full bg-yellow-400/60" />
+        <span className="h-2 w-2 rounded-full bg-green-400/60" />
+        <span className="ml-2 truncate text-[9px] text-white/25">{url.replace("https://www.", "").replace("https://", "")}</span>
       </div>
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-[#1a0b2e] via-[#0d0820] to-[#05030a]">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-          <div className="h-2 w-24 rounded-full bg-white/10" />
-          <div className="h-2 w-32 rounded-full bg-white/7" />
-          <div className="h-2 w-20 rounded-full bg-white/5" />
-          <div className="mt-4 text-xs font-semibold text-white/40">{url.replace("https://www.", "")}</div>
-        </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-brand-purple/10 via-transparent to-brand-mint/5" />
+      {/* scaled iframe */}
+      <div ref={ref} className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
+        <iframe
+          src={url}
+          title={name}
+          scrolling="no"
+          loading="lazy"
+          className="absolute left-0 top-0 origin-top-left border-0"
+          style={{
+            width: `${BASE_W}px`,
+            height: `${BASE_W * (10 / 16)}px`,
+            transform: `scale(${scale})`,
+            pointerEvents: "none",
+          }}
+        />
       </div>
     </div>
   );
 }
+
+/* ── all projects with industry tag ── */
+const ALL_PROJECTS = [
+  { name: "M2M Pro Cleaners",  industry: "construction", url: "https://www.m2mprocleaners.ca",        tag: "Construction" },
+  { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
+  { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
+  { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
+  { name: "JMG Auto",          industry: "automotive",   url: "https://www.jmgauto.ca",               tag: "Automotive" },
+  { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
+  { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
+  { name: "Toronto Notary",    industry: "professional", url: "https://www.torontonotaryoffice.ca",   tag: "Professional" },
+  { name: "A1 Furnished",      industry: "hospitality",  url: "https://www.a1furnished.ca",           tag: "Hospitality" },
+  { name: "Corner Store",      industry: "ecommerce",    url: "https://www.cornerstoreatlinwood.com", tag: "E-commerce" },
+];
+
+const INDUSTRIES = [
+  { id: "construction", label: "Construction & Renovation",       color: "#F59E0B", emoji: "🏗️" },
+  { id: "restaurant",   label: "Restaurant & Food Services",      color: "#EF4444", emoji: "🍴" },
+  { id: "professional", label: "Professional Services",           color: "#10B981", emoji: "💼" },
+  { id: "ecommerce",    label: "E-commerce & Retail",             color: "#C8F31D", emoji: "🛍️" },
+  { id: "hospitality",  label: "Travel & Hospitality",            color: "#06B6D4", emoji: "✈️" },
+  { id: "health",       label: "Health & Wellness",               color: "#EC4899", emoji: "❤️" },
+  { id: "automotive",   label: "Automotive Services",             color: "#3B82F6", emoji: "🚗" },
+  { id: "nonprofit",    label: "Non-Profit & Community",          color: "#8B5CF6", emoji: "🤝" },
+];
+
+/* ── industry slider card ── */
+function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
+  const projects = ALL_PROJECTS.filter((p) => p.industry === ind.id);
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const n = projects.length;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+  useEffect(() => {
+    if (!n || paused) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 4000);
+    return () => clearInterval(id);
+  }, [paused, n]);
+
+  const cur = projects[active];
+
+  return (
+    <div className="glass rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1"
+      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 28px ${ind.color}25`; }}
+      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = ""; }}>
+
+      {/* header */}
+      <div className="mb-3 flex items-center gap-2">
+        <span className="text-xl">{ind.emoji}</span>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-wider" style={{ color: ind.color }}>{ind.label}</p>
+        </div>
+      </div>
+
+      {/* slider */}
+      <div>
+        {n > 0 ? (
+          <>
+            <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+              <AnimatePresence mode="wait">
+                <motion.div key={active}
+                  initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3 }}>
+                  <LiveFrame url={cur.url} name={cur.name} />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* info row */}
+              <div className="mt-2 flex items-center justify-between">
+                <p className="text-xs font-semibold text-white/70">{cur.name}</p>
+                <div className="flex items-center gap-1">
+                  <a href={cur.url} target="_blank" rel="noreferrer"
+                    className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                    <ExternalLink size={11} />
+                  </a>
+                  {n > 1 && (
+                    <>
+                      <button onClick={() => setActive((a) => (a - 1 + n) % n)}
+                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                        <ChevronLeft size={12} />
+                      </button>
+                      <button onClick={() => setActive((a) => (a + 1) % n)}
+                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                        <ChevronRight size={12} />
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {n > 1 && (
+                <div className="mt-1.5 flex gap-1">
+                  {projects.map((_, i) => (
+                    <button key={i} onClick={() => setActive(i)}
+                      className="h-1 rounded-full transition-all"
+                      style={{ width: i === active ? 16 : 4, background: i === active ? ind.color : "rgba(255,255,255,0.2)" }} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-white/8 bg-white/[0.02]">
+            <p className="text-xs text-white/25">Coming soon</p>
+          </div>
+        )}
+      </div>
+
+      {/* CTA */}
+      <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
+        className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-bold transition-all hover:opacity-90"
+        style={{ background: `${ind.color}15`, border: `1px solid ${ind.color}35`, color: ind.color }}>
+        Build mine <ArrowRight size={11} />
+      </button>
+    </div>
+  );
+}
+
 
 type Pkg = { name: string; price: string; tagline: string; popular?: boolean; includes: string[] };
 const PACKAGES: Pkg[] = [
@@ -58,44 +189,31 @@ const STATS = [
   { icon: Globe, value: "24–48h", label: "Kickoff" },
 ];
 
-const scrollToOnboard = () => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" });
 
 export default function WebDevelopment() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const n = PROJECTS.length;
-  const go = (dir: number) => setActive((a) => (a + dir + n) % n);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % n), 3500);
-    return () => clearInterval(id);
-  }, [paused, n]);
-
-  const cur = PROJECTS[active];
-
   return (
     <>
-      <section className="relative py-14 sm:py-18">
-        <div className="pointer-events-none absolute -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
-        <div className="section grid items-center gap-8 lg:grid-cols-2">
-          <Reveal>
+      {/* ── HERO ── */}
+      <section className="relative py-16 sm:py-24">
+        <div className="pointer-events-none absolute -top-10 left-1/2 h-80 w-[50rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[140px]" />
+        <div className="section">
+          <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Web Development</SectionLabel>
-            <h1 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
               High-Performance Websites Built To <span className="text-gradient">Grow Your Business</span>
             </h1>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/65">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
               Visually stunning, fully optimized and modern websites that turn visitors into customers — fast, responsive and built to scale.
             </p>
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <NeonButton href="#onboard" variant="primary">Start Your Project <ArrowRight size={16} /></NeonButton>
               <NeonButton href="#packages" variant="ghost">View Packages</NeonButton>
             </div>
-            <div className="mt-8 flex flex-wrap gap-5">
+            <div className="mt-10 flex flex-wrap justify-center gap-6">
               {STATS.map((s) => (
                 <div key={s.label} className="flex items-center gap-2.5">
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><s.icon size={16} /></span>
-                  <div>
+                  <div className="text-left">
                     <div className="font-display text-base font-bold text-white">{s.value}</div>
                     <div className="text-[11px] text-white/50">{s.label}</div>
                   </div>
@@ -103,38 +221,35 @@ export default function WebDevelopment() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
 
-          <Reveal delay={0.1}>
-            <div className="relative" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-              <AnimatePresence mode="wait">
-                <motion.div key={active} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }}>
-                  <MiniFrame url={cur.url} name={cur.name} />
-                </motion.div>
-              </AnimatePresence>
-              <div className="mt-3 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-mint">{cur.category}</span>
-                  <h3 className="font-display text-sm font-bold text-white">{cur.name}</h3>
-                </div>
-                <div className="flex items-center gap-2">
-                  <a href={cur.url} target="_blank" rel="noreferrer" className="grid h-8 w-8 place-items-center rounded-full glass text-white/60 transition hover:text-brand-mint"><ExternalLink size={13} /></a>
-                  <button onClick={() => go(-1)} className="grid h-8 w-8 place-items-center rounded-full glass text-white/60 transition hover:text-brand-mint"><ChevronLeft size={14} /></button>
-                  <button onClick={() => go(1)} className="grid h-8 w-8 place-items-center rounded-full glass text-white/60 transition hover:text-brand-mint"><ChevronRight size={14} /></button>
-                </div>
-              </div>
-              <div className="mt-2 flex gap-1.5">
-                {PROJECTS.map((_, i) => (
-                  <button key={i} onClick={() => setActive(i)} className={`h-1.5 rounded-full transition-all ${i === active ? "w-5 bg-brand-mint" : "w-1.5 bg-white/20"}`} />
-                ))}
-              </div>
-            </div>
+      {/* ── BY INDUSTRY — 2 columns ── */}
+      <section className="relative py-16 sm:py-20">
+        <div className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
+        <div className="section">
+          <Reveal className="mb-12 text-center">
+            <SectionLabel>Browse by Industry</SectionLabel>
+            <h2 className="mt-4 font-display text-3xl font-extrabold text-white sm:text-4xl">
+              We Build for <span className="text-gradient">Every Business</span>
+            </h2>
+            <p className="mt-3 text-base text-white/60">Real websites we&apos;ve built — see yours.</p>
           </Reveal>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            {INDUSTRIES.map((ind, i) => (
+              <Reveal key={ind.id} delay={i * 0.06}>
+                <IndustryCard ind={ind} />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <TrustReviews />
       <WebProcess />
 
+      {/* ── PACKAGES ── */}
       <section id="packages" className="relative py-16 sm:py-20">
         <div className="section">
           <Reveal className="mx-auto max-w-3xl text-center">
@@ -148,7 +263,6 @@ export default function WebDevelopment() {
               Transparent pricing. Pick a package and complete onboarding — we handle the rest.
             </p>
           </Reveal>
-
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PACKAGES.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.07}>
@@ -171,9 +285,8 @@ export default function WebDevelopment() {
                       <li key={it} className="flex items-start gap-2.5 text-sm text-white/75"><Check size={16} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
                   </ul>
-                  {/* solid button */}
-                  <button onClick={scrollToOnboard}
-                    className={`mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-bold transition-all hover:-translate-y-0.5 hover:brightness-110 ${p.popular ? "bg-brand-mint text-ink shadow-glow-mint" : "bg-brand-mint text-ink shadow-glow-mint"}`}>
+                  <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
+                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
                     Get Started <ArrowRight size={15} />
                   </button>
                 </div>
@@ -184,6 +297,7 @@ export default function WebDevelopment() {
         </div>
       </section>
 
+      {/* ── ONBOARDING FORM ── */}
       <section id="onboard" className="relative py-16 sm:py-20">
         <div className="pointer-events-none absolute bottom-0 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-mint/10 blur-[130px]" />
         <div className="section">
@@ -198,9 +312,7 @@ export default function WebDevelopment() {
               Fill in the details below and hit submit. Our team will reach out within <span className="font-semibold text-white">24–48 hours</span>.
             </p>
           </Reveal>
-          <Reveal delay={0.1}>
-            <OnboardForm />
-          </Reveal>
+          <Reveal delay={0.1}><OnboardForm /></Reveal>
         </div>
       </section>
     </>
