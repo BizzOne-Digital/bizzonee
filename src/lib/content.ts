@@ -14,9 +14,9 @@ import {
 
 export const COMPANY = {
   name: "BizzOne Digital",
-  email: "hello@bizzonedigital.com",
-  phone: "+91 12345 67890",
-  address: "9th Floor, Digital Tower, Sector 63, Noida, India",
+  email: "info@bizzonedigital.com",
+  phone: "+1 (289) 412-1562",
+  address: "55 Village Centre PI , Mississauga ON L4Z IV9 , Canada",
 };
 
 export const NAV_LINKS = [

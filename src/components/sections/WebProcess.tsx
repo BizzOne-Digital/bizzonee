@@ -9,11 +9,11 @@ import SectionLabel from "@/components/ui/SectionLabel";
 interface Step { n: string; title: string; description: string; icon: LucideIcon }
 
 const STEPS: Step[] = [
-  { n: "01", title: "Fill out this form", description: "Tell us about your project. Takes about 5 minutes.", icon: ClipboardList },
-  { n: "02", title: "We build your site", description: "Our team gets started on your website within 24–48 hrs.", icon: Code2 },
-  { n: "03", title: "You review and approve", description: "See the design before it goes live. Same day feedback.", icon: Search },
-  { n: "04", title: "Pay once you're happy", description: "Secure payment link sent only after you approve.", icon: Palette },
-  { n: "05", title: "Your site goes live", description: "We connect your domain and launch within hours.", icon: Rocket },
+  { n: "01", title: "Confirm Your Spot with Payment", description: "Secure your place with a simple payment to kick things off.", icon: ClipboardList },
+  { n: "02", title: "Fill Out the Form", description: "Tell us about your project and goals. Takes about 5 minutes.", icon: Search },
+  { n: "03", title: "We Build Your Website", description: "Our team gets started on your website within 24–48 hrs.", icon: Code2 },
+  { n: "04", title: "Review and Approve", description: "See the design before it goes live. Same day feedback.", icon: Palette },
+  { n: "05", title: "Your Site Goes Live", description: "We connect your domain and launch your site within hours.", icon: Rocket },
 ];
 
 const H = 480;
@@ -142,7 +142,7 @@ export default function WebProcess() {
                   >
                     <div className="font-display text-2xl font-extrabold text-white/85">{step.n}</div>
                     <h3 className="mt-1 font-display text-base font-semibold text-brand-mint">{step.title}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-white/55">{step.description}</p>
+                    <p className="mt-1.5 text-xs leading-relaxed text-white/80">{step.description}</p>
                   </motion.div>
                 </div>
               </div>
@@ -167,7 +167,7 @@ export default function WebProcess() {
               </div>
               <div className="font-display text-xl font-extrabold text-white/85">{step.n}</div>
               <h3 className="mt-0.5 font-display text-base font-semibold text-brand-mint">{step.title}</h3>
-              <p className="mt-1 max-w-xs text-sm leading-relaxed text-white/55">{step.description}</p>
+              <p className="mt-1 max-w-xs text-sm leading-relaxed text-white/80">{step.description}</p>
             </motion.div>
           ))}
         </div>

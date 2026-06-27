@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, ExternalLink, ChevronLeft, ChevronRight, Layers, Gauge, Globe } from "lucide-react";
+import { ArrowRight, Check, ExternalLink, ChevronLeft, ChevronRight, Layers, Gauge, Globe, Send, CheckCircle2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import NeonButton from "@/components/ui/NeonButton";
 import WebProcess from "@/components/sections/WebProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
-import OnboardForm from "@/components/sections/OnboardForm";
+
 
 const BASE_W = 1440;
 
@@ -296,24 +296,101 @@ export default function WebDevelopment() {
         </div>
       </section>
 
-      {/* ── ONBOARDING FORM ── */}
+      {/* ── GET IN TOUCH ── */}
       <section id="onboard" className="relative py-16 sm:py-20">
         <div className="pointer-events-none absolute bottom-0 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-mint/10 blur-[130px]" />
         <div className="section">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full neon-border px-5 py-2 text-xs font-bold uppercase tracking-[0.22em]">
-              <span className="text-brand-purple-light">Start</span><span className="text-brand-mint">Onboarding</span>
-            </span>
-            <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Let&apos;s Build Your <span className="text-gradient">Website</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
-              Fill in the details below and hit submit. Our team will reach out within <span className="font-semibold text-white">24–48 hours</span>.
-            </p>
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl neon-border px-6 py-12 sm:px-12 sm:py-14">
+              <div className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-purple/30 blur-[100px]" />
+              <div className="pointer-events-none absolute -right-10 bottom-0 h-72 w-72 rounded-full bg-brand-mint/20 blur-[100px]" />
+              <div className="relative grid items-start gap-10 lg:grid-cols-2">
+                <div>
+                  <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand-mint shadow-glow-mint" /> Get In Touch
+                  </span>
+                  <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+                    Let&apos;s Build Your <span className="text-gradient">Website</span>
+                  </h2>
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/60">
+                    Send us a quick message and our team will reach out within 24–48 hours to get started.
+                  </p>
+                  <ul className="mt-8 space-y-3">
+                    {[{ label: "Reply within 24–48 hours" }, { label: "Free strategy consultation" }, { label: "No spam, ever" }].map((t) => (
+                      <li key={t.label} className="flex items-center gap-3 text-sm text-white/70">
+                        <span className="h-2 w-2 rounded-full bg-brand-mint shadow-glow-mint" />
+                        {t.label}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <WebContactForm />
+              </div>
+            </div>
           </Reveal>
-          <Reveal delay={0.1}><OnboardForm /></Reveal>
         </div>
       </section>
     </>
+  );
+}
+
+function WebContactForm() {
+  const fieldCls = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition-colors focus:border-brand-mint/60";
+  const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const set = (k: string, v: string) => { setForm((p) => ({ ...p, [k]: v })); if (status === "error") setStatus("idle"); };
+
+  const submit = async () => {
+    if (!form.name || !form.email) { setStatus("error"); setErrorMsg("Please fill in your name and email."); return; }
+    setStatus("sending"); setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...form, service: "Web Development" }) });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok) setStatus("sent");
+      else { setStatus("error"); setErrorMsg(data.error || "Something went wrong."); }
+    } catch { setStatus("error"); setErrorMsg("Network error. Please try again."); }
+  };
+
+  if (status === "sent") {
+    return (
+      <div className="flex min-h-[340px] flex-col items-center justify-center rounded-3xl glass-strong p-10 text-center">
+        <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
+        <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">Thanks {form.name.split(" ")[0] || "there"} — we&apos;ll be in touch within 24–48 hours.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-3xl glass-strong p-6 sm:p-7">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-white/80">Full Name <span className="text-brand-mint">*</span></label>
+          <input className={fieldCls} value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-white/80">Phone</label>
+          <input type="tel" className={fieldCls} value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (___) ___-____" />
+        </div>
+      </div>
+      <div className="mt-4">
+        <label className="mb-1.5 block text-sm font-medium text-white/80">Email <span className="text-brand-mint">*</span></label>
+        <input type="email" className={fieldCls} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@business.com" />
+      </div>
+      <div className="mt-4">
+        <label className="mb-1.5 block text-sm font-medium text-white/80">Business Name</label>
+        <input className={fieldCls} value={form.business} onChange={(e) => set("business", e.target.value)} placeholder="ABC Company" />
+      </div>
+      <div className="mt-4">
+        <label className="mb-1.5 block text-sm font-medium text-white/80">Message</label>
+        <textarea className={`${fieldCls} min-h-[110px] resize-y leading-relaxed`} value={form.message} onChange={(e) => set("message", e.target.value)} placeholder="Tell us about your project or goals..." />
+      </div>
+      {status === "error" && <p className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{errorMsg}</p>}
+      <button onClick={submit} disabled={status === "sending"}
+        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60">
+        <Send size={16} /> {status === "sending" ? "Sending..." : "Send Message"}
+      </button>
+    </div>
   );
 }

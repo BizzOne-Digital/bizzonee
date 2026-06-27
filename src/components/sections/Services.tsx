@@ -94,8 +94,8 @@ export default function Services() {
           </p>
         </Reveal>
 
-        <div className="mt-14 overflow-hidden py-8">
-          <div className="marquee-track">
+        <div className="mt-14 overflow-hidden py-8 -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-12">
+          <div className="marquee-track pl-4 sm:pl-6 lg:pl-8 xl:pl-12">
             {MARQUEE_CARDS.map((c, i) => (
               <div
                 key={i}

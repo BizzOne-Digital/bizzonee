@@ -37,7 +37,7 @@ export default function OurWork() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {CATS.map((cat, i) => (
               <Link key={cat.id} href={`/our-work#${cat.id}`}
                 className={`group relative overflow-hidden rounded-2xl ${i === 0 ? "sm:col-span-2 lg:col-span-1" : ""}`}
