@@ -58,7 +58,7 @@ function ServiceCard({ c, i }: { c: Service; i: number }) {
         <Pedestal icon={c.icon} i={i % 5} />
 
         <h3 className="text-center font-display text-lg font-bold text-white">{c.title}</h3>
-        <p className="mx-auto mt-3 max-w-[15rem] text-center text-sm leading-relaxed text-white/55">{c.short}</p>
+        <p className="mx-auto mt-3 max-w-[15rem] text-center text-sm leading-relaxed text-white/90">{c.short}</p>
 
         <div className="mt-auto flex items-center justify-center gap-2 pt-6 text-xs font-bold uppercase tracking-wide text-brand-mint">
           Learn More
@@ -89,24 +89,29 @@ export default function Services() {
           <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
             End-to-End <span className="text-gradient">Digital Solutions</span><br className="hidden sm:block" /> To Grow Your Business
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/80">
             We combine creativity, technology, and data to deliver powerful digital experiences that drive real results.
           </p>
         </Reveal>
 
-        <div className="mt-14 overflow-hidden py-8 -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-12">
-          <div className="marquee-track pl-4 sm:pl-6 lg:pl-8 xl:pl-12">
-            {MARQUEE_CARDS.map((c, i) => (
-              <div
-                key={i}
-                className="w-[280px] shrink-0 sm:w-[300px]"
-                aria-hidden={i >= SERVICES.length ? "true" : undefined}
-              >
-                <ServiceCard c={c} i={i} />
-              </div>
-            ))}
-          </div>
+      </div>
+
+      {/* Full-bleed marquee — outside the section container */}
+      <div className="mt-14 overflow-hidden py-8 w-full">
+        <div className="marquee-track">
+          {MARQUEE_CARDS.map((c, i) => (
+            <div
+              key={i}
+              className="w-[280px] shrink-0 sm:w-[300px]"
+              aria-hidden={i >= SERVICES.length ? "true" : undefined}
+            >
+              <ServiceCard c={c} i={i} />
+            </div>
+          ))}
         </div>
+      </div>
+
+      <div className="section">
 
         <Reveal delay={0.2}>
           <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-5 rounded-2xl glass-strong px-6 py-5 sm:flex-row sm:gap-6">

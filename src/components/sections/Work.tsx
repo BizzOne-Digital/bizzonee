@@ -80,7 +80,7 @@ export default function OurWork() {
                     View Work
                   </span>
                   <h3 className="font-display text-xl font-extrabold text-white">{cat.title}</h3>
-                  <p className="mt-1.5 text-sm text-white/70 opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <p className="mt-1.5 text-sm text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
                     {cat.description}
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold opacity-0 transition-all duration-300 group-hover:opacity-100"

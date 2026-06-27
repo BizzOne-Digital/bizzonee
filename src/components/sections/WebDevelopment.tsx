@@ -62,7 +62,7 @@ const ALL_PROJECTS = [
   { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
   { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
   { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
-  { name: "Royal Pizza",      industry: "restaurant",   url: "https://www.theroyalgeorgetown.ca",      tag: "Restaurant" },
+     { name: "Royal Pizza",      industry: "restaurant",   url: "https://www.theroyalgeorgetown.ca",      tag: "Restaurant" },
   { name: "JMG Auto",          industry: "automotive",   url: "https://www.jmgauto.ca",               tag: "Automotive" },
   { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
   { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
@@ -106,7 +106,7 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
       <div className="mb-3 flex items-center gap-2">
         <span className="text-xl">{ind.emoji}</span>
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider" style={{ color: ind.color }}>{ind.label}</p>
+          <p className="text-sm font-bold uppercase tracking-wider sm:text-base" style={{ color: ind.color }}>{ind.label}</p>
         </div>
       </div>
 
@@ -128,17 +128,17 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
                 <p className="text-xs font-semibold text-white/70">{cur.name}</p>
                 <div className="flex items-center gap-1">
                   <a href={cur.url} target="_blank" rel="noreferrer"
-                    className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                    className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
                     <ExternalLink size={11} />
                   </a>
                   {n > 1 && (
                     <>
                       <button onClick={() => setActive((a) => (a - 1 + n) % n)}
-                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
                         <ChevronLeft size={12} />
                       </button>
                       <button onClick={() => setActive((a) => (a + 1) % n)}
-                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/40 hover:text-white transition-colors">
+                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
                         <ChevronRight size={12} />
                       </button>
                     </>
@@ -175,12 +175,12 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
 }
 
 
-type Pkg = { name: string; price: string; tagline: string; popular?: boolean; includes: string[] };
+type Pkg = { name: string; price: string; tagline: string; popular?: boolean; contact?: boolean; includes: string[] };
 const PACKAGES: Pkg[] = [
   { name: "Starter", price: "$79", tagline: "Clean, professional website to get online fast.", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO"] },
-  { name: "Standard", price: "$149", tagline: "Everything you need to grow and convert.", includes: ["Up to 7 pages", "Contact form", "Admin portal", "Gallery management", "Mobile responsive"] },
-  { name: "Advanced", price: "$399", tagline: "Conversion-focused with portals & payments.", popular: true, includes: ["Up to 7 pages", "Basic admin portal", "Basic customer portal", "Payment integration", "SEO setup"] },
-  { name: "Premium", price: "$499", tagline: "Everything, fully custom & eCommerce ready.", includes: ["Up to 10 pages", "All integrations", "eCommerce ready", "Fully custom design", "Multi-language"] },
+  { name: "Standard", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup"] },
+  { name: "Advanced", contact: true, price: "Contact Us", tagline: "Custom eCommerce website with products, payments, and business features.", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features"] },
+  { name: "Premium", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation"] },
 ];
 
 const STATS = [
@@ -215,7 +215,7 @@ export default function WebDevelopment() {
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><s.icon size={16} /></span>
                   <div className="text-left">
                     <div className="font-display text-base font-bold text-white">{s.value}</div>
-                    <div className="text-[11px] text-white/50">{s.label}</div>
+                    <div className="text-[11px] text-white/90">{s.label}</div>
                   </div>
                 </div>
               ))}
@@ -230,13 +230,13 @@ export default function WebDevelopment() {
         <div className="section">
           <Reveal className="mb-12 text-center">
             <SectionLabel>Browse by Industry</SectionLabel>
-            <h2 className="mt-4 font-display text-3xl font-extrabold text-white sm:text-4xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
               We Build for <span className="text-gradient">Every Business</span>
             </h2>
-            <p className="mt-3 text-base text-white/60">Real websites we&apos;ve built — see yours.</p>
+            <p className="mt-3 text-base text-white/90">Real websites we&apos;ve built — see yours.</p>
           </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => (
               <Reveal key={ind.id} delay={i * 0.06}>
                 <IndustryCard ind={ind} />
@@ -259,41 +259,41 @@ export default function WebDevelopment() {
             <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
               Choose The <span className="text-gradient">Perfect Plan</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
               Transparent pricing. Pick a package and complete onboarding — we handle the rest.
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {PACKAGES.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.07}>
-                <div className={`relative flex h-full flex-col rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 ${p.popular ? "neon-border shadow-glow-purple" : "glass hover:shadow-glow-purple"}`}>
+                <div className={`relative flex h-full flex-col rounded-3xl p-4 xl:p-6 transition-all duration-300 hover:-translate-y-2 ${p.popular ? "neon-border shadow-glow-purple" : "glass hover:shadow-glow-purple"}`}>
                   {p.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-mint px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-ink shadow-glow-mint">Most Popular</span>}
                   <div className="text-sm font-semibold uppercase tracking-wide text-brand-mint">{p.name}</div>
                   <div className="mt-2">
-                    {(p.name === "Starter" || p.name === "Standard") ? (
+                    {!p.contact ? (
                       <div className="flex items-end gap-1">
-                        <span className="font-display text-4xl font-extrabold text-white">{p.price}</span>
-                        <span className="mb-1 text-xs text-white/45">one-time</span>
+                        <span className="font-display text-3xl xl:text-4xl font-extrabold text-white">{p.price}</span>
+                        <span className="mb-1 text-xs text-white/90">one-time</span>
                       </div>
                     ) : (
-                      <span className="inline-block rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1 text-xs font-semibold text-brand-mint">Contact for pricing</span>
+                      <span className="inline-block rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1 text-xs font-semibold text-brand-mint">Contact Us</span>
                     )}
                   </div>
-                  <p className="mt-2 text-sm leading-snug text-white/55">{p.tagline}</p>
-                  <ul className="mt-5 space-y-3 border-t border-white/10 pt-5">
+                  <p className="mt-2 text-sm leading-snug text-white/90">{p.tagline}</p>
+                  <ul className="mt-5 flex-1 space-y-3 border-t border-white/10 pt-5">
                     {p.includes.map((it) => (
-                      <li key={it} className="flex items-start gap-2.5 text-sm text-white/75"><Check size={16} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
+                      <li key={it} className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
                   </ul>
                   <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
-                    className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
                     Get Started <ArrowRight size={15} />
                   </button>
                 </div>
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-center text-xs text-white/40">Need something custom? Mention it in the form and we&apos;ll send a tailored quote.</p>
+          <p className="mt-6 text-center text-xs text-white/90">Need something custom? Mention it in the form and we&apos;ll send a tailored quote.</p>
         </div>
       </section>
 
@@ -313,7 +313,7 @@ export default function WebDevelopment() {
                   <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
                     Let&apos;s Build Your <span className="text-gradient">Website</span>
                   </h2>
-                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/60">
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/90">
                     Send us a quick message and our team will reach out within 24–48 hours to get started.
                   </p>
                   <ul className="mt-8 space-y-3">
@@ -358,7 +358,7 @@ function WebContactForm() {
       <div className="flex min-h-[340px] flex-col items-center justify-center rounded-3xl glass-strong p-10 text-center">
         <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
         <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
-        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">Thanks {form.name.split(" ")[0] || "there"} — we&apos;ll be in touch within 24–48 hours.</p>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">Thanks {form.name.split(" ")[0] || "there"} — we&apos;ll be in touch within 24–48 hours.</p>
       </div>
     );
   }

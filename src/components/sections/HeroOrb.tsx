@@ -47,8 +47,8 @@ export default function HeroOrb() {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
           /* clamp: min 260px on tiny phones, max 480px on desktop */
-          width:  "min(80vw, min(100%, 480px))",
-          height: "min(80vw, min(100%, 480px))",
+          width:  "min(80vw, min(100%, 520px), 60vh)",
+          height: "min(80vw, min(100%, 520px), 60vh)",
         }}>
 
         {/* decorative floating mini-spheres */}

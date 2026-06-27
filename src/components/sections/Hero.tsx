@@ -13,7 +13,7 @@ const WORDS: { t: string; g?: boolean }[] = [
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden pt-28 pb-12 lg:pt-32">
+    <section id="home" className="relative overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24">
       {/* floating accent orbs */}
       <motion.div animate={{ y: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         className="pointer-events-none absolute -left-10 top-32 h-64 w-64 rounded-full bg-brand-purple/20 blur-[120px]" />
@@ -44,7 +44,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7, ease }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/60">
+            className="mt-6 max-w-xl text-base leading-relaxed text-white/90">
             From strategy to automation, we help businesses attract, engage, and convert through data-driven digital solutions.
           </motion.p>
 
@@ -63,14 +63,14 @@ export default function Hero() {
             </div>
             <div>
               <p className="text-sm font-bold text-white">100+ Businesses Scaled</p>
-              <p className="text-xs text-white/50">With BizzOne Digital</p>
+              <p className="text-xs text-white/90">With BizzOne Digital</p>
             </div>
           </motion.div>
         </div>
 
         {/* Right: animated orb composition */}
         <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease }}
-          className="relative order-2 h-[320px] xs:h-[360px] sm:h-[460px] lg:h-[560px]">
+          className="relative order-2 h-[300px] sm:h-[420px] lg:h-[520px] xl:h-[580px]">
           <HeroOrb />
         </motion.div>
       </div>

@@ -25,7 +25,7 @@ export default function About() {
           <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
             A Technology Partner <span className="text-gradient">Built for Growth</span>
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/55">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/90">
             BizzOne Digital blends design, engineering and marketing under one roof. We don&apos;t just deliver projects — we build digital ecosystems that compound your results over time.
           </p>
         </Reveal>
@@ -44,7 +44,7 @@ export default function About() {
                     className="rounded-2xl glass-strong p-4">
                     <Icon className="mb-2 h-5 w-5 text-brand-mint" />
                     <div className="text-sm font-semibold text-white">{a.label}</div>
-                    <div className="text-xs text-white/50">{a.sub}</div>
+                    <div className="text-xs text-white/90">{a.sub}</div>
                   </motion.div>
                 );
               })}
@@ -52,7 +52,7 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={0.1} className="relative">
-            <span className="mb-4 block text-center text-xs font-semibold uppercase tracking-[0.18em] text-white/40 lg:text-right">
+            <span className="mb-4 block text-center text-xs font-semibold uppercase tracking-[0.18em] text-white/90 lg:text-right">
               Our Work in Motion
             </span>
             <LaptopFrame videoSrc="/Bizz-one-Landscape-1.mp4" />
@@ -71,7 +71,7 @@ export default function About() {
                   </span>
                   <div>
                     <h3 className="mb-1.5 font-display text-xl font-bold text-white">{p.title}</h3>
-                    <p className="text-sm leading-relaxed text-white/60">{p.body}</p>
+                    <p className="text-sm leading-relaxed text-white/90">{p.body}</p>
                   </div>
                 </div>
               </Reveal>
