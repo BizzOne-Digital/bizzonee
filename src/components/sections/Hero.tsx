@@ -70,7 +70,7 @@ export default function Hero() {
 
         {/* Right: animated orb composition */}
         <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.9, ease }}
-          className="relative order-2 h-[460px] sm:h-[560px] lg:h-[640px]">
+          className="relative order-2 h-[320px] xs:h-[360px] sm:h-[460px] lg:h-[560px]">
           <HeroOrb />
         </motion.div>
       </div>
