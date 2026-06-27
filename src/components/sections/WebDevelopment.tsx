@@ -62,6 +62,7 @@ const ALL_PROJECTS = [
   { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
   { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
   { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
+  { name: "Royal Pizza",      industry: "restaurant",   url: "https://www.theroyalgeorgetown.ca",      tag: "Restaurant" },
   { name: "JMG Auto",          industry: "automotive",   url: "https://www.jmgauto.ca",               tag: "Automotive" },
   { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
   { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
