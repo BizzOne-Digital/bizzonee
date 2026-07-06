@@ -178,12 +178,12 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
 }
 
 
-type Pkg = { name: string; price: string; tagline: string; popular?: boolean; contact?: boolean; includes: string[] };
+type Pkg = { name: string; price: string; tagline: string; popular?: boolean; contact?: boolean; paymentLink?: string; includes: string[] };
 const PACKAGES: Pkg[] = [
-  { name: "Starter", price: "$79", tagline: "Clean, professional website to get online fast.", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO"] },
-  { name: "Standard", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup"] },
-  { name: "Advanced", contact: true, price: "Contact Us", tagline: "Custom eCommerce website with products, payments, and business features.", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features"] },
-  { name: "Premium", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation"] },
+  { name: "Standard", price: "$79", tagline: "Clean, professional website to get online fast.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e979c3ea3a19f0bd90ee", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO"] },
+  { name: "Premium", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e118f4e3f699673a6464", includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup"] },
+  { name: "Advanced", price: "$299", tagline: "Custom eCommerce website with products, payments, and business features.", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features"] },
+  { name: "Custom", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation"] },
 ];
 
 const STATS = [
@@ -288,10 +288,17 @@ export default function WebDevelopment() {
                       <li key={it} className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
                   </ul>
-                  <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
-                    Get Started <ArrowRight size={15} />
-                  </button>
+                  {p.paymentLink ? (
+                    <a href={p.paymentLink} target="_blank" rel="noreferrer"
+                      className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
+                      Get Started <ArrowRight size={15} />
+                    </a>
+                  ) : (
+                    <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
+                      className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-5 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
+                      Get Started <ArrowRight size={15} />
+                    </button>
+                  )}
                 </div>
               </Reveal>
             ))}
