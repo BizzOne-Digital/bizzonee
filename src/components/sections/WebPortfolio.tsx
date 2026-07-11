@@ -104,7 +104,7 @@ export default function WebPortfolio() {
             Projects We&apos;re <span className="text-gradient">Proud Of</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
-            A look at real websites we&apos;ve designed and built — slide through to explore.
+            A look at real websites we&apos;ve designed and built. Slide through to explore.
           </p>
         </Reveal>
 

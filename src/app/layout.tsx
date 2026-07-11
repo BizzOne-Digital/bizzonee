@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "BizzOne Digital — AI Automation & Digital Growth Agency",
+    default: "BizzOne Digital: AI Automation & Digital Growth Agency",
     template: "%s | BizzOne Digital",
   },
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "BizzOne Digital — AI Automation & Digital Growth Agency",
+    title: "BizzOne Digital: AI Automation & Digital Growth Agency",
     description:
       "From strategy to automation, we help businesses attract, engage, and convert.",
     url: siteUrl,

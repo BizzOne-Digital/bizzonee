@@ -17,6 +17,7 @@ export const COMPANY = {
   email: "info@bizzonedigital.com",
   phone: "+1 (289) 412-1562",
   address: "55 Village Centre PI , Mississauga ON L4Z IV9 , Canada",
+  googleReviewsUrl: "https://share.google/TRInEQdM2L3d3szfQ",
 };
 
 export const NAV_LINKS = [

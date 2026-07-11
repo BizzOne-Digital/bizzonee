@@ -156,7 +156,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
           </p>
 
-          <p>Built for growth — futuristic by design.</p>
+          <p>Built for growth, futuristic by design.</p>
         </div>
       </div>
     </footer>

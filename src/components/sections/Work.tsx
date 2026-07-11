@@ -32,7 +32,7 @@ export default function OurWork() {
             Projects We&apos;re <span className="text-gradient">Proud Of</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/75">
-            Real work delivered for real businesses — click any category to explore.
+            Real work delivered for real businesses. Click any category to explore.
           </p>
         </Reveal>
 

@@ -59,6 +59,7 @@ function LiveFrame({ url, name }: { url: string; name: string }) {
 /* ── all projects with industry tag ── */
 const ALL_PROJECTS = [
   { name: "M2M Pro Cleaners",  industry: "construction", url: "https://www.m2mprocleaners.ca",        tag: "Construction" },
+  { name: "Royal Empire Renovation", industry: "construction", url: "https://www.royalempirerenovation.com", tag: "Construction" },
   { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
   { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
   { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
@@ -67,11 +68,15 @@ const ALL_PROJECTS = [
    { name: "Haven Tire",          industry: "automotive",   url: "https://www.haventire.ca",               tag: "Automotive" },
     { name: "Black Truck",          industry: "automotive",   url: "https://www.blacktrucksco.com",               tag: "Automotive" },
      { name: "Book A Cab",          industry: "automotive",   url: "https://www.bookacab.ca",               tag: "Automotive" },
+  { name: "PerfectTouch Auto Detailing", industry: "automotive", url: "https://www.perfecttouchautodetailing.company", tag: "Automotive" },
   { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
   { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
   { name: "Toronto Notary",    industry: "professional", url: "https://www.torontonotaryoffice.ca",   tag: "Professional" },
+  { name: "M&L Cleaning",      industry: "professional", url: "https://www.mlcleaninghs.com",         tag: "Professional" },
   { name: "A1 Furnished",      industry: "hospitality",  url: "https://www.a1furnished.ca",           tag: "Hospitality" },
   { name: "Corner Store",      industry: "ecommerce",    url: "https://www.cornerstoreatlinwood.com", tag: "E-commerce" },
+  { name: "Strides Hockey Sales", industry: "ecommerce", url: "https://www.strideshockeysales.com",   tag: "E-commerce" },
+  { name: "Smokablunt",        industry: "ecommerce",    url: "https://www.smokablunt.com",           tag: "E-commerce" },
 ];
 
 const INDUSTRIES = [
@@ -203,14 +208,14 @@ export default function WebDevelopment() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>Web Development</SectionLabel>
             <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-              High-Performance Websites Built To <span className="text-gradient">Grow Your Business</span>
+              Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">$79. No Surprises.</span>
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
-              Visually stunning, fully optimized and modern websites that turn visitors into customers  fast, responsive and built to scale.
+              Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <NeonButton href="#onboard" variant="primary">Start Your Project <ArrowRight size={16} /></NeonButton>
-              <NeonButton href="#packages" variant="ghost">View Packages</NeonButton>
+              <NeonButton href="#packages" variant="primary">Get Started – $79 <ArrowRight size={16} /></NeonButton>
+              <NeonButton href="#onboard" variant="ghost">Talk To Us First</NeonButton>
             </div>
             <div className="mt-10 flex flex-wrap justify-center gap-6">
               {STATS.map((s) => (
@@ -236,7 +241,6 @@ export default function WebDevelopment() {
             <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
               We Build for <span className="text-gradient">Every Business</span>
             </h2>
-            <p className="mt-3 text-base text-white/90">Real websites we&apos;ve built — see yours.</p>
           </Reveal>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -263,7 +267,7 @@ export default function WebDevelopment() {
               Choose The <span className="text-gradient">Perfect Plan</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
-              Transparent pricing. Pick a package and complete onboarding — we handle the rest.
+              Transparent pricing. Pick a package and complete onboarding, we handle the rest.
             </p>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
@@ -368,7 +372,7 @@ function WebContactForm() {
       <div className="flex min-h-[340px] flex-col items-center justify-center rounded-3xl glass-strong p-10 text-center">
         <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
         <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
-        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">Thanks {form.name.split(" ")[0] || "there"} — we&apos;ll be in touch within 24–48 hours.</p>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">Thanks {form.name.split(" ")[0] || "there"}, we&apos;ll be in touch within 24–48 hours.</p>
       </div>
     );
   }

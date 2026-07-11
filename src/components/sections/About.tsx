@@ -7,7 +7,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import LaptopFrame from "@/components/ui/LaptopFrame";
 
 const panels = [
-  { icon: Target, title: "Our Mission", body: "To empower businesses with technology that is beautiful, fast and built to scale — turning digital presence into real revenue." },
+  { icon: Target, title: "Our Mission", body: "To empower businesses with technology that is beautiful, fast and built to scale, turning digital presence into real revenue." },
   { icon: Eye, title: "Our Vision", body: "To be the go-to digital partner for ambitious brands worldwide, setting the standard for premium, results-driven work." },
 ];
 
@@ -26,7 +26,7 @@ export default function About() {
             A Technology Partner <span className="text-gradient">Built for Growth</span>
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/90">
-            BizzOne Digital blends design, engineering and marketing under one roof. We don&apos;t just deliver projects — we build digital ecosystems that compound your results over time.
+            BizzOne Digital blends design, engineering and marketing under one roof. We don&apos;t just deliver projects, we build digital ecosystems that compound your results over time.
           </p>
         </Reveal>
 

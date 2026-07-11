@@ -17,7 +17,7 @@ const STATS = [
 
 const VALUES = [
   { icon: Zap, title: "Speed & Execution", body: "We move fast without cutting corners. Every project has clear milestones, weekly updates and on-time delivery." },
-  { icon: Heart, title: "Client-First Always", body: "Your success is our success. We treat every brand like our own — no cookie-cutter solutions, no shortcuts." },
+  { icon: Heart, title: "Client-First Always", body: "Your success is our success. We treat every brand like our own: no cookie-cutter solutions, no shortcuts." },
   { icon: Shield, title: "Transparency", body: "Honest reporting, clear communication, no hidden fees. You always know exactly where your project stands." },
   { icon: Lightbulb, title: "Innovation", body: "We stay ahead of trends so you don't have to. From AI automation to the latest ad strategies, we bring the cutting edge to your business." },
 ];
@@ -29,14 +29,14 @@ const TEAM_HIGHLIGHTS = [
 ];
 
 const PANELS = [
-  { icon: Target, title: "Our Mission", body: "To empower businesses with technology that is beautiful, fast and built to scale — turning digital presence into real revenue. We believe every business deserves a world-class online presence, regardless of size." },
+  { icon: Target, title: "Our Mission", body: "To empower businesses with technology that is beautiful, fast and built to scale, turning digital presence into real revenue. We believe every business deserves a world-class online presence, regardless of size." },
   { icon: Eye, title: "Our Vision", body: "To be the go-to digital partner for ambitious brands worldwide, setting the standard for premium, results-driven digital work. We're building a future where growth is engineered, not guessed." },
 ];
 
 const TIMELINE = [
   { year: "Founded", title: "BizzOne Digital is Born", desc: "Started with a simple belief: businesses deserve better digital partners. We began with web development and a handful of clients who believed in our vision." },
   { year: "Growth", title: "Expanding Services", desc: "Added SEO, social media management, Meta advertising, content strategy and graphic design. Our team grew from 3 to 15+ dedicated professionals." },
-  { year: "Scale", title: "AI & Automation", desc: "Launched our AI automation division — CRM integrations, intelligent workflows, WhatsApp & email automation. Helping businesses work smarter, not harder." },
+  { year: "Scale", title: "AI & Automation", desc: "Launched our AI automation division: CRM integrations, intelligent workflows, WhatsApp & email automation. Helping businesses work smarter, not harder." },
   { year: "Today", title: "180+ Brands & Counting", desc: "A full-service digital growth agency with 25+ team members, serving clients across 12+ countries. From startups to enterprises, we deliver results that compound." },
 ];
 
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>About Us</SectionLabel>
             <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-              We Don&apos;t Just Build Websites — We Build <span className="text-gradient">Growth Engines</span>
+              We Don&apos;t Just Build Websites. We Build <span className="text-gradient">Growth Engines</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
               BizzOne Digital is a full-service AI automation and digital growth agency. We blend design, engineering and marketing under one roof to deliver digital ecosystems that compound your results over time.
@@ -91,10 +91,10 @@ export default function AboutPage() {
                 From a Small Team to a <span className="text-gradient">Global Agency</span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-white/90">
-                BizzOne Digital started with a simple belief: every business — no matter how small — deserves a premium digital presence that actually drives results. We saw too many agencies delivering pretty websites that didn&apos;t convert, flashy ads that didn&apos;t sell, and social media that didn&apos;t grow.
+                BizzOne Digital started with a simple belief: every business, no matter how small, deserves a premium digital presence that actually drives results. We saw too many agencies delivering pretty websites that didn&apos;t convert, flashy ads that didn&apos;t sell, and social media that didn&apos;t grow.
               </p>
               <p className="mt-4 text-base leading-relaxed text-white/90">
-                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">180+ brands</span> scale with websites, advertising, social media, SEO, AI automation and more — generating over <span className="font-semibold text-brand-mint">₹250 Crore</span> in client revenue.
+                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">180+ brands</span> scale with websites, advertising, social media, SEO, AI automation and more, generating over <span className="font-semibold text-brand-mint">₹250 Crore</span> in client revenue.
               </p>
               <div className="mt-8 flex flex-wrap gap-5">
                 {TEAM_HIGHLIGHTS.map((t) => (

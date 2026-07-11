@@ -56,7 +56,7 @@ export default function FinalCTA() {
                   Ready To Scale Your Business <span className="text-gradient">With Us?</span>
                 </h2>
                 <p className="mt-5 max-w-lg text-base leading-relaxed text-white/60">
-                  Tell us what you need and our team will reach out. Pick a service below and send us a message — it lands straight in our inbox.
+                  Tell us what you need and our team will reach out. Pick a service below and send us a message, it lands straight in our inbox.
                 </p>
                 <ul className="mt-8 space-y-3">
                   {TRUST.map((t) => (
@@ -76,7 +76,7 @@ export default function FinalCTA() {
                     </span>
                     <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
                     <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">
-                      Thanks {form.name.split(" ")[0] || "there"} — we&apos;ve received your message and will get back to you within 24–48 hours.
+                      Thanks {form.name.split(" ")[0] || "there"}, we&apos;ve received your message and will get back to you within 24–48 hours.
                     </p>
                   </div>
                 ) : (

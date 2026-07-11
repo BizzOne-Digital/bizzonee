@@ -5,27 +5,37 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import { COMPANY } from "@/lib/content";
 
 const REVIEWS = [
+  { name: "Maralys Hernandez", time: "18 hours ago", stars: 5, text: "Outstanding experience from start to finish! The team was incredibly fast, professional, and responsive. They answered every question, kept me updated throughout the process, and treated me with respect the entire time." },
   { name: "Hob Boutilier", time: "21 hours ago", stars: 5, text: "Extremely happy with BizzOne. I wanted to give my business to a Canadian company and I am really glad I found them. The team is professional, fast, and truly cares about the results." },
+  { name: "Prince Sheoran", time: "2 days ago", stars: 5, text: "Great team! Highly recommended for your new business website. Ready to help out 24x7 support. Thank you guys!" },
   { name: "Horizon Driving School", time: "2 days ago", stars: 5, text: "I love their work. They're very honest, quick, easy, and professional. At first I thought this was an outsourced company working for another country, but they're actually a Canadian-based business." },
-  { name: "Haven Tint & Tire Garage", time: "2 days ago", stars: 5, text: "They're far and away one of the best teams we've worked with, consistently delivering exceptional results. They've handled everything from lead generation through Google Ads to running our sales process and managing social media — all at a high level." },
+  { name: "Haven Tint & Tire Garage", time: "2 days ago", stars: 5, text: "They're far and away one of the best teams we've worked with, consistently delivering exceptional results. They've handled everything from lead generation through Google Ads to running our sales process and managing social media, all at a high level." },
+  { name: "Muhammad abdullah", time: "4 days ago", stars: 5, text: "It was a good experience working with you. 5/5" },
+  { name: "sushil nandarkar", time: "4 days ago", stars: 5, text: "I was very happy with the service provided. I would highly recommend to connect with BizzOne Digital to create your website." },
+  { name: "Ric Brand", time: "4 days ago", stars: 5, text: "Oh my God, I'm really satisfied about those guys, they do amazing job, they build my business website. They were very cooperative, very professional. I'm very happy guys, thank you so very much and affordable price, and would highly recommend them to anyone." },
   { name: "Nadeem Khan", time: "5 days ago", stars: 5, text: "Working with BizzOne Digital to build our website was an absolute pleasure. From the very first meeting, they understood our vision and brought it to life even better than we imagined. The site is sleek, incredibly fast, and user-friendly." },
+  { name: "Muhammad Abdullah", time: "6 days ago", stars: 5, text: "Great service and a smooth experience working with the BizzOne team." },
+  { name: "Josh Turk", time: "1 week ago", stars: 5, text: "Very fast! Helped me connect an email with bookings etc. Highly recommend!" },
   { name: "Jaydeep M", time: "2 weeks ago", stars: 5, text: "Had the best experience getting my website done! Understood the requirements without a fuss. Response time was great and the team was very friendly and helpful throughout." },
+  { name: "Stephanie Lebrun", time: "2 weeks ago", stars: 5, text: "I was very picky in my demands and everything was done perfectly as I wished for. I am very satisfied with the services I had. Thank you so much." },
   { name: "Manu Sharma", time: "2 weeks ago", stars: 5, text: "We had an excellent experience working with the team on our website development project. They met our expectations and the collaboration was smooth from start to finish." },
-  { name: "Lance Colins", time: "2 weeks ago", stars: 5, text: "I would like to thank BizzOne for their patience with me. They have done a beautiful job on my website in such a short period of time — nothing but amazing. If anyone is looking for a website, you no longer have to look. BizzOne is the one." },
+  { name: "MLKS Delivery Solutions", time: "2 weeks ago", stars: 5, text: "We have a great experience working with BizzOne Digital for both sales and marketing services. From the beginning, their team was professional, responsive, and genuinely interested in helping our business grow." },
+  { name: "Lance Colins", time: "2 weeks ago", stars: 5, text: "I would like to thank BizzOne for their patience with me. They have done a beautiful job on my website in such a short period of time, nothing but amazing. If anyone is looking for a website, you no longer have to look. BizzOne is the one." },
   { name: "Brinda Mani", time: "3 weeks ago", stars: 5, text: "We had an amazing experience working with the team who built our website. They were professional, patient, creative, and truly understood our vision from start to finish. The website looks beautiful, is easy to navigate, and perfectly represents our brand." },
   { name: "Rupesh Patel", time: "4 weeks ago", stars: 5, text: "I worked with them for my website, and they did an amazing job. They were very cooperative, attentive to detail, and professional throughout the entire process. I'm very satisfied with the final result and would highly recommend them to anyone." },
   { name: "Mohamed Iye", time: "4 weeks ago", stars: 5, text: "Top-notch service and very professional! The team was reliable, efficient, and delivered excellent quality work. Great communication and attention to detail. Highly recommend BizzOne Digital for anyone looking for professional digital services!" },
-  { name: "FairSafe", time: "1 month ago", stars: 5, text: "I would give 10 stars if I can. I was a bit skeptical at first but honestly after seeing the results — a clean, modern, and professional site — they completely exceeded my expectations." },
+  { name: "FairSafe", time: "1 month ago", stars: 5, text: "I would give 10 stars if I can. I was a bit skeptical at first but honestly after seeing the results, a clean, modern, and professional site, they completely exceeded my expectations." },
   { name: "Gams Gakou", time: "1 month ago", stars: 5, text: "I had a great experience working with BizzOne Digital. They helped me build my website, and the whole process was smooth and professional. Their team was responsive, patient, and really understood what I wanted." },
   { name: "Lupin Project", time: "1 month ago", stars: 5, text: "I'd like to thank the BizzOne team for creating an amazing website and ad campaign for our company. They communicated with me every step of the way, making the entire process smooth and stress-free. Extremely happy with the results." },
   { name: "Micky", time: "1 month ago", stars: 5, text: "Very professional. Extremely satisfied with the service and would not hesitate to recommend BizzOne Digital to anyone looking for quality digital work." },
   { name: "infoglobal pardon", time: "1 month ago", stars: 5, text: "I want to say a huge thank you to the BizzOne team for creating an amazing website for my company. From start to finish, they were professional, responsive, and communicated with me every step of the way. They brought my vision to life." },
   { name: "Kevin Pearce", time: "2 months ago", stars: 5, text: "Great communication. Fast results and service. I would recommend this company to anyone." },
-  { name: "Wavy", time: "2 months ago", stars: 5, text: "Great experience working with BizzOne. They helped me set up key parts of my WAVY business and made the process much easier. The team is great — the service and relationship building they do is the best." },
+  { name: "Wavy", time: "2 months ago", stars: 5, text: "Great experience working with BizzOne. They helped me set up key parts of my WAVY business and made the process much easier. The team is great, the service and relationship building they do is the best." },
   { name: "3Ray Mobiles", time: "2 months ago", stars: 5, text: "BizzOne Digital did an amazing job on my website. I'm really impressed with how quickly they completed everything while maintaining excellent quality. The site looks modern and professional. Communication was smooth throughout." },
-  { name: "Dollar Customs", time: "7 months ago", stars: 5, text: "We started with BizzOne Digital from absolute scratch — they created our logo, built our website, handled our social media, videography, and video editing — literally everything from start to finish. The results have been incredible." },
+  { name: "Dollar Customs", time: "7 months ago", stars: 5, text: "We started with BizzOne Digital from absolute scratch. They created our logo, built our website, handled our social media, videography, and video editing, literally everything from start to finish. The results have been incredible." },
   { name: "JMG Auto", time: "7 months ago", stars: 5, text: "I started working with them for Google Ads and honestly wasn't expecting anything special. I assumed it would be like every other digital marketing company, but they proved me wrong. Their setup is genuinely an all-in-one service." },
 ];
 
@@ -148,6 +158,17 @@ export default function TrustReviews() {
                 </button>
               </div>
             </div>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href={COMPANY.googleReviewsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:text-brand-mint"
+            >
+              <GoogleLogo /> View Our Google Reviews
+            </a>
           </div>
         </Reveal>
       </div>

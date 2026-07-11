@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 
-const PRIORITY_OPTS = ["Urgent — ASAP", "High — 1 to 2 weeks", "Medium — 3 to 4 weeks", "Low — flexible"];
+const PRIORITY_OPTS = ["Urgent (ASAP)", "High (1 to 2 weeks)", "Medium (3 to 4 weeks)", "Low (flexible)"];
 const PKG_OPTIONS = ["Starter ($79)", "Standard ($149)", "Advanced ($399)", "Premium ($499)", "Not sure yet"];
 const LOGO_OPTS = ["Yes", "No", "Needs updating"];
 const BRAND_COLOR_OPTS = ["Yes", "No"];
@@ -93,7 +93,7 @@ export default function OnboardForm() {
       <div className="mx-auto mt-10 max-w-3xl rounded-3xl glass-strong p-10 text-center">
         <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
         <h3 className="mt-5 font-display text-2xl font-bold text-white">Submitted successfully!</h3>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">Thanks {f.name.split(" ")[0] || "there"} — we&apos;ll reach out within 24–48 hours.</p>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">Thanks {f.name.split(" ")[0] || "there"}, we&apos;ll reach out within 24–48 hours.</p>
         {taskUrl && <a href={taskUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-white transition-all hover:shadow-glow-purple">View in ClickUp</a>}
       </div>
     );
@@ -143,7 +143,7 @@ export default function OnboardForm() {
         <div><label className={labelCls}>Do you have domain access?</label><Select value={f.domain} onChange={(v) => set("domain", v)} placeholder="Select" options={DOMAIN_OPTS} /></div>
         <div><label className={labelCls}>Do you have hosting?</label><Select value={f.hosting} onChange={(v) => set("hosting", v)} placeholder="Select" options={HOSTING_OPTS} /></div>
       </div>
-      <div className="mt-4"><label className={labelCls}>Business email access needed?</label><input className={field} value={f.bizEmail} onChange={(e) => set("bizEmail", e.target.value)} placeholder="e.g. info@yourbusiness.com — or 'not needed'" /></div>
+      <div className="mt-4"><label className={labelCls}>Business email access needed?</label><input className={field} value={f.bizEmail} onChange={(e) => set("bizEmail", e.target.value)} placeholder="e.g. info@yourbusiness.com or 'not needed'" /></div>
       <div className="mt-4"><label className={labelCls}>Any special features needed?</label><Pills options={FEATURES} selected={f.features} onToggle={(v) => toggle("features", v)} /></div>
       <div className="mt-4"><label className={labelCls}>Any third-party tools to integrate?</label><input className={field} value={f.tools} onChange={(e) => set("tools", e.target.value)} placeholder="GoHighLevel, Calendly, Stripe, Mailchimp..." /></div>
       <div className="mt-4"><label className={labelCls}>Anything else we should know?</label><textarea className={`${field} min-h-[70px] resize-y`} value={f.notes} onChange={(e) => set("notes", e.target.value)} placeholder="Deadlines, special requests, concerns..." /></div>
@@ -151,7 +151,7 @@ export default function OnboardForm() {
       {status === "error" && <p className="mt-5 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{err}</p>}
 
       <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-        <span className="text-xs text-white/40">🔒 Secure &amp; private — used only for your project.</span>
+        <span className="text-xs text-white/40">🔒 Secure &amp; private. Used only for your project.</span>
            <button onClick={submit} disabled={status === "sending"}
           className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 sm:w-auto">
           <Send size={16} /> {status === "sending" ? "Submitting..." : "Submit Onboarding"}
