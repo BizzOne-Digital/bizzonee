@@ -156,11 +156,11 @@ export default function Footer() {
             © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
           </p>
 
-          <div className="flex gap-4">
-            <Link href="/privacy-policy" className="transition-colors hover:text-brand-mint">
+          <div className="flex gap-4 sm:-translate-x-4">
+            <Link href="/privacy-policy" className="text-white/80 transition-colors hover:text-brand-mint">
               Privacy Policy
             </Link>
-            <Link href="/terms-and-conditions" className="transition-colors hover:text-brand-mint">
+            <Link href="/terms-and-conditions" className="text-white/80 transition-colors hover:text-brand-mint">
               Terms & Conditions
             </Link>
           </div>
