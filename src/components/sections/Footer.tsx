@@ -148,6 +148,28 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        {/* Hours & Address */}
+        <div className="mt-10 grid gap-8 border-t border-white/10 pt-8 sm:grid-cols-2">
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Business Hours
+            </h4>
+            <div className="mt-3 space-y-1 text-sm text-white/55">
+              <p>Monday – Saturday: 9:00 AM – 5:00 PM</p>
+              <p>Sunday: Closed</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+              Visit Us
+            </h4>
+            <div className="mt-3 space-y-1 text-sm text-white/55">
+              <p>{COMPANY.address}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="border-t border-white/10 py-6">

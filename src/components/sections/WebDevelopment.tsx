@@ -234,11 +234,11 @@ function GoogleRatingBadge({ className = "" }: { className?: string }) {
 
 /* ── hero package showcase card ── */
 function HeroPackageCard() {
-  const pkg = PACKAGES.find((p) => p.popular)!;
+  const pkg = PACKAGES.find((p) => p.name === "Standard")!;
   return (
     <div className="relative mx-auto max-w-md rounded-3xl neon-border p-6 shadow-glow-purple sm:p-7">
       <span className="absolute -top-3 left-6 rounded-full bg-brand-mint px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-ink shadow-glow-mint">
-        Most Popular
+        Best Value
       </span>
 
       <div className="flex items-center justify-between">
@@ -286,10 +286,10 @@ export default function WebDevelopment() {
             <Reveal className="text-center lg:text-left">
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
                 <SectionLabel>Web Development</SectionLabel>
-                <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+                <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                   Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">$79. No Surprises.</span>
                 </h1>
-                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg lg:mx-0">
+                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
                   Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
