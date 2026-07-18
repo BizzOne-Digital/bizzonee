@@ -292,7 +292,12 @@ function HeroPackageCard() {
         View all packages <ArrowRight size={13} />
       </button>
 
-      <SecurePaymentBadge className="mt-5 justify-center" />
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+        <SecurePaymentBadge />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
+          <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
+        </span>
+      </div>
     </div>
   );
 }
