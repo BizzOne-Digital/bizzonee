@@ -61,22 +61,45 @@ const ALL_PROJECTS = [
   { name: "M2M Pro Cleaners",  industry: "construction", url: "https://www.m2mprocleaners.ca",        tag: "Construction" },
   { name: "Royal Empire Renovation", industry: "construction", url: "https://www.royalempirerenovation.com", tag: "Construction" },
   { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
+  { name: "Junk Pro Service",  industry: "construction", url: "https://junkproservice.com",            tag: "Construction" },
   { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
   { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
      { name: "Royal Pizza",      industry: "restaurant",   url: "https://www.theroyalgeorgetown.ca",      tag: "Restaurant" },
+  { name: "Ono Poke Bar",      industry: "restaurant",   url: "https://onopokebar.onlineorders.store", tag: "Restaurant" },
+  { name: "Ono Poke Bar – Georgetown", industry: "restaurant", url: "https://onopokebar-georgetown.onlineorders.store", tag: "Restaurant" },
+  { name: "Ono Poke Bar – Etobicoke",  industry: "restaurant", url: "https://onopokebar-etobicoke.onlineorders.store",  tag: "Restaurant" },
+  { name: "Ono Poke Bar – St. Clair",  industry: "restaurant", url: "https://onopokebar-stclair.onlineorders.store",    tag: "Restaurant" },
+  { name: "Awok",              industry: "restaurant",   url: "https://awok.onlineorders.store",       tag: "Restaurant" },
+  { name: "Mascot Chinese",    industry: "restaurant",   url: "https://mascotchinese.onlineorders.store", tag: "Restaurant" },
+  { name: "Watami Japanese",   industry: "restaurant",   url: "https://watamijapanees.onlineorders.store", tag: "Restaurant" },
+  { name: "The Village Burger", industry: "restaurant",  url: "https://thevillageburger.onlineorders.store", tag: "Restaurant" },
   { name: "Haven Customs",          industry: "automotive",   url: "https://www.havencustoms.ca",               tag: "Automotive" },
    { name: "Haven Tire",          industry: "automotive",   url: "https://www.haventire.ca",               tag: "Automotive" },
     { name: "Black Truck",          industry: "automotive",   url: "https://www.blacktrucksco.com",               tag: "Automotive" },
      { name: "Book A Cab",          industry: "automotive",   url: "https://www.bookacab.ca",               tag: "Automotive" },
   { name: "PerfectTouch Auto Detailing", industry: "automotive", url: "https://www.perfecttouchautodetailing.company", tag: "Automotive" },
+  { name: "Ali Motors",        industry: "automotive",   url: "https://www.alimotors.ca",             tag: "Automotive" },
   { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
+  { name: "Moon Homeopathy",   industry: "health",       url: "https://www.moonhomeopathy.com",       tag: "Health" },
+  { name: "CBC Foot",          industry: "health",       url: "https://www.cbcfoot.com",              tag: "Health" },
   { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
   { name: "Toronto Notary",    industry: "professional", url: "https://www.torontonotaryoffice.ca",   tag: "Professional" },
   { name: "M&L Cleaning",      industry: "professional", url: "https://www.mlcleaninghs.com",         tag: "Professional" },
+  { name: "Merchant Orders",   industry: "professional", url: "https://merchantorders.io",            tag: "Professional" },
+  { name: "Canadian Robots",   industry: "professional", url: "https://www.canadianrobots.io",        tag: "Professional" },
+  { name: "Niagara Pet Waste Removal", industry: "professional", url: "https://niagarapetwasteremoval.ca", tag: "Professional" },
+  { name: "Blue River Logistics", industry: "professional", url: "https://www.blueriverlogistics.com", tag: "Professional" },
+  { name: "Pranvue",           industry: "professional", url: "https://www.pranvue.com",              tag: "Professional" },
+  { name: "Walking Little Star Daycare", industry: "professional", url: "https://walkinglittlestardaycare.com", tag: "Professional" },
+  { name: "Little Sunshine ECLC", industry: "professional", url: "https://www.littlesunshineeclc.ca", tag: "Professional" },
+  { name: "Flash Chic Photo Booth", industry: "professional", url: "https://www.flashchicphotobooth.com", tag: "Professional" },
+  { name: "FairSafe",          industry: "professional", url: "https://www.fairsafe.ca",              tag: "Professional" },
   { name: "A1 Furnished",      industry: "hospitality",  url: "https://www.a1furnished.ca",           tag: "Hospitality" },
+  { name: "Sunset Retreat Jamaica", industry: "hospitality", url: "https://www.sunsetretreatja.com",  tag: "Hospitality" },
   { name: "Corner Store",      industry: "ecommerce",    url: "https://www.cornerstoreatlinwood.com", tag: "E-commerce" },
   { name: "Strides Hockey Sales", industry: "ecommerce", url: "https://www.strideshockeysales.com",   tag: "E-commerce" },
   { name: "Smokablunt",        industry: "ecommerce",    url: "https://www.smokablunt.com",           tag: "E-commerce" },
+  { name: "Dial 4 Bottle",     industry: "ecommerce",    url: "https://www.dial4bottle.com",          tag: "E-commerce" },
 ];
 
 const INDUSTRIES = [
@@ -99,7 +122,7 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
 
   useEffect(() => {
     if (!n || paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % n), 4000);
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 11000);
     return () => clearInterval(id);
   }, [paused, n]);
 
@@ -262,7 +285,7 @@ function HeroPackageCard() {
 
       <a href={pkg.paymentLink} target="_blank" rel="noreferrer"
         className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-4 text-base font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110">
-        Get Started – {pkg.price} <ArrowRight size={17} />
+        Get Started <ArrowRight size={17} />
       </a>
       <button onClick={() => document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })}
         className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white/80 transition-all hover:bg-white/[0.08] hover:text-white">
@@ -287,7 +310,7 @@ export default function WebDevelopment() {
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
                 <SectionLabel>Web Development</SectionLabel>
                 <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">$79. No Surprises.</span>
+                  Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">No Surprises.</span>
                 </h1>
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
                   Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
@@ -359,7 +382,12 @@ export default function WebDevelopment() {
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
               Transparent pricing. Pick a package and complete onboarding, we handle the rest.
             </p>
-            <SecurePaymentBadge className="mt-5 justify-center" />
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+              <SecurePaymentBadge />
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
+                <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
+              </span>
+            </div>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {PACKAGES.map((p, i) => (
