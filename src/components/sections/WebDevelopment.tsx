@@ -75,7 +75,6 @@ const ALL_PROJECTS = [
   { name: "The Village Burger", industry: "restaurant",  url: "https://thevillageburger.onlineorders.store", tag: "Restaurant" },
   { name: "Haven Customs",          industry: "automotive",   url: "https://www.havencustoms.ca",               tag: "Automotive" },
    { name: "Haven Tire",          industry: "automotive",   url: "https://www.haventire.ca",               tag: "Automotive" },
-    { name: "Black Truck",          industry: "automotive",   url: "https://www.blacktrucksco.com",               tag: "Automotive" },
      { name: "Book A Cab",          industry: "automotive",   url: "https://www.bookacab.ca",               tag: "Automotive" },
   { name: "PerfectTouch Auto Detailing", industry: "automotive", url: "https://www.perfecttouchautodetailing.company", tag: "Automotive" },
   { name: "Ali Motors",        industry: "automotive",   url: "https://www.alimotors.ca",             tag: "Automotive" },
@@ -88,7 +87,6 @@ const ALL_PROJECTS = [
   { name: "Merchant Orders",   industry: "professional", url: "https://merchantorders.io",            tag: "Professional" },
   { name: "Canadian Robots",   industry: "professional", url: "https://www.canadianrobots.io",        tag: "Professional" },
   { name: "Niagara Pet Waste Removal", industry: "professional", url: "https://niagarapetwasteremoval.ca", tag: "Professional" },
-  { name: "Blue River Logistics", industry: "professional", url: "https://www.blueriverlogistics.com", tag: "Professional" },
   { name: "Pranvue",           industry: "professional", url: "https://www.pranvue.com",              tag: "Professional" },
   { name: "Walking Little Star Daycare", industry: "professional", url: "https://walkinglittlestardaycare.com", tag: "Professional" },
   { name: "Little Sunshine ECLC", industry: "professional", url: "https://www.littlesunshineeclc.ca", tag: "Professional" },
@@ -98,8 +96,6 @@ const ALL_PROJECTS = [
   { name: "Sunset Retreat Jamaica", industry: "hospitality", url: "https://www.sunsetretreatja.com",  tag: "Hospitality" },
   { name: "Corner Store",      industry: "ecommerce",    url: "https://www.cornerstoreatlinwood.com", tag: "E-commerce" },
   { name: "Strides Hockey Sales", industry: "ecommerce", url: "https://www.strideshockeysales.com",   tag: "E-commerce" },
-  { name: "Smokablunt",        industry: "ecommerce",    url: "https://www.smokablunt.com",           tag: "E-commerce" },
-  { name: "Dial 4 Bottle",     industry: "ecommerce",    url: "https://www.dial4bottle.com",          tag: "E-commerce" },
 ];
 
 const INDUSTRIES = [
@@ -281,6 +277,9 @@ function HeroPackageCard() {
             <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}
           </li>
         ))}
+        <li className="flex items-start gap-2 text-sm font-semibold text-brand-mint">
+          <ShieldCheck size={14} className="mt-0.5 shrink-0" /> 30-Day Money-Back Guarantee
+        </li>
       </ul>
 
       <a href={pkg.paymentLink} target="_blank" rel="noreferrer"
@@ -292,12 +291,7 @@ function HeroPackageCard() {
         View all packages <ArrowRight size={13} />
       </button>
 
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-        <SecurePaymentBadge />
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
-          <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
-        </span>
-      </div>
+      <SecurePaymentBadge className="mt-5 justify-center" />
     </div>
   );
 }
@@ -327,6 +321,12 @@ export default function WebDevelopment() {
                 <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
                   <GoogleRatingBadge />
                   <SecurePaymentBadge />
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
+                    <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
+                    <ShieldCheck size={13} className="text-brand-mint" /> Free Hosting
+                  </span>
                 </div>
                 <div className="mt-10 flex flex-wrap justify-center gap-6 lg:justify-start">
                   {STATS.map((s) => (

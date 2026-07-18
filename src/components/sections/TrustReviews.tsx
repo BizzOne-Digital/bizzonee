@@ -8,11 +8,15 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import { COMPANY } from "@/lib/content";
 
 const REVIEWS = [
+  { name: "GTA HOMES", time: "41 minutes ago", stars: 5, text: "I met BizzOne Digital online while browsing Facebook. I came across their profile and found they offered the most affordable web design services among all the options I saw. They executed everything, from the logo and website to the business cards, matching my vision perfectly." },
+  { name: "Afreen Saeed", time: "19 hours ago", stars: 5, text: "Great 5-star experience working with BizzOne Digital, highly recommend their team." },
   { name: "Maralys Hernandez", time: "18 hours ago", stars: 5, text: "Outstanding experience from start to finish! The team was incredibly fast, professional, and responsive. They answered every question, kept me updated throughout the process, and treated me with respect the entire time." },
   { name: "Hob Boutilier", time: "21 hours ago", stars: 5, text: "Extremely happy with BizzOne. I wanted to give my business to a Canadian company and I am really glad I found them. The team is professional, fast, and truly cares about the results." },
   { name: "Prince Sheoran", time: "2 days ago", stars: 5, text: "Great team! Highly recommended for your new business website. Ready to help out 24x7 support. Thank you guys!" },
   { name: "Horizon Driving School", time: "2 days ago", stars: 5, text: "I love their work. They're very honest, quick, easy, and professional. At first I thought this was an outsourced company working for another country, but they're actually a Canadian-based business." },
   { name: "Haven Tint & Tire Garage", time: "2 days ago", stars: 5, text: "They're far and away one of the best teams we've worked with, consistently delivering exceptional results. They've handled everything from lead generation through Google Ads to running our sales process and managing social media, all at a high level." },
+  { name: "Ahmad", time: "2 days ago", stars: 5, text: "Amazing amazing amazing work, these guys are crazy. They started my website work in 24 hours and I was live in 24 hours. This month we started running ads, and I was told by Google it would take 3 months, but they had us running results-driven campaigns in just 10 days." },
+  { name: "xavier pizarro", time: "3 days ago", stars: 5, text: "Excellent service! I 100% recommend them. They were professional, responsive, and a pleasure to work with." },
   { name: "Muhammad abdullah", time: "4 days ago", stars: 5, text: "It was a good experience working with you. 5/5" },
   { name: "sushil nandarkar", time: "4 days ago", stars: 5, text: "I was very happy with the service provided. I would highly recommend to connect with BizzOne Digital to create your website." },
   { name: "Ric Brand", time: "4 days ago", stars: 5, text: "Oh my God, I'm really satisfied about those guys, they do amazing job, they build my business website. They were very cooperative, very professional. I'm very happy guys, thank you so very much and affordable price, and would highly recommend them to anyone." },
