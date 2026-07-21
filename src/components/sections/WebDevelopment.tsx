@@ -312,7 +312,7 @@ export default function WebDevelopment() {
                   Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">No Surprises.</span>
                 </h1>
                 <p className="mt-3 text-left text-base font-semibold text-brand-mint sm:text-lg">
-                  🎉 Free hosting included with every website package — offer valid until July 31, 2026.
+                  Free hosting included with every website package — offer valid until July 31, 2026.
                 </p>
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
                   Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
