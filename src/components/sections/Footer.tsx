@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <Link href="/#home" className="flex items-center gap-2.5">
               <Image
-                src="/logo.png"
+                src="/fav.png"
                 alt="BizzOne Digital"
                 width={34}
                 height={34}
