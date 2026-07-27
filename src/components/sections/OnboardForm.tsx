@@ -1,7 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 const PRIORITY_OPTS = ["Urgent (ASAP)", "High (1 to 2 weeks)", "Medium (3 to 4 weeks)", "Low (flexible)"];
 const PKG_OPTIONS = ["Starter ($79)", "Standard ($149)", "Advanced ($399)", "Premium ($499)", "Not sure yet"];
@@ -87,6 +93,14 @@ export default function OnboardForm() {
       else { setStatus("error"); setErr(data.error || "Something went wrong."); }
     } catch { setStatus("error"); setErr("Network error."); }
   };
+
+  useEffect(() => {
+    if (status === "sent" && typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-18342985285/NgItCKrt0tccEMX8zqpE",
+      });
+    }
+  }, [status]);
 
   if (status === "sent") {
     return (
