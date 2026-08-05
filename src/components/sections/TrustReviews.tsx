@@ -8,7 +8,21 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import { COMPANY } from "@/lib/content";
 
 const REVIEWS = [
-  { name: "GTA HOMES", time: "41 minutes ago", stars: 5, text: "I met BizzOne Digital online while browsing Facebook. I came across their profile and found they offered the most affordable web design services among all the options I saw. They executed everything, from the logo and website to the business cards, matching my vision perfectly." },
+  { name: "MARIO MEDINA", time: "1 day ago", stars: 5, text: "Professional service. Quick." },
+  { name: "wardell holman", time: "3 days ago", stars: 5, text: "I would highly recommend this company and only this company to anyone. Absolutely professional, efficient, and proficient as they come!" },
+  { name: "Rex HighTech", time: "3 days ago", stars: 5, text: "Great job, love it." },
+  { name: "O'Sipp Delivery", time: "4 days ago", stars: 5, text: "I had an excellent experience working with this website development team. From the beginning, they were professional, responsive, knowledgeable, and genuinely committed to bringing my vision to life." },
+  { name: "Maze Oneil", time: "5 days ago", stars: 5, text: "The service was top notch, from start to finish. Any edits I asked for were completed on time, even quicker than I ever could expect." },
+  { name: "Desire STEWARD", time: "6 days ago", stars: 5, text: "Very professional business and very caring for your satisfaction. Thanks." },
+  { name: "Hardeep Kahlon", time: "1 week ago", stars: 5, text: "Very good service. Thank you." },
+  { name: "Karleen", time: "1 week ago", stars: 5, text: "Friendly service, caring team and excellent work. They listen to your feedback and implement changes as requested. Very professional communication from start to finish! Very pleased with the final product, website. Would highly recommend, A+ service." },
+  { name: "Ahmed adnan", time: "1 week ago", stars: 5, text: "Great service." },
+  { name: "Steve", time: "1 week ago", stars: 5, text: "BizzOne Digital built my website and delivered exactly what I needed. The process was smooth, communication was clear, and they handled the design, mobile setup, and SEO without me stressing about the tech. My site looks professional and loads fast." },
+  { name: "Rob Gabriele", time: "1 week ago", stars: 5, text: "My website looks great! Thanks to BizzOne Digital, they were very responsive and made changes and were very patient throughout the whole process. I will definitely use them again." },
+  { name: "Karan Bhullar", time: "1 week ago", stars: 5, text: "Great service, helped me make a website for me. Good communication, understood my needs. I definitely recommend them!" },
+  { name: "Advocate Mwanjara", time: "1 week ago", stars: 5, text: "The BizzOne team is an amazing team, very professional and oriented." },
+  { name: "Shaun Young", time: "2 weeks ago", stars: 5, text: "Very reliable and fast, did a very good job fixing up my website. I would recommend them and I will be doing future projects with them." },
+  { name: "GTA HOMES", time: "2 weeks ago", stars: 5, text: "I met BizzOne Digital online while browsing Facebook. I came across their profile and found they offered the most affordable web design services among all the options I saw. They executed everything, from the logo and website to the business cards, matching my vision perfectly." },
   { name: "Afreen Saeed", time: "19 hours ago", stars: 5, text: "Great 5-star experience working with BizzOne Digital, highly recommend their team." },
   { name: "Maralys Hernandez", time: "18 hours ago", stars: 5, text: "Outstanding experience from start to finish! The team was incredibly fast, professional, and responsive. They answered every question, kept me updated throughout the process, and treated me with respect the entire time." },
   { name: "Hob Boutilier", time: "21 hours ago", stars: 5, text: "Extremely happy with BizzOne. I wanted to give my business to a Canadian company and I am really glad I found them. The team is professional, fast, and truly cares about the results." },
