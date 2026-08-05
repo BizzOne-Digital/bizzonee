@@ -1,102 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, ExternalLink, ChevronLeft, ChevronRight, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import NeonButton from "@/components/ui/NeonButton";
 import WebProcess from "@/components/sections/WebProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
 
-
-const BASE_W = 1440;
-
-/* ── live iframe frame ── */
-function LiveFrame({ url, name }: { url: string; name: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.25);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const update = () => setScale(el.clientWidth / BASE_W);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  return (
-    <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0814] shadow-xl">
-      {/* browser bar */}
-      <div className="flex items-center gap-1.5 border-b border-white/5 bg-[#0f0a1e] px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-red-400/60" />
-        <span className="h-2 w-2 rounded-full bg-yellow-400/60" />
-        <span className="h-2 w-2 rounded-full bg-green-400/60" />
-        <span className="ml-2 truncate text-[9px] text-white/25">{url.replace("https://www.", "").replace("https://", "")}</span>
-      </div>
-      {/* scaled iframe */}
-      <div ref={ref} className="relative w-full overflow-hidden" style={{ aspectRatio: "16/10" }}>
-        <iframe
-          src={url}
-          title={name}
-          scrolling="no"
-          loading="lazy"
-          className="absolute left-0 top-0 origin-top-left border-0"
-          style={{
-            width: `${BASE_W}px`,
-            height: `${BASE_W * (10 / 16)}px`,
-            transform: `scale(${scale})`,
-            pointerEvents: "none",
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-/* ── all projects with industry tag ── */
-const ALL_PROJECTS = [
-  { name: "M2M Pro Cleaners",  industry: "construction", url: "https://www.m2mprocleaners.ca",        tag: "Construction" },
-  { name: "Royal Empire Renovation", industry: "construction", url: "https://www.royalempirerenovation.com", tag: "Construction" },
-  { name: "Lupin Project",     industry: "construction", url: "https://lupinprojectgroup.com",         tag: "Construction" },
-  { name: "Junk Pro Service",  industry: "construction", url: "https://junkproservice.com",            tag: "Construction" },
-  { name: "Cobb Church",       industry: "nonprofit",    url: "https://www.cobbchurchnetwork.org",     tag: "Non-Profit" },
-  { name: "Bariis Pizza",      industry: "restaurant",   url: "https://www.bariishalalpizza.com",      tag: "Restaurant" },
-     { name: "Royal Pizza",      industry: "restaurant",   url: "https://www.theroyalgeorgetown.ca",      tag: "Restaurant" },
-  { name: "Ono Poke Bar",      industry: "restaurant",   url: "https://onopokebar.onlineorders.store", tag: "Restaurant" },
-  { name: "Ono Poke Bar – Georgetown", industry: "restaurant", url: "https://onopokebar-georgetown.onlineorders.store", tag: "Restaurant" },
-  { name: "Ono Poke Bar – Etobicoke",  industry: "restaurant", url: "https://onopokebar-etobicoke.onlineorders.store",  tag: "Restaurant" },
-  { name: "Ono Poke Bar – St. Clair",  industry: "restaurant", url: "https://onopokebar-stclair.onlineorders.store",    tag: "Restaurant" },
-  { name: "Awok",              industry: "restaurant",   url: "https://awok.onlineorders.store",       tag: "Restaurant" },
-  { name: "Mascot Chinese",    industry: "restaurant",   url: "https://mascotchinese.onlineorders.store", tag: "Restaurant" },
-  { name: "Watami Japanese",   industry: "restaurant",   url: "https://watamijapanees.onlineorders.store", tag: "Restaurant" },
-  { name: "The Village Burger", industry: "restaurant",  url: "https://thevillageburger.onlineorders.store", tag: "Restaurant" },
-  { name: "Haven Customs",          industry: "automotive",   url: "https://www.havencustoms.ca",               tag: "Automotive" },
-   { name: "Haven Tire",          industry: "automotive",   url: "https://www.haventire.ca",               tag: "Automotive" },
-     { name: "Book A Cab",          industry: "automotive",   url: "https://www.bookacab.ca",               tag: "Automotive" },
-  { name: "PerfectTouch Auto Detailing", industry: "automotive", url: "https://www.perfecttouchautodetailing.company", tag: "Automotive" },
-  { name: "Ali Motors",        industry: "automotive",   url: "https://www.alimotors.ca",             tag: "Automotive" },
-  { name: "AEM Quality ISO",   industry: "health",       url: "https://www.aemqualityiso.com",        tag: "Health" },
-  { name: "Moon Homeopathy",   industry: "health",       url: "https://www.moonhomeopathy.com",       tag: "Health" },
-  { name: "CBC Foot",          industry: "health",       url: "https://www.cbcfoot.com",              tag: "Health" },
-  { name: "Global Paradon",    industry: "professional", url: "https://www.globalpardonwaivers.com",  tag: "Professional" },
-  { name: "Toronto Notary",    industry: "professional", url: "https://www.torontonotaryoffice.ca",   tag: "Professional" },
-  { name: "M&L Cleaning",      industry: "professional", url: "https://www.mlcleaninghs.com",         tag: "Professional" },
-  { name: "Merchant Orders",   industry: "professional", url: "https://merchantorders.io",            tag: "Professional" },
-  { name: "Canadian Robots",   industry: "professional", url: "https://www.canadianrobots.io",        tag: "Professional" },
-  { name: "Niagara Pet Waste Removal", industry: "professional", url: "https://niagarapetwasteremoval.ca", tag: "Professional" },
-  { name: "Pranvue",           industry: "professional", url: "https://www.pranvue.com",              tag: "Professional" },
-  { name: "Walking Little Star Daycare", industry: "professional", url: "https://walkinglittlestardaycare.com", tag: "Professional" },
-  { name: "Little Sunshine ECLC", industry: "professional", url: "https://www.littlesunshineeclc.ca", tag: "Professional" },
-  { name: "Flash Chic Photo Booth", industry: "professional", url: "https://www.flashchicphotobooth.com", tag: "Professional" },
-  { name: "FairSafe",          industry: "professional", url: "https://www.fairsafe.ca",              tag: "Professional" },
-  { name: "A1 Furnished",      industry: "hospitality",  url: "https://www.a1furnished.ca",           tag: "Hospitality" },
-  { name: "Sunset Retreat Jamaica", industry: "hospitality", url: "https://www.sunsetretreatja.com",  tag: "Hospitality" },
-  { name: "Corner Store",      industry: "ecommerce",    url: "https://www.cornerstoreatlinwood.com", tag: "E-commerce" },
-  { name: "Strides Hockey Sales", industry: "ecommerce", url: "https://www.strideshockeysales.com",   tag: "E-commerce" },
-];
 
 const INDUSTRIES = [
   { id: "construction", label: "Construction & Renovation",       color: "#F59E0B", emoji: "🏗️" },
@@ -109,94 +21,64 @@ const INDUSTRIES = [
   { id: "nonprofit",    label: "Non-Profit & Community",          color: "#8B5CF6", emoji: "🤝" },
 ];
 
-/* ── industry slider card ── */
-function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
-  const projects = ALL_PROJECTS.filter((p) => p.industry === ind.id);
+/* ── industry tag pill ── */
+function IndustryPill({ ind }: { ind: typeof INDUSTRIES[0] }) {
+  return (
+    <span
+      className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all hover:-translate-y-0.5"
+      style={{ background: `${ind.color}12`, borderColor: `${ind.color}40`, color: ind.color }}>
+      <span className="text-base">{ind.emoji}</span>
+      {ind.label}
+    </span>
+  );
+}
+
+/* ── coverflow showcase: center elevated, sides scaled + blurred ── */
+const SHOWCASE = ["/web1.png", "/web2.png", "/web3.png", "/web4.png"];
+
+function WebShowcaseCoverflow() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const n = projects.length;
+  const n = SHOWCASE.length;
 
   useEffect(() => {
-    if (!n || paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % n), 11000);
+    const id = setInterval(() => setActive((a) => (a + 1) % n), 4000);
     return () => clearInterval(id);
-  }, [paused, n]);
-
-  const cur = projects[active];
+  }, [n]);
 
   return (
-    <div className="glass rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1"
-      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 0 28px ${ind.color}25`; }}
-      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = ""; }}>
-
-      {/* header */}
-      <div className="mb-3 flex items-center gap-2">
-        <span className="text-xl">{ind.emoji}</span>
-        <div>
-          <p className="text-sm font-bold uppercase tracking-wider sm:text-base" style={{ color: ind.color }}>{ind.label}</p>
-        </div>
+    <div className="relative">
+      <div className="flex items-center justify-center gap-3 sm:gap-5 py-6">
+        {SHOWCASE.map((src, i) => {
+          const offset = i - active;
+          const isCenter = offset === 0;
+          return (
+            <motion.div
+              key={src}
+              onClick={() => setActive(i)}
+              animate={{
+                scale: isCenter ? 1 : 0.82,
+                y: isCenter ? -16 : 12,
+                opacity: isCenter ? 1 : 0.55,
+                filter: isCenter ? "blur(0px)" : "blur(2px)",
+                zIndex: isCenter ? 10 : 1,
+              }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="relative w-[42%] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#0a0814] shadow-2xl sm:w-[24%]"
+              style={{ aspectRatio: "16/10" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* slider */}
-      <div>
-        {n > 0 ? (
-          <>
-            <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-              <AnimatePresence mode="wait">
-                <motion.div key={active}
-                  initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.3 }}>
-                  <LiveFrame url={cur.url} name={cur.name} />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* info row */}
-              <div className="mt-2 flex items-center justify-between">
-                <p className="text-xs font-semibold text-white/70">{cur.name}</p>
-                <div className="flex items-center gap-1">
-                  <a href={cur.url} target="_blank" rel="noreferrer"
-                    className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
-                    <ExternalLink size={11} />
-                  </a>
-                  {n > 1 && (
-                    <>
-                      <button onClick={() => setActive((a) => (a - 1 + n) % n)}
-                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
-                        <ChevronLeft size={12} />
-                      </button>
-                      <button onClick={() => setActive((a) => (a + 1) % n)}
-                        className="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-white/90 hover:text-white transition-colors">
-                        <ChevronRight size={12} />
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {n > 1 && (
-                <div className="mt-1.5 flex gap-1">
-                  {projects.map((_, i) => (
-                    <button key={i} onClick={() => setActive(i)}
-                      className="h-1 rounded-full transition-all"
-                      style={{ width: i === active ? 16 : 4, background: i === active ? ind.color : "rgba(255,255,255,0.2)" }} />
-                  ))}
-                </div>
-              )}
-            </div>
-          </>
-        ) : (
-          <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-white/8 bg-white/[0.02]">
-            <p className="text-xs text-white/25">Coming soon</p>
-          </div>
-        )}
+      <div className="mt-2 flex justify-center gap-1.5">
+        {SHOWCASE.map((_, i) => (
+          <button key={i} onClick={() => setActive(i)}
+            className="h-1.5 rounded-full transition-all"
+            style={{ width: i === active ? 20 : 6, background: i === active ? "#C8F31D" : "rgba(255,255,255,0.2)" }} />
+        ))}
       </div>
-
-      {/* CTA */}
-      <button onClick={() => document.getElementById("onboard")?.scrollIntoView({ behavior: "smooth" })}
-        className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-bold transition-all hover:opacity-90"
-        style={{ background: `${ind.color}15`, border: `1px solid ${ind.color}35`, color: ind.color }}>
-        Build mine <ArrowRight size={11} />
-      </button>
     </div>
   );
 }
@@ -364,13 +246,15 @@ export default function WebDevelopment() {
             </h2>
           </Reveal>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {INDUSTRIES.map((ind, i) => (
-              <Reveal key={ind.id} delay={i * 0.06}>
-                <IndustryCard ind={ind} />
-              </Reveal>
+          <Reveal delay={0.05} className="flex flex-wrap justify-center gap-3">
+            {INDUSTRIES.map((ind) => (
+              <IndustryPill key={ind.id} ind={ind} />
             ))}
-          </div>
+          </Reveal>
+
+          <Reveal delay={0.15} className="mt-10">
+            <WebShowcaseCoverflow />
+          </Reveal>
         </div>
       </section>
 
