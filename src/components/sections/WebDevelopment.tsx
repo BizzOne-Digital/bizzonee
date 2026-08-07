@@ -34,7 +34,12 @@ function IndustryPill({ ind }: { ind: typeof INDUSTRIES[0] }) {
 }
 
 /* ── coverflow showcase: center elevated, sides scaled + blurred ── */
-const SHOWCASE = ["/web1.png", "/web2.png", "/web3.png", "/web4.png"];
+const SHOWCASE = [
+  { src: "/web1.png", url: "https://www.m2mprocleaners.ca/" },
+  { src: "/web2.png", url: "https://www.cobbchurchnetwork.org/" },
+  { src: "/web3.png", url: "https://www.strideshockeysales.com/" },
+  { src: "/web4.png", url: "https://www.jmgallautorecycling.com/" },
+];
 
 function WebShowcaseCoverflow() {
   const [active, setActive] = useState(0);
@@ -48,13 +53,13 @@ function WebShowcaseCoverflow() {
   return (
     <div className="relative">
       <div className="flex items-center justify-center gap-3 sm:gap-5 py-6">
-        {SHOWCASE.map((src, i) => {
+        {SHOWCASE.map(({ src, url }, i) => {
           const offset = i - active;
           const isCenter = offset === 0;
           return (
             <motion.div
               key={src}
-              onClick={() => setActive(i)}
+              onClick={() => (isCenter ? undefined : setActive(i))}
               animate={{
                 scale: isCenter ? 1 : 0.82,
                 y: isCenter ? -16 : 12,
@@ -65,8 +70,15 @@ function WebShowcaseCoverflow() {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="relative w-[42%] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#0a0814] shadow-2xl sm:w-[24%]"
               style={{ aspectRatio: "16/10" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
+              {isCenter ? (
+                <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${url}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
+                </a>
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
+              )}
             </motion.div>
           );
         })}
@@ -98,13 +110,10 @@ const STATS = [
   { icon: Globe, value: "24–48h", label: "Kickoff" },
 ];
 
-/* ── Stripe wordmark ── */
+/* ── Stripe logo ── */
 function StripeLogo({ className = "" }: { className?: string }) {
-  return (
-    <span className={`font-sans text-base font-bold italic tracking-tight ${className}`}>
-      stripe
-    </span>
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/stripe.png" alt="Stripe" className={className} />;
 }
 
 function SecurePaymentBadge({ className = "" }: { className?: string }) {
@@ -182,7 +191,7 @@ export default function WebDevelopment() {
     <>
       {/* ── HERO ── */}
       <section className="relative py-16 sm:py-24">
-        <div className="pointer-events-none absolute -top-10 left-1/2 h-80 w-[50rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[140px]" />
+        <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-80 w-[50rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[140px]" />
         <div className="section">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             {/* left — heading */}
@@ -236,7 +245,7 @@ export default function WebDevelopment() {
 
       {/* ── BY INDUSTRY — 2 columns ── */}
       <section className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
+        <div className="pointer-events-none absolute hidden sm:block right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
         <div className="section">
           <Reveal className="mb-12 text-center">
             <SectionLabel>Browse by Industry</SectionLabel>
@@ -329,12 +338,12 @@ export default function WebDevelopment() {
 
       {/* ── GET IN TOUCH ── */}
       <section id="onboard" className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute bottom-0 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-mint/10 blur-[130px]" />
+        <div className="pointer-events-none absolute hidden sm:block bottom-0 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-mint/10 blur-[130px]" />
         <div className="section">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl neon-border px-6 py-12 sm:px-12 sm:py-14">
-              <div className="pointer-events-none absolute -left-20 top-0 h-72 w-72 rounded-full bg-brand-purple/30 blur-[100px]" />
-              <div className="pointer-events-none absolute -right-10 bottom-0 h-72 w-72 rounded-full bg-brand-mint/20 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -left-20 top-0 h-72 w-72 rounded-full bg-brand-purple/30 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -right-10 bottom-0 h-72 w-72 rounded-full bg-brand-mint/20 blur-[100px]" />
               <div className="relative grid items-start gap-10 lg:grid-cols-2">
                 <div>
                   <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">

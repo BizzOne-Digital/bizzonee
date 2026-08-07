@@ -82,7 +82,7 @@ export interface Stat {
 export const STATS: Stat[] = [
   { value: 500, suffix: "+", label: "Websites Built" },
   { value: 1, suffix: "M+", label: "Leads Generated" },
-  { value: 250, suffix: "Cr+", prefix: "₹", label: "Revenue Generated" },
+  { value: 30, suffix: "M+", prefix: "$", label: "Revenue Generated" },
   { value: 200, suffix: "+", label: "Happy Clients" },
   { value: 99, suffix: "%", label: "Client Retention" },
 ];

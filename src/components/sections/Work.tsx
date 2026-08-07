@@ -24,7 +24,7 @@ function PreviewImg({ src, color }: { src: string; color: string }) {
 export default function OurWork() {
   return (
     <section id="work" className="relative py-24 sm:py-28">
-      <div className="pointer-events-none absolute left-0 top-1/4 h-72 w-72 rounded-full bg-brand-purple/15 blur-[120px]" />
+      <div className="pointer-events-none absolute hidden sm:block left-0 top-1/4 h-72 w-72 rounded-full bg-brand-purple/15 blur-[120px]" />
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Our Work</SectionLabel>

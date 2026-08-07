@@ -16,9 +16,9 @@ export default function Hero() {
     <section id="home" className="relative overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-24">
       {/* floating accent orbs */}
       <motion.div animate={{ y: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute -left-10 top-32 h-64 w-64 rounded-full bg-brand-purple/20 blur-[120px]" />
+        className="pointer-events-none absolute hidden sm:block -left-10 top-32 h-64 w-64 rounded-full bg-brand-purple/20 blur-[120px]" />
       <motion.div animate={{ y: [0, -30, 0] }} transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute right-0 top-1/2 h-72 w-72 rounded-full bg-brand-mint/10 blur-[130px]" />
+        className="pointer-events-none absolute hidden sm:block right-0 top-1/2 h-72 w-72 rounded-full bg-brand-mint/10 blur-[130px]" />
 
       <div className="section grid items-center gap-10 lg:grid-cols-2">
         {/* Left copy */}
@@ -36,7 +36,7 @@ export default function Hero() {
           >
             {WORDS.map((w, i) => (
               <motion.span key={i} className="inline-block"
-                variants={{ hidden: { opacity: 0, y: 30, filter: "blur(8px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)" } }}
+                variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.6, ease }}>
                 <span className={w.g ? "text-gradient" : ""}>{w.t}</span>{"\u00A0"}
               </motion.span>

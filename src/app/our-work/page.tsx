@@ -276,7 +276,7 @@ export default function OurWorkPage() {
     <>
       <Navbar />
       <main className="relative min-h-screen pt-20">
-      <div className="pointer-events-none absolute -top-10 left-1/2 h-80 w-[50rem] -translate-x-1/2 rounded-full bg-brand-purple/15 blur-[140px]" />
+      <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-80 w-[50rem] -translate-x-1/2 rounded-full bg-brand-purple/15 blur-[140px]" />
 
       <div className="section pt-20 pb-12 sm:pt-24">
         <Reveal className="max-w-2xl">

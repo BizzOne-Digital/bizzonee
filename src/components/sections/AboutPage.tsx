@@ -25,7 +25,7 @@ const VALUES = [
 const TEAM_HIGHLIGHTS = [
   { icon: Users, stat: "25+", label: "Dedicated team members" },
   { icon: Globe, stat: "12+", label: "Countries served" },
-  { icon: TrendingUp, stat: "₹250Cr+", label: "Revenue generated for clients" },
+  { icon: TrendingUp, stat: "$30M+", label: "Revenue generated for clients" },
 ];
 
 const PANELS = [
@@ -45,7 +45,7 @@ export default function AboutPage() {
     <>
       {/* ───────── HERO ───────── */}
       <section className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
+        <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
         <div className="section">
           <Reveal className="mx-auto max-w-3xl text-center">
             <SectionLabel>About Us</SectionLabel>
@@ -94,7 +94,7 @@ export default function AboutPage() {
                 BizzOne Digital started with a simple belief: every business, no matter how small, deserves a premium digital presence that actually drives results. We saw too many agencies delivering pretty websites that didn&apos;t convert, flashy ads that didn&apos;t sell, and social media that didn&apos;t grow.
               </p>
               <p className="mt-4 text-base leading-relaxed text-white/90">
-                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">180+ brands</span> scale with websites, advertising, social media, SEO, AI automation and more, generating over <span className="font-semibold text-brand-mint">₹250 Crore</span> in client revenue.
+                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">180+ brands</span> scale with websites, advertising, social media, SEO, AI automation and more, generating over <span className="font-semibold text-brand-mint">$30M+</span> in client revenue.
               </p>
               <div className="mt-8 flex flex-wrap gap-5">
                 {TEAM_HIGHLIGHTS.map((t) => (
@@ -201,8 +201,8 @@ export default function AboutPage() {
         <div className="section">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl neon-border px-8 py-12 text-center sm:px-14">
-              <div className="pointer-events-none absolute -left-16 top-0 h-64 w-64 rounded-full bg-brand-purple/30 blur-[100px]" />
-              <div className="pointer-events-none absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-brand-mint/15 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -left-16 top-0 h-64 w-64 rounded-full bg-brand-purple/30 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -right-10 bottom-0 h-64 w-64 rounded-full bg-brand-mint/15 blur-[100px]" />
               <h2 className="relative font-display text-3xl font-extrabold text-white sm:text-4xl">
                 Ready to Work With a Team That <span className="text-gradient">Delivers</span>?
               </h2>

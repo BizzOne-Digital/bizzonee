@@ -16,7 +16,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
     <>
       {/* HERO */}
       <section className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute -top-10 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
+        <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
         <div className="section">
           <Reveal>
             <Link href="/#services" className="inline-flex items-center gap-2 text-sm font-medium text-white/50 transition-colors hover:text-brand-mint">
@@ -100,8 +100,8 @@ export default function ServiceDetail({ slug }: { slug: string }) {
         <div className="section">
           <Reveal>
             <div className="relative overflow-hidden rounded-3xl neon-border px-8 py-12 text-center sm:px-14">
-              <div className="pointer-events-none absolute -left-16 top-0 h-64 w-64 rounded-full bg-brand-purple/30 blur-[100px]" />
-              <div className="pointer-events-none absolute -right-10 bottom-0 h-64 w-64 rounded-full bg-brand-mint/15 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -left-16 top-0 h-64 w-64 rounded-full bg-brand-purple/30 blur-[100px]" />
+              <div className="pointer-events-none absolute hidden sm:block -right-10 bottom-0 h-64 w-64 rounded-full bg-brand-mint/15 blur-[100px]" />
               <h2 className="relative font-display text-3xl font-extrabold text-white sm:text-4xl">
                 Ready to grow with <span className="text-gradient">{svc.title}</span>?
               </h2>

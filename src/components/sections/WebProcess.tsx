@@ -57,7 +57,7 @@ export default function WebProcess() {
 
   return (
     <section className="relative py-20 sm:py-28">
-      <div className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/10 blur-[120px]" />
+      <div className="pointer-events-none absolute hidden sm:block right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/10 blur-[120px]" />
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Our Process</SectionLabel>

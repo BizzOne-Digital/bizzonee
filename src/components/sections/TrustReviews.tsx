@@ -8,7 +8,11 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import { COMPANY } from "@/lib/content";
 
 const REVIEWS = [
-  { name: "MARIO MEDINA", time: "1 day ago", stars: 5, text: "Professional service. Quick." },
+  { name: "Obi I", time: "1 day ago", stars: 5, text: "It was a pleasure working with the BizzOne team." },
+  { name: "Gary Harding", time: "1 day ago", stars: 5, text: "I can not say enough to express my complete satisfaction with how our website was designed and completed in such a professional and knowledgeable manner. Being someone who has little or no expertise on website design, I was very surprised." },
+  { name: "FireChildVibes", time: "2 days ago", stars: 5, text: "Working with BizzOne Digital for creating my website was an absolute pleasure. Amazing customer service went above and beyond to make sure I received exactly what I wanted, even when it was outside of the scope of my promotion." },
+  { name: "Heidi Melville", time: "1 week ago", stars: 5, text: "BizzOne Digital did an outstanding job creating my new website for Melville Paralegal Services. The team was professional, reliable, responsive, and incredibly detail-oriented throughout the entire process. Revisions were completed quickly." },
+  { name: "MARIO MEDINA", time: "3 days ago", stars: 5, text: "Professional service. Quick." },
   { name: "wardell holman", time: "3 days ago", stars: 5, text: "I would highly recommend this company and only this company to anyone. Absolutely professional, efficient, and proficient as they come!" },
   { name: "Rex HighTech", time: "3 days ago", stars: 5, text: "Great job, love it." },
   { name: "O'Sipp Delivery", time: "4 days ago", stars: 5, text: "I had an excellent experience working with this website development team. From the beginning, they were professional, responsive, knowledgeable, and genuinely committed to bringing my vision to life." },
@@ -82,27 +86,27 @@ function Avatar({ name }: { name: string }) {
 }
 
 export default function TrustReviews() {
-  const [start, setStart] = useState(0);
+  const [page, setPage] = useState(0);
   const [dir, setDir] = useState(1);
   const total = REVIEWS.length;
   const pages = Math.ceil(total / VISIBLE);
 
   const go = (d: number) => {
     setDir(d);
-    setStart((p) => (p + d * VISIBLE + total) % total);
+    setPage((p) => (p + d + pages) % pages);
   };
 
   useEffect(() => {
     const id = setInterval(() => go(1), 5000);
     return () => clearInterval(id);
-  }, []);
+  }, [pages]);
 
+  const start = page * VISIBLE;
   const visible = Array.from({ length: VISIBLE }, (_, i) => REVIEWS[(start + i) % total]);
-  const page = Math.floor(start / VISIBLE);
 
   return (
     <section className="relative py-20 sm:py-24">
-      <div className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
+      <div className="pointer-events-none absolute hidden sm:block right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Google Reviews</SectionLabel>
@@ -163,7 +167,7 @@ export default function TrustReviews() {
             <div className="mt-8 flex items-center justify-between">
               <div className="flex gap-1.5">
                 {Array.from({ length: pages }).map((_, d) => (
-                  <button key={d} onClick={() => { setDir(d > page ? 1 : -1); setStart(d * VISIBLE); }}
+                  <button key={d} onClick={() => { setDir(d > page ? 1 : -1); setPage(d); }}
                     className={`h-2 rounded-full transition-all ${d === page ? "w-7 bg-brand-mint" : "w-2 bg-white/20"}`} />
                 ))}
               </div>

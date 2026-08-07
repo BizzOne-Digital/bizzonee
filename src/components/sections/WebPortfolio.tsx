@@ -68,7 +68,7 @@ function SiteFrame({ url, name, mounted }: { url: string; name: string; mounted:
             </div>
           </div>
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5" />
+        <div className="pointer-events-none absolute hidden sm:block inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5" />
       </div>
     </div>
   );
@@ -96,7 +96,7 @@ export default function WebPortfolio() {
 
   return (
     <section id="portfolio" className="relative py-20 sm:py-28">
-      <div className="pointer-events-none absolute left-1/2 top-1/4 h-80 w-80 -translate-x-1/2 rounded-full bg-brand-purple/15 blur-[130px]" />
+      <div className="pointer-events-none absolute hidden sm:block left-1/2 top-1/4 h-80 w-80 -translate-x-1/2 rounded-full bg-brand-purple/15 blur-[130px]" />
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Selected Work</SectionLabel>
