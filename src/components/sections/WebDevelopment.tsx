@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock, Building2, UtensilsCrossed, Briefcase, ShoppingBag, Plane, Heart, Car, Users, Rocket } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import NeonButton from "@/components/ui/NeonButton";
@@ -11,86 +10,73 @@ import TrustReviews from "@/components/sections/TrustReviews";
 
 
 const INDUSTRIES = [
-  { id: "construction", label: "Construction & Renovation",       color: "#F59E0B", emoji: "🏗️" },
-  { id: "restaurant",   label: "Restaurant & Food Services",      color: "#EF4444", emoji: "🍴" },
-  { id: "professional", label: "Professional Services",           color: "#10B981", emoji: "💼" },
-  { id: "ecommerce",    label: "E-commerce & Retail",             color: "#C8F31D", emoji: "🛍️" },
-  { id: "hospitality",  label: "Travel & Hospitality",            color: "#06B6D4", emoji: "✈️" },
-  { id: "health",       label: "Health & Wellness",               color: "#EC4899", emoji: "❤️" },
-  { id: "automotive",   label: "Automotive Services",             color: "#3B82F6", emoji: "🚗" },
-  { id: "nonprofit",    label: "Non-Profit & Community",          color: "#8B5CF6", emoji: "🤝" },
+  { id: "construction", label: "Construction & Renovation", color: "#F59E0B", icon: Building2 },
+  { id: "restaurant",   label: "Restaurant & Food Services", color: "#EF4444", icon: UtensilsCrossed },
+  { id: "professional", label: "Professional Services", color: "#10B981", icon: Briefcase },
+  { id: "ecommerce",    label: "E-commerce & Retail", color: "#C8F31D", icon: ShoppingBag },
+  { id: "hospitality",  label: "Travel & Hospitality", color: "#06B6D4", icon: Plane },
+  { id: "health",       label: "Health & Wellness", color: "#EC4899", icon: Heart },
+  { id: "automotive",   label: "Automotive Services", color: "#3B82F6", icon: Car },
+  { id: "nonprofit",    label: "Non-Profit & Community", color: "#8B5CF6", icon: Users },
 ];
 
-/* ── industry tag pill ── */
-function IndustryPill({ ind }: { ind: typeof INDUSTRIES[0] }) {
+/* ── industry pill ── */
+function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
   return (
-    <span
-      className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold uppercase tracking-wide transition-all hover:-translate-y-0.5"
-      style={{ background: `${ind.color}12`, borderColor: `${ind.color}40`, color: ind.color }}>
-      <span className="text-base">{ind.emoji}</span>
-      {ind.label}
-    </span>
+    <div
+      className="group flex items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300 hover:-translate-y-1"
+      style={{ background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` }}
+    >
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
+        <ind.icon size={22} />
+      </span>
+      <span className="flex-1 text-[15px] font-bold leading-snug text-white">{ind.label}</span>
+      <span
+        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-transform group-hover:translate-x-1"
+        style={{ borderColor: `${ind.color}50`, color: ind.color }}
+      >
+        <ArrowRight size={14} />
+      </span>
+    </div>
   );
 }
 
 /* ── coverflow showcase: center elevated, sides scaled + blurred ── */
 const SHOWCASE = [
-  { src: "/web1.png", url: "https://www.m2mprocleaners.ca/" },
-  { src: "/web2.png", url: "https://www.cobbchurchnetwork.org/" },
-  { src: "/web3.png", url: "https://www.strideshockeysales.com/" },
-  { src: "/web4.png", url: "https://www.jmgallautorecycling.com/" },
+  { src: "/web1.png", url: "https://www.m2mprocleaners.ca/", name: "From Mom to Magic", category: "Restaurant & Food Services", color: "#EF4444" },
+  { src: "/web2.png", url: "https://www.cobbchurchnetwork.org/", name: "Hope Community Network", category: "Non-Profit & Community", color: "#8B5CF6" },
+  { src: "/web3.png", url: "https://www.strideshockeysales.com/", name: "Stride Hockey", category: "E-commerce & Retail", color: "#C8F31D" },
+  { src: "/web4.png", url: "https://www.jmgallautorecycling.com/", name: "Towing Car", category: "Automotive Services", color: "#3B82F6" },
 ];
 
-function WebShowcaseCoverflow() {
-  const [active, setActive] = useState(0);
-  const n = SHOWCASE.length;
-
-  useEffect(() => {
-    const id = setInterval(() => setActive((a) => (a + 1) % n), 4000);
-    return () => clearInterval(id);
-  }, [n]);
-
+function FeaturedWebsites() {
   return (
-    <div className="relative">
-      <div className="flex items-center justify-center gap-3 sm:gap-5 py-6">
-        {SHOWCASE.map(({ src, url }, i) => {
-          const offset = i - active;
-          const isCenter = offset === 0;
-          return (
-            <motion.div
-              key={src}
-              onClick={() => (isCenter ? undefined : setActive(i))}
-              animate={{
-                scale: isCenter ? 1 : 0.82,
-                y: isCenter ? -16 : 12,
-                opacity: isCenter ? 1 : 0.55,
-                filter: isCenter ? "blur(0px)" : "blur(2px)",
-                zIndex: isCenter ? 10 : 1,
-              }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative w-[42%] shrink-0 cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#0a0814] shadow-2xl sm:w-[24%]"
-              style={{ aspectRatio: "16/10" }}>
-              {isCenter ? (
-                <a href={url} target="_blank" rel="noreferrer" aria-label={`Visit ${url}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
-                </a>
-              ) : (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={src} alt={`Website showcase ${i + 1}`} className="h-full w-full object-cover object-top" />
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
-
-      <div className="mt-2 flex justify-center gap-1.5">
-        {SHOWCASE.map((_, i) => (
-          <button key={i} onClick={() => setActive(i)}
-            className="h-1.5 rounded-full transition-all"
-            style={{ width: i === active ? 20 : 6, background: i === active ? "#C8F31D" : "rgba(255,255,255,0.2)" }} />
-        ))}
-      </div>
+    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {SHOWCASE.map(({ src, url, name, category, color }) => (
+        <a
+          key={src}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="group relative block rounded-[1.75rem] border bg-[#0a0814] p-2 shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
+          style={{ borderColor: `${color}40`, boxShadow: `0 0 30px ${color}1a` }}
+        >
+          <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+            <div className="pointer-events-none absolute inset-2 rounded-2xl bg-gradient-to-tr from-transparent via-transparent to-white/10" />
+          </div>
+          <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${color}1f`, color }}>
+              <ArrowRight size={13} className="-rotate-45" />
+            </span>
+            <div className="min-w-0">
+              <div className="truncate text-sm font-bold text-white">{name}</div>
+              <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color }}>{category}</div>
+            </div>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }
@@ -243,7 +229,7 @@ export default function WebDevelopment() {
         </div>
       </section>
 
-      {/* ── BY INDUSTRY — 2 columns ── */}
+      {/* ── BY INDUSTRY ── */}
       <section className="relative py-16 sm:py-20">
         <div className="pointer-events-none absolute hidden sm:block right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
         <div className="section">
@@ -252,16 +238,46 @@ export default function WebDevelopment() {
             <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
               We Build for <span className="text-gradient">Every Business</span>
             </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base text-white/70">
+              Powerful websites. Tailored solutions. Industry-focused excellence.
+            </p>
           </Reveal>
 
-          <Reveal delay={0.05} className="flex flex-wrap justify-center gap-3">
+          <Reveal delay={0.05} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {INDUSTRIES.map((ind) => (
-              <IndustryPill key={ind.id} ind={ind} />
+              <IndustryCard key={ind.id} ind={ind} />
             ))}
           </Reveal>
 
+          {/* ── FEATURED WEBSITES ── */}
+          <Reveal delay={0.1} className="mt-20 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-purple-light">Our Work</span>
+            <div className="mt-3 flex items-center justify-center gap-4">
+              <span className="h-px w-10 bg-gradient-to-r from-transparent to-white/20 sm:w-20" />
+              <h3 className="font-display text-3xl font-extrabold text-white sm:text-4xl">Featured Websites</h3>
+              <span className="h-px w-10 bg-gradient-to-l from-transparent to-white/20 sm:w-20" />
+            </div>
+            <p className="mx-auto mt-3 max-w-xl text-base text-white/70">Take a look at some of our recent projects.</p>
+          </Reveal>
+
           <Reveal delay={0.15} className="mt-10">
-            <WebShowcaseCoverflow />
+            <FeaturedWebsites />
+          </Reveal>
+
+          {/* ── BOTTOM CTA ── */}
+          <Reveal delay={0.2} className="mt-10">
+            <div className="glass flex flex-col items-center justify-between gap-5 rounded-2xl p-6 sm:flex-row">
+              <div className="flex items-center gap-4">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-purple/15 text-brand-purple-light shadow-glow-purple">
+                  <Rocket size={20} />
+                </span>
+                <div>
+                  <div className="font-display text-base font-bold text-white">Don&apos;t see your industry?</div>
+                  <div className="text-sm text-white/70">We work with businesses across all industries.</div>
+                </div>
+              </div>
+              <NeonButton href="#onboard" variant="primary" className="whitespace-nowrap">Let&apos;s Build Your Website</NeonButton>
+            </div>
           </Reveal>
         </div>
       </section>
