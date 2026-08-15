@@ -26,7 +26,6 @@ const CATS = [
       { src: "/portfolio/logo/8.png", span: "col-span-1" },
       { src: "/portfolio/logo/9.png", span: "col-span-1 row-span-2" },
       { src: "/portfolio/logo/10.png", span: "col-span-1" },
-      { src: "/portfolio/logo/11.png", span: "col-span-1" },
       { src: "/portfolio/logo/12.png", span: "col-span-1" },
       { src: "/portfolio/logo/13.png", span: "col-span-1" },
       { src: "/portfolio/logo/14.png", span: "col-span-1" },
