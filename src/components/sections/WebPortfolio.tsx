@@ -1,181 +1,123 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, type PanInfo } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 
 interface Project {
   name: string;
   category: string;
-  description: string;
+  industry: string;
+  src: string;
   url: string;
 }
 
-const PROJECTS: Project[] = [
-  { name: "M2M Pro", category: "Business Platform", description: "A sleek, conversion-focused business platform with a bold, modern interface and a fully responsive experience.", url: "https://www.m2mprocleaners.ca" },
-  { name: "Cobb Church", category: "Community Website", description: "A warm, welcoming community website with events, media and an effortless, easy-to-navigate layout.", url: "https://www.cobbchurchnetwork.org" },
-  { name: "A1 Furnished", category: "Real Estate · Rentals", description: "A premium furnished-rentals website with rich listings and a clean, booking-ready presentation.", url: "https://www.a1furnished.ca" },
-  { name: "Global Paradon", category: "Corporate · Business", description: "A professional corporate website with a confident, trustworthy design built to win clients.", url: "https://www.globalpardonwaivers.com" },
-  { name: "AEM Quality ISO", category: "ISO Certification", description: "A clean, credible site for ISO certification and quality consulting that builds instant trust.", url: "https://www.aemqualityiso.com" },
-  { name: "Bariis Pizza", category: "Restaurant", description: "An appetizing restaurant website with a vibrant menu showcase and a smooth ordering experience.", url: "https://www.bariishalalpizza.com" },
-  { name: "Corner Store", category: "Retail · E-commerce", description: "A neon-styled retail storefront with a striking, high-energy design and slick product browsing.", url: "https://www.cornerstoreatlinwood.com" },
-  { name: "Toronto Notary", category: "Local Business", description: "A modern local-business website with a polished, location-focused layout that converts.", url: "https://www.torontonotaryoffice.ca" },
+/* industry ids must match INDUSTRIES in WebDevelopment.tsx */
+export const INDUSTRY_FILTERS = [
+  { id: "all", label: "All Industries", color: "#C8F31D" },
+  { id: "construction", label: "Construction & Renovation", color: "#F59E0B" },
+  { id: "restaurant", label: "Restaurant & Food Services", color: "#EF4444" },
+  { id: "professional", label: "Professional Services", color: "#10B981" },
+  { id: "ecommerce", label: "E-commerce & Retail", color: "#C8F31D" },
+  { id: "hospitality", label: "Travel & Hospitality", color: "#06B6D4" },
+  { id: "health", label: "Health & Wellness", color: "#EC4899" },
+  { id: "automotive", label: "Automotive Services", color: "#3B82F6" },
+  { id: "nonprofit", label: "Non-Profit & Community", color: "#8B5CF6" },
 ];
 
-const BASE_W = 1440;
+/* Add new projects here as more screenshots come in — just add the next web{N}.png to /public and a row below. */
+const PROJECTS: Project[] = [
+  { name: "From Mom to Magic", category: "Restaurant & Food Services", industry: "restaurant", src: "/web1.png", url: "https://www.m2mprocleaners.ca/" },
+  { name: "Hope Community Network", category: "Non-Profit & Community", industry: "nonprofit", src: "/web2.png", url: "https://www.cobbchurchnetwork.org/" },
+  { name: "Stride Hockey", category: "E-commerce & Retail", industry: "ecommerce", src: "/web3.png", url: "https://www.strideshockeysales.com/" },
+  { name: "TowPro Towing", category: "Automotive Services", industry: "automotive", src: "/web4.png", url: "https://www.jmgallautorecycling.com/" },
+  { name: "Lumina Medi Spa", category: "Health & Wellness", industry: "health", src: "/web5.png", url: "https://www.luminamedispa.ca/" },
+  { name: "Express Glass", category: "Construction & Renovation", industry: "construction", src: "/web6.png", url: "https://www.expressglassriverside.com/" },
+  { name: "Everprint", category: "E-commerce & Retail", industry: "ecommerce", src: "/web7.png", url: "https://www.everprints.ca/" },
+];
 
-function SiteFrame({ url, name, mounted }: { url: string; name: string; mounted: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.4);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const update = () => setScale(el.clientWidth / BASE_W);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#120c20] shadow-2xl">
-      <div className="flex items-center gap-1.5 border-b border-white/5 px-3 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/70" />
-        <span className="h-2.5 w-2.5 rounded-full bg-green-400/70" />
-        <span className="ml-3 hidden h-4 flex-1 items-center truncate rounded-full bg-white/5 px-3 text-[10px] text-white/40 sm:flex">
-          {url.replace("https://", "")}
-        </span>
-      </div>
-      <div ref={ref} className="relative aspect-[16/10] w-full overflow-hidden bg-[#05030a]">
-        {mounted ? (
-          <iframe
-            src={url}
-            title={`${name} preview`}
-            loading="lazy"
-            scrolling="no"
-            className="absolute left-0 top-0 origin-top-left border-0"
-            style={{ width: `${BASE_W}px`, height: `${BASE_W * (10 / 16)}px`, transform: `scale(${scale})`, pointerEvents: "none" }}
-          />
-        ) : (
-          <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-[#1a0b2e] to-[#05030a]">
-            <div className="text-center">
-              <div className="animate-pulse text-sm font-semibold text-white/50">{name}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-wider text-white/30">Preview</div>
-            </div>
-          </div>
-        )}
-        <div className="pointer-events-none absolute hidden sm:block inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/5" />
-      </div>
-    </div>
-  );
+function findColor(industry: string) {
+  return INDUSTRY_FILTERS.find((f) => f.id === industry)?.color ?? "#C8F31D";
 }
 
 export default function WebPortfolio() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const n = PROJECTS.length;
-
-  const go = (dir: number) => setActive((a) => (a + dir + n) % n);
+  const [industry, setIndustry] = useState("all");
 
   useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % n), 3000);
-    return () => clearInterval(id);
-  }, [paused, n]);
+    const q = new URLSearchParams(window.location.search).get("industry");
+    if (q && INDUSTRY_FILTERS.some((f) => f.id === q)) setIndustry(q);
+  }, []);
 
-  const onDragEnd = (_: unknown, info: PanInfo) => {
-    if (info.offset.x < -70) go(1);
-    else if (info.offset.x > 70) go(-1);
-  };
-
-  const current = PROJECTS[active];
+  const filtered = industry === "all" ? PROJECTS : PROJECTS.filter((p) => p.industry === industry);
 
   return (
-    <section id="portfolio" className="relative py-20 sm:py-28">
+    <section id="websites" className="relative py-20 sm:py-28">
       <div className="pointer-events-none absolute hidden sm:block left-1/2 top-1/4 h-80 w-80 -translate-x-1/2 rounded-full bg-brand-purple/15 blur-[130px]" />
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Selected Work</SectionLabel>
           <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
-            Projects We&apos;re <span className="text-gradient">Proud Of</span>
+            Websites We&apos;re <span className="text-gradient">Proud Of</span>
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
-            A look at real websites we&apos;ve designed and built. Slide through to explore.
+            Real websites we&apos;ve designed and built — browse by industry.
           </p>
         </Reveal>
 
-        <div
-          className="relative mx-auto mt-14 flex h-[260px] max-w-5xl items-center justify-center sm:h-[340px] lg:h-[420px]"
-          style={{ perspective: 1600 }}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          {PROJECTS.map((p, i) => {
-            let off = i - active;
-            if (off > n / 2) off -= n;
-            if (off < -n / 2) off += n;
-            const isActive = off === 0;
-            const abs = Math.abs(off);
-
+        <Reveal delay={0.05} className="mt-8 flex flex-wrap justify-center gap-2">
+          {INDUSTRY_FILTERS.map((f) => {
+            const on = industry === f.id;
             return (
-              <motion.div
-                key={p.name}
-                className="absolute w-[80%] cursor-pointer sm:w-[64%] lg:w-[56%]"
-                style={{ transformStyle: "preserve-3d" }}
-                animate={{
-                  x: `${off * 58}%`,
-                  rotateY: off * -34,
-                  scale: isActive ? 1 : 0.82,
-                  opacity: abs > 1 ? 0 : isActive ? 1 : 0.45,
-                  filter: isActive ? "blur(0px)" : "blur(2px)",
-                  zIndex: 20 - abs,
-                  pointerEvents: abs > 1 ? "none" : "auto",
-                }}
-                transition={{ type: "spring", stiffness: 260, damping: 30 }}
-                drag={isActive ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.18}
-                onDragEnd={isActive ? onDragEnd : undefined}
-                onClick={() => !isActive && setActive(i)}
-              >
-                <SiteFrame url={p.url} name={p.name} mounted={abs <= 1} />
-              </motion.div>
+              <button key={f.id} onClick={() => setIndustry(f.id)}
+                className="rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-all"
+                style={{
+                  background: on ? `${f.color}22` : "transparent",
+                  borderColor: on ? `${f.color}60` : "rgba(255,255,255,0.12)",
+                  color: on ? f.color : "rgba(255,255,255,0.55)",
+                }}>
+                {f.label}
+              </button>
             );
           })}
+        </Reveal>
 
-          <button aria-label="Previous" onClick={() => go(-1)} className="absolute left-0 z-30 grid h-11 w-11 place-items-center rounded-full glass-strong text-white transition-all hover:text-brand-mint hover:shadow-glow-mint sm:-left-2">
-            <ChevronLeft size={20} />
-          </button>
-          <button aria-label="Next" onClick={() => go(1)} className="absolute right-0 z-30 grid h-11 w-11 place-items-center rounded-full glass-strong text-white transition-all hover:text-brand-mint hover:shadow-glow-mint sm:-right-2">
-            <ChevronRight size={20} />
-          </button>
-        </div>
-
-        <div className="relative mx-auto mt-10 max-w-xl text-center">
-          <AnimatePresence mode="wait">
-            <motion.div key={current.name} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }} transition={{ duration: 0.35 }}>
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-mint">{current.category}</span>
-              <h3 className="mt-1 font-display text-2xl font-bold text-white sm:text-3xl">{current.name}</h3>
-              <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">{current.description}</p>
-              <a href={current.url} target="_blank" rel="noopener noreferrer"
-                className="group mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-ink shadow-glow-mint transition-all duration-300 hover:-translate-y-0.5"
-                style={{ background: "linear-gradient(100deg, var(--brand-mint), var(--brand-purple-light))" }}>
-                Visit Project <ExternalLink size={15} />
-              </a>
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-            {PROJECTS.map((p, i) => (
-              <button key={p.name} aria-label={`Go to ${p.name}`} onClick={() => setActive(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${i === active ? "w-7 bg-brand-mint" : "w-2 bg-white/20 hover:bg-white/40"}`} />
-            ))}
+        {filtered.length === 0 ? (
+          <div className="mx-auto mt-14 max-w-md rounded-2xl border border-white/10 bg-white/[0.03] py-14 text-center">
+            <p className="text-base font-semibold text-white/80">More real client examples for this industry are on the way.</p>
+            <p className="mt-2 text-sm text-white/50">Browse another industry above, or reach out and we&apos;ll show you similar work.</p>
           </div>
-        </div>
+        ) : (
+          <Reveal delay={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {filtered.map(({ name, category, src, url, industry: ind }) => {
+              const color = findColor(ind);
+              return (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group relative block rounded-[1.75rem] border bg-[#0a0814] p-2 shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
+                  style={{ borderColor: `${color}40`, boxShadow: `0 0 30px ${color}1a` }}
+                >
+                  <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt={name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${color}1f`, color }}>
+                      <ArrowRight size={13} className="-rotate-45" />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="truncate text-sm font-bold text-white">{name}</div>
+                      <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color }}>{category}</div>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </Reveal>
+        )}
       </div>
     </section>
   );

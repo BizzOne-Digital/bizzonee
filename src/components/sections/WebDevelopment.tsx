@@ -23,7 +23,8 @@ const INDUSTRIES = [
 /* ── industry pill ── */
 function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
   return (
-    <div
+    <a
+      href={`/our-work?industry=${ind.id}#websites`}
       className="group flex items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300 hover:-translate-y-1"
       style={{ background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` }}
     >
@@ -37,7 +38,7 @@ function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
       >
         <ArrowRight size={14} />
       </span>
-    </div>
+    </a>
   );
 }
 
@@ -258,6 +259,9 @@ export default function WebDevelopment() {
               <span className="h-px w-10 bg-gradient-to-l from-transparent to-white/20 sm:w-20" />
             </div>
             <p className="mx-auto mt-3 max-w-xl text-base text-white/70">Take a look at some of our recent projects.</p>
+            <a href="/our-work#websites" className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-mint/40 bg-brand-mint/10 px-5 py-2.5 text-sm font-bold text-brand-mint transition-all hover:-translate-y-0.5 hover:bg-brand-mint/20">
+              View Our Website <ArrowRight size={15} />
+            </a>
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10">

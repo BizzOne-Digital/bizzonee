@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import WebPortfolio from "@/components/sections/WebPortfolio";
 
 const CATS = [
   {
@@ -314,6 +315,8 @@ export default function OurWorkPage() {
             onImageClick={(i) => setLightbox({ cat, idx: i })} />
         ))}
       </div>
+
+      <WebPortfolio />
 
       <AnimatePresence>
         {lightbox && (
