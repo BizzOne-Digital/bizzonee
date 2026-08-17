@@ -285,7 +285,7 @@ export default function OurWorkPage() {
             Work That <span className="text-gradient">Speaks For Itself</span>
           </h1>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-white/75">
-            Five categories. Real clients. Scroll to explore or jump to a category.
+            Five categories. Real clients.. Scroll to explore or jump to a category.
           </p>
         </Reveal>
 
