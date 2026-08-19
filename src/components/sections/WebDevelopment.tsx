@@ -85,10 +85,10 @@ function FeaturedWebsites() {
 
 type Pkg = { name: string; price: string; tagline: string; popular?: boolean; contact?: boolean; paymentLink?: string; includes: string[] };
 const PACKAGES: Pkg[] = [
-  { name: "Standard", price: "$79", tagline: "Clean, professional website to get online fast.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e979c3ea3a19f0bd90ee", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO", "Free hosting (offer valid until August 15, 2026)"] },
-  { name: "Premium", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e118f4e3f699673a6464", includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup", "Free hosting (offer valid until August 15, 2026)"] },
-  { name: "Advanced", price: "$299", tagline: "Custom eCommerce website with products, payments, and business features.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a1498033f4eb69bef72fc9a", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features", "Free hosting (offer valid until August 15, 2026)"] },
-  { name: "Custom", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation", "Free hosting (offer valid until August 15, 2026)"] },
+  { name: "Standard", price: "$79", tagline: "Clean, professional website to get online fast.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e979c3ea3a19f0bd90ee", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO", "Free hosting (offer valid until August 31, 2026)"] },
+  { name: "Premium", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e118f4e3f699673a6464", includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup", "Free hosting (offer valid until August 31, 2026)"] },
+  { name: "Advanced", price: "$299", tagline: "Custom eCommerce website with products, payments, and business features.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a1498033f4eb69bef72fc9a", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features", "Free hosting (offer valid until August 31, 2026)"] },
+  { name: "Custom", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation", "Free hosting (offer valid until August 31, 2026)"] },
 ];
 
 const STATS = [
@@ -189,7 +189,7 @@ export default function WebDevelopment() {
                   Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">No Surprises.</span>
                 </h1>
                 <p className="mt-3 text-left text-base font-semibold text-brand-mint sm:text-lg">
-                  Free hosting included with every website package — offer valid until August 15, 2026.
+                  Free hosting included with every website package — offer valid until August 31, 2026.
                 </p>
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
                   Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
@@ -205,7 +205,7 @@ export default function WebDevelopment() {
                     <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
                   </span>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
-                    <ShieldCheck size={13} className="text-brand-mint" /> Free Hosting — offer ends August 15, 2026
+                    <ShieldCheck size={13} className="text-brand-mint" /> Free Hosting — offer ends August 31, 2026
                   </span>
                 </div>
                 <div className="mt-10 flex flex-wrap justify-center gap-6 lg:justify-start">
@@ -308,11 +308,11 @@ export default function WebDevelopment() {
                 <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
-                <ShieldCheck size={13} /> Free Hosting — ends August 15, 2026
+                <ShieldCheck size={13} /> Free Hosting — ends August 31, 2026
               </span>
             </div>
             <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-amber-400 sm:text-sm">
-              <Clock size={14} className="shrink-0" /> Claim free hosting before August 15 — offer ending soon!
+              <Clock size={14} className="shrink-0" /> Claim free hosting before August 31 — offer ending soon!
             </p>
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
