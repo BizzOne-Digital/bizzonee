@@ -98,7 +98,7 @@ export default function Navbar() {
                             return (
                               <Link
                                 key={s.slug}
-                                href={`/service/${s.slug}`}
+                                href={s.href ?? `/service/${s.slug}`}
                                 onClick={() => setServicesOpen(false)}
                                 className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
                               >
@@ -197,7 +197,7 @@ export default function Navbar() {
                           {DROPDOWN_SERVICES.map((s) => (
                             <Link
                               key={s.slug}
-                              href={`/service/${s.slug}`}
+                              href={s.href ?? `/service/${s.slug}`}
                               onClick={closeMobile}
                               className="block rounded-lg px-4 py-2.5 text-sm text-white hover:bg-white/5 hover:text-brand-mint"
                             >
