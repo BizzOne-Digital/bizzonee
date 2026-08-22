@@ -5,6 +5,7 @@ import {
   FileText,
   Share2,
   Bot,
+  Smartphone,
   type LucideIcon,
 } from "lucide-react";
 
@@ -22,6 +23,21 @@ export interface Service {
 }
 
 export const SERVICES: Service[] = [
+  {
+    slug: "app-development",
+    icon: Smartphone,
+    title: "App Development",
+    short: "iOS, Android and cross-platform apps designed to launch fast and scale with your business.",
+    badgeLabel: "Platforms",
+    badgeValue: "iOS + Android",
+    href: "/app-development",
+    tagline: "From idea to App Store, mobile apps built to perform and scale.",
+    overview: [
+      "We design and build custom iOS, Android and cross-platform apps, from MVPs to full-featured products, with clean architecture and a smooth, intuitive user experience.",
+      "Every app is planned around real user needs and your business goals, then tested rigorously before it ever reaches the App Store or Play Store.",
+    ],
+    features: ["iOS & Android apps", "Cross-platform development", "UI/UX design & prototyping", "App Store & Play Store submission", "Backend & API integration", "Post-launch support"],
+  },
   {
     slug: "paid-advertising",
     icon: Megaphone,
