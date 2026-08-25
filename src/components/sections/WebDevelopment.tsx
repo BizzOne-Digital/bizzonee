@@ -23,22 +23,15 @@ const INDUSTRIES = [
 /* ── industry pill ── */
 function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
   return (
-    <a
-      href={`/our-work?industry=${ind.id}#websites`}
-      className="group flex items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300 hover:-translate-y-1"
+    <div
+      className="flex items-center gap-4 rounded-full border py-3 pl-3 pr-5"
       style={{ background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` }}
     >
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
         <ind.icon size={22} />
       </span>
       <span className="flex-1 text-[15px] font-bold leading-snug text-white">{ind.label}</span>
-      <span
-        className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-transform group-hover:translate-x-1"
-        style={{ borderColor: `${ind.color}50`, color: ind.color }}
-      >
-        <ArrowRight size={14} />
-      </span>
-    </a>
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { sendMetaLeadEvent } from "@/lib/metaCapi";
 
 export const runtime = "nodejs";
 
@@ -68,6 +69,12 @@ export async function POST(req: Request) {
       subject,
       text,
       html,
+    });
+
+    sendMetaLeadEvent({
+      email,
+      phone,
+      sourceUrl: req.headers.get("referer") || req.headers.get("origin") || "https://bizzonedigital.com",
     });
 
     return NextResponse.json({ ok: true });

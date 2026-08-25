@@ -309,14 +309,14 @@ export default function OurWorkPage() {
         </div>
       </div>
 
+      <WebPortfolio />
+
       <div className="section pb-20">
         {CATS.map((cat) => (
           <CategorySection key={cat.id} cat={cat}
             onImageClick={(i) => setLightbox({ cat, idx: i })} />
         ))}
       </div>
-
-      <WebPortfolio />
 
       <AnimatePresence>
         {lightbox && (

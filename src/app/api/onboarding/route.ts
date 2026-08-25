@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendMetaLeadEvent } from "@/lib/metaCapi";
 export const runtime = "nodejs";
 
 const v = (x: unknown): string => { const s = String(x ?? "").trim(); return s || "—"; };
@@ -199,6 +200,14 @@ export async function POST(req: Request) {
     await trySet("Which pages", list(d.pages));
 
     console.log("Field updates:", results.join(" | "));
+
+    sendMetaLeadEvent({
+      email,
+      phone,
+      eventName: "SubmitApplication",
+      sourceUrl: req.headers.get("referer") || req.headers.get("origin") || "https://bizzonedigital.com",
+    });
+
     return NextResponse.json({ ok: true, url: data.url });
   } catch (err) {
     console.error("Onboarding error:", err);
