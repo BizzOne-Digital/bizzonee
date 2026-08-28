@@ -1,72 +1,80 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock, Building2, UtensilsCrossed, Briefcase, ShoppingBag, Plane, Heart, Car, Users, Rocket } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock, Rocket, Loader2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import NeonButton from "@/components/ui/NeonButton";
 import WebProcess from "@/components/sections/WebProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
+import { getIcon } from "@/lib/iconRegistry";
+import type { SiteContent, Industry, Pkg } from "@/lib/webdevData";
 
-
-const INDUSTRIES = [
-  { id: "construction", label: "Construction & Renovation", color: "#F59E0B", icon: Building2 },
-  { id: "restaurant",   label: "Restaurant & Food Services", color: "#EF4444", icon: UtensilsCrossed },
-  { id: "professional", label: "Professional Services", color: "#10B981", icon: Briefcase },
-  { id: "ecommerce",    label: "E-commerce & Retail", color: "#C8F31D", icon: ShoppingBag },
-  { id: "hospitality",  label: "Travel & Hospitality", color: "#06B6D4", icon: Plane },
-  { id: "health",       label: "Health & Wellness", color: "#EC4899", icon: Heart },
-  { id: "automotive",   label: "Automotive Services", color: "#3B82F6", icon: Car },
-  { id: "nonprofit",    label: "Non-Profit & Community", color: "#8B5CF6", icon: Users },
+const STATS = [
+  { icon: Layers, value: "120+", label: "Sites launched" },
+  { icon: Gauge, value: "98%", label: "Performance" },
+  { icon: Globe, value: "24–48h", label: "Kickoff" },
 ];
 
 /* ── industry pill ── */
-function IndustryCard({ ind }: { ind: typeof INDUSTRIES[0] }) {
-  return (
-    <div
-      className="flex items-center gap-4 rounded-full border py-3 pl-3 pr-5"
-      style={{ background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` }}
-    >
+function IndustryCard({ ind }: { ind: Industry }) {
+  const Icon = getIcon(ind.icon);
+  const hasWork = ind.images.length > 0;
+  const content = (
+    <>
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
-        <ind.icon size={22} />
+        <Icon size={22} />
       </span>
       <span className="flex-1 text-[15px] font-bold leading-snug text-white">{ind.label}</span>
-    </div>
+      {hasWork && (
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-transform group-hover:translate-x-1"
+          style={{ borderColor: `${ind.color}50`, color: ind.color }}>
+          <ArrowRight size={14} />
+        </span>
+      )}
+    </>
+  );
+  const className = "group flex items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300";
+  const style = { background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` };
+
+  if (!hasWork) return <div className={className} style={style}>{content}</div>;
+  return (
+    <a href={`/our-work?industry=${ind.slug}#websites`} className={`${className} hover:-translate-y-1`} style={style}>
+      {content}
+    </a>
   );
 }
 
-/* ── coverflow showcase: center elevated, sides scaled + blurred ── */
-const SHOWCASE = [
-  { src: "/web1.png", url: "https://www.m2mprocleaners.ca/", name: "From Mom to Magic", category: "Restaurant & Food Services", color: "#EF4444" },
-  { src: "/web2.png", url: "https://www.cobbchurchnetwork.org/", name: "Hope Community Network", category: "Non-Profit & Community", color: "#8B5CF6" },
-  { src: "/web3.png", url: "https://www.strideshockeysales.com/", name: "Stride Hockey", category: "E-commerce & Retail", color: "#C8F31D" },
-  { src: "/web4.png", url: "https://www.jmgallautorecycling.com/", name: "Towing Car", category: "Automotive Services", color: "#3B82F6" },
-];
+function FeaturedWebsites({ industries }: { industries: Industry[] }) {
+  const featured = industries
+    .flatMap((ind) => ind.images.map((img) => ({ ...img, color: ind.color, category: ind.label })))
+    .slice(0, 4);
 
-function FeaturedWebsites() {
+  if (featured.length === 0) return null;
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-      {SHOWCASE.map(({ src, url, name, category, color }) => (
+      {featured.map((img, i) => (
         <a
-          key={src}
-          href={url}
+          key={i}
+          href={img.siteUrl || "#"}
           target="_blank"
           rel="noreferrer"
           className="group relative block rounded-[1.75rem] border bg-[#0a0814] p-2 shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
-          style={{ borderColor: `${color}40`, boxShadow: `0 0 30px ${color}1a` }}
+          style={{ borderColor: `${img.color}40`, boxShadow: `0 0 30px ${img.color}1a` }}
         >
           <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+            <img src={img.url} alt={img.name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
             <div className="pointer-events-none absolute inset-2 rounded-2xl bg-gradient-to-tr from-transparent via-transparent to-white/10" />
           </div>
           <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
-            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${color}1f`, color }}>
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${img.color}1f`, color: img.color }}>
               <ArrowRight size={13} className="-rotate-45" />
             </span>
             <div className="min-w-0">
-              <div className="truncate text-sm font-bold text-white">{name}</div>
-              <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color }}>{category}</div>
+              <div className="truncate text-sm font-bold text-white">{img.name}</div>
+              <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color: img.color }}>{img.category}</div>
             </div>
           </div>
         </a>
@@ -74,21 +82,6 @@ function FeaturedWebsites() {
     </div>
   );
 }
-
-
-type Pkg = { name: string; price: string; tagline: string; popular?: boolean; contact?: boolean; paymentLink?: string; includes: string[] };
-const PACKAGES: Pkg[] = [
-  { name: "Standard", price: "$79", tagline: "Clean, professional website to get online fast.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e979c3ea3a19f0bd90ee", includes: ["Up to 5 pages", "Contact form", "Stock photos", "Mobile responsive", "Basic on-page SEO", "Free hosting (offer valid until August 31, 2026)"] },
-  { name: "Premium", price: "$149", tagline: "More pages and essential integrations for growing businesses.", popular: true, paymentLink: "https://link.fastpaydirect.com/payment-link/6a18e118f4e3f699673a6464", includes: ["Up to 12 pages", "Contact form", "Admin Portal", "Booking / appointment form", "Payment integration setup", "Gallery management", "Mobile responsive + SEO setup", "Free hosting (offer valid until August 31, 2026)"] },
-  { name: "Advanced", price: "$299", tagline: "Custom eCommerce website with products, payments, and business features.", paymentLink: "https://link.fastpaydirect.com/payment-link/6a1498033f4eb69bef72fc9a", includes: ["Up to 15 pages", "eCommerce ready", "Upload up to 50+ products", "Custom website design", "Payment gateway integration", "Order management setup", "Admin dashboard", "Basic automation features", "Free hosting (offer valid until August 31, 2026)"] },
-  { name: "Custom", contact: true, price: "Contact Us", tagline: "Advanced custom website with premium design, 3D visuals, and full business systems.", includes: ["Up to 20 pages", "Advanced custom 3D design", "eCommerce with 100+ products", "Full admin dashboard", "Payment, shipping & order management", "Customer portal", "Multi-language support", "Advanced integrations & automation", "Free hosting (offer valid until August 31, 2026)"] },
-];
-
-const STATS = [
-  { icon: Layers, value: "120+", label: "Sites launched" },
-  { icon: Gauge, value: "98%", label: "Performance" },
-  { icon: Globe, value: "24–48h", label: "Kickoff" },
-];
 
 /* ── Stripe logo ── */
 function StripeLogo({ className = "" }: { className?: string }) {
@@ -120,10 +113,17 @@ function GoogleRatingBadge({ className = "" }: { className?: string }) {
   );
 }
 
+function hostingLine(content: SiteContent, style: "hero" | "badge" | "packages-badge" | "urgency"): string {
+  if (!content.freeHostingEnabled) return "";
+  const d = content.freeHostingDeadline;
+  if (style === "hero") return `Free hosting included with every website package — offer valid until ${d}.`;
+  if (style === "badge") return `Free Hosting — offer ends ${d}`;
+  if (style === "packages-badge") return `Free Hosting — ends ${d}`;
+  return `Claim free hosting before ${d.split(",")[0]} — offer ending soon!`;
+}
 
 /* ── hero package showcase card ── */
-function HeroPackageCard() {
-  const pkg = PACKAGES.find((p) => p.name === "Standard")!;
+function HeroPackageCard({ pkg, content }: { pkg: Pkg; content: SiteContent }) {
   return (
     <div className="relative mx-auto max-w-md rounded-3xl neon-border p-6 shadow-glow-purple sm:p-7">
       <span className="absolute -top-3 left-6 rounded-full bg-brand-mint px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-ink shadow-glow-mint">
@@ -147,6 +147,11 @@ function HeroPackageCard() {
             <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}
           </li>
         ))}
+        {content.freeHostingEnabled && (
+          <li className="flex items-start gap-2 text-sm text-white/75">
+            <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> Free hosting (offer valid until {content.freeHostingDeadline})
+          </li>
+        )}
         <li className="flex items-start gap-2 text-sm font-semibold text-brand-mint">
           <ShieldCheck size={14} className="mt-0.5 shrink-0" /> 30-Day Money-Back Guarantee
         </li>
@@ -167,6 +172,31 @@ function HeroPackageCard() {
 }
 
 export default function WebDevelopment() {
+  const [content, setContent] = useState<SiteContent | null>(null);
+  const [industries, setIndustries] = useState<Industry[]>([]);
+  const [packages, setPackages] = useState<Pkg[]>([]);
+
+  useEffect(() => {
+    fetch("/api/webdev-content")
+      .then((r) => r.json())
+      .then((data) => {
+        setContent(data.content);
+        setIndustries(data.industries);
+        setPackages(data.packages);
+      })
+      .catch(() => {});
+  }, []);
+
+  if (!content) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <Loader2 className="animate-spin text-brand-mint" size={28} />
+      </div>
+    );
+  }
+
+  const heroPkg = packages.find((p) => p.name === "Standard") || packages[0];
+
   return (
     <>
       {/* ── HERO ── */}
@@ -179,16 +209,20 @@ export default function WebDevelopment() {
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
                 <SectionLabel>Web Development</SectionLabel>
                 <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Your Website. Live in <br className="hidden sm:block" /><span className="whitespace-nowrap">24–48 Hours.</span> <span className="text-gradient">No Surprises.</span>
+                  {content.heroTitleLine1} <span className="text-gradient">{content.heroTitleLine2}</span>
                 </h1>
-                <p className="mt-3 text-left text-base font-semibold text-brand-mint sm:text-lg">
-                  Free hosting included with every website package — offer valid until August 31, 2026.
-                </p>
+                {content.freeHostingEnabled && (
+                  <p className="mt-3 text-left text-base font-semibold text-brand-mint sm:text-lg">
+                    {hostingLine(content, "hero")}
+                  </p>
+                )}
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
-                  Pay once, and our team starts today. You&apos;ll get a confirmation within minutes, a kickoff message within hours, and a live website within 48 hours, or your money back. Over 120 businesses have launched with us.
+                  {content.heroSubtext}
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-                  <NeonButton href="#packages" variant="primary" className="px-9 py-4 text-base">Get Started – $79 <ArrowRight size={18} /></NeonButton>
+                  <NeonButton href="#packages" variant="primary" className="px-9 py-4 text-base">
+                    Get Started{heroPkg ? ` – ${heroPkg.price}` : ""} <ArrowRight size={18} />
+                  </NeonButton>
                   <NeonButton href="#onboard" variant="ghost">Talk To Us First</NeonButton>
                 </div>
                 <div className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start">
@@ -197,9 +231,11 @@ export default function WebDevelopment() {
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
                     <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
-                    <ShieldCheck size={13} className="text-brand-mint" /> Free Hosting — offer ends August 31, 2026
-                  </span>
+                  {content.freeHostingEnabled && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
+                      <ShieldCheck size={13} className="text-brand-mint" /> {hostingLine(content, "badge")}
+                    </span>
+                  )}
                 </div>
                 <div className="mt-10 flex flex-wrap justify-center gap-6 lg:justify-start">
                   {STATS.map((s) => (
@@ -216,9 +252,11 @@ export default function WebDevelopment() {
             </Reveal>
 
             {/* right — package showcase card */}
-            <Reveal delay={0.1}>
-              <HeroPackageCard />
-            </Reveal>
+            {heroPkg && (
+              <Reveal delay={0.1}>
+                <HeroPackageCard pkg={heroPkg} content={content} />
+              </Reveal>
+            )}
           </div>
         </div>
       </section>
@@ -238,7 +276,7 @@ export default function WebDevelopment() {
           </Reveal>
 
           <Reveal delay={0.05} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {INDUSTRIES.map((ind) => (
+            {industries.map((ind) => (
               <IndustryCard key={ind.id} ind={ind} />
             ))}
           </Reveal>
@@ -258,7 +296,7 @@ export default function WebDevelopment() {
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10">
-            <FeaturedWebsites />
+            <FeaturedWebsites industries={industries} />
           </Reveal>
 
           {/* ── BOTTOM CTA ── */}
@@ -300,17 +338,21 @@ export default function WebDevelopment() {
               <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
                 <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
-                <ShieldCheck size={13} /> Free Hosting — ends August 31, 2026
-              </span>
+              {content.freeHostingEnabled && (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
+                  <ShieldCheck size={13} /> {hostingLine(content, "packages-badge")}
+                </span>
+              )}
             </div>
-            <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-amber-400 sm:text-sm">
-              <Clock size={14} className="shrink-0" /> Claim free hosting before August 31 — offer ending soon!
-            </p>
+            {content.freeHostingEnabled && (
+              <p className="mt-3 flex items-center justify-center gap-1.5 text-xs font-semibold text-amber-400 sm:text-sm">
+                <Clock size={14} className="shrink-0" /> {hostingLine(content, "urgency")}
+              </p>
+            )}
           </Reveal>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {PACKAGES.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.07}>
+            {packages.map((p, i) => (
+              <Reveal key={p.id} delay={i * 0.07}>
                 <div className={`relative flex h-full flex-col rounded-3xl p-4 xl:p-6 transition-all duration-300 hover:-translate-y-2 ${p.popular ? "neon-border shadow-glow-purple" : "glass hover:shadow-glow-purple"}`}>
                   {p.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-mint px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-ink shadow-glow-mint">Most Popular</span>}
                   <div className="text-sm font-semibold uppercase tracking-wide text-brand-mint">{p.name}</div>
@@ -329,6 +371,9 @@ export default function WebDevelopment() {
                     {p.includes.map((it) => (
                       <li key={it} className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
+                    {content.freeHostingEnabled && (
+                      <li className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> Free hosting (offer valid until {content.freeHostingDeadline})</li>
+                    )}
                   </ul>
                   {p.paymentLink ? (
                     <a href={p.paymentLink} target="_blank" rel="noreferrer"
