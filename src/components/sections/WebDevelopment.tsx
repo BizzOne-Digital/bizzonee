@@ -17,7 +17,7 @@ const STATS = [
 ];
 
 /* ── industry pill ── */
-function IndustryCard({ ind }: { ind: Industry }) {
+function IndustryCard({ ind, active, onClick }: { ind: Industry; active: boolean; onClick: () => void }) {
   const Icon = getIcon(ind.icon);
   const hasWork = ind.images.length > 0;
   const content = (
@@ -25,32 +25,40 @@ function IndustryCard({ ind }: { ind: Industry }) {
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
         <Icon size={22} />
       </span>
-      <span className="flex-1 text-[15px] font-bold leading-snug text-white">{ind.label}</span>
+      <span className="flex-1 text-left text-[15px] font-bold leading-snug text-white">{ind.label}</span>
       {hasWork && (
         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-transform group-hover:translate-x-1"
-          style={{ borderColor: `${ind.color}50`, color: ind.color }}>
-          <ArrowRight size={14} />
+          style={{ borderColor: `${ind.color}50`, color: ind.color, background: active ? `${ind.color}30` : "transparent" }}>
+          <ArrowRight size={14} className={active ? "rotate-90" : ""} />
         </span>
       )}
     </>
   );
-  const className = "group flex items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300";
-  const style = { background: `${ind.color}0d`, borderColor: `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` };
+  const className = "group flex w-full items-center gap-4 rounded-full border py-3 pl-3 pr-5 transition-all duration-300";
+  const style = { background: active ? `${ind.color}22` : `${ind.color}0d`, borderColor: active ? `${ind.color}80` : `${ind.color}40`, boxShadow: `0 0 24px ${ind.color}1f` };
 
   if (!hasWork) return <div className={className} style={style}>{content}</div>;
   return (
-    <a href={`/our-work?industry=${ind.slug}#websites`} className={`${className} hover:-translate-y-1`} style={style}>
+    <button onClick={onClick} className={`${className} hover:-translate-y-1`} style={style}>
       {content}
-    </a>
+    </button>
   );
 }
 
-function FeaturedWebsites({ industries }: { industries: Industry[] }) {
-  const featured = industries
-    .flatMap((ind) => ind.images.map((img) => ({ ...img, color: ind.color, category: ind.label })))
-    .slice(0, 4);
+function FeaturedWebsites({ industries, selected }: { industries: Industry[]; selected: string | null }) {
+  const selectedIndustry = industries.find((i) => i.slug === selected);
+  const featured = selectedIndustry
+    ? selectedIndustry.images.map((img) => ({ ...img, color: selectedIndustry.color, category: selectedIndustry.label }))
+    : industries.flatMap((ind) => ind.images.map((img) => ({ ...img, color: ind.color, category: ind.label }))).slice(0, 4);
 
-  if (featured.length === 0) return null;
+  if (featured.length === 0) {
+    return (
+      <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/[0.03] py-14 text-center">
+        <p className="text-base font-semibold text-white/80">More real client examples for this industry are on the way.</p>
+        <p className="mt-2 text-sm text-white/50">Pick another industry above, or reach out and we&apos;ll show you similar work.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -175,6 +183,7 @@ export default function WebDevelopment() {
   const [content, setContent] = useState<SiteContent | null>(null);
   const [industries, setIndustries] = useState<Industry[]>([]);
   const [packages, setPackages] = useState<Pkg[]>([]);
+  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/webdev-content")
@@ -277,7 +286,8 @@ export default function WebDevelopment() {
 
           <Reveal delay={0.05} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind) => (
-              <IndustryCard key={ind.id} ind={ind} />
+              <IndustryCard key={ind.id} ind={ind} active={selectedIndustry === ind.slug}
+                onClick={() => setSelectedIndustry((s) => (s === ind.slug ? null : ind.slug))} />
             ))}
           </Reveal>
 
@@ -296,7 +306,7 @@ export default function WebDevelopment() {
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10">
-            <FeaturedWebsites industries={industries} />
+            <FeaturedWebsites industries={industries} selected={selectedIndustry} />
           </Reveal>
 
           {/* ── BOTTOM CTA ── */}
