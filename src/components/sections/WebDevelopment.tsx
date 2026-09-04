@@ -287,11 +287,15 @@ export default function WebDevelopment() {
           <Reveal delay={0.05} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((ind) => (
               <IndustryCard key={ind.id} ind={ind} active={selectedIndustry === ind.slug}
-                onClick={() => setSelectedIndustry((s) => (s === ind.slug ? null : ind.slug))} />
+                onClick={() => {
+                  setSelectedIndustry((s) => (s === ind.slug ? null : ind.slug));
+                  setTimeout(() => document.getElementById("featured-websites")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+                }} />
             ))}
           </Reveal>
 
           {/* ── FEATURED WEBSITES ── */}
+          <div id="featured-websites" style={{ scrollMarginTop: "5rem" }} />
           <Reveal delay={0.1} className="mt-20 text-center">
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-purple-light">Our Work</span>
             <div className="mt-3 flex items-center justify-center gap-4">
