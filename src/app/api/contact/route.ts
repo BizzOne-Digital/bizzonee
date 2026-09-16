@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { sendMetaLeadEvent } from "@/lib/metaCapi";
+import { saveContactSubmission } from "@/lib/contactData";
 
 export const runtime = "nodejs";
 
@@ -22,6 +23,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
     }
 
+    // Always save to the admin panel first — this must never fail the submission.
+    await saveContactSubmission({ name, email, phone, service, message });
+
     const {
       SMTP_HOST = "smtp.gmail.com",
       SMTP_PORT = "465",
@@ -30,46 +34,50 @@ export async function POST(req: Request) {
       CONTACT_TO,
     } = process.env;
 
-    if (!SMTP_USER || !SMTP_PASS) {
-      return NextResponse.json({ error: "Email is not configured on the server yet." }, { status: 500 });
+    // Email is best-effort — if SMTP isn't configured yet, the submission is
+    // still saved above and visible in the admin panel's Messages tab.
+    if (SMTP_USER && SMTP_PASS) {
+      try {
+        const port = Number(SMTP_PORT);
+        const transporter = nodemailer.createTransport({
+          host: SMTP_HOST,
+          port,
+          secure: port === 465, // true for 465, false for 587
+          auth: { user: SMTP_USER, pass: SMTP_PASS },
+        });
+
+        const to = CONTACT_TO || SMTP_USER;
+        const subject = `New inquiry — ${service} — ${name}`;
+        const text =
+          `New website inquiry\n\n` +
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Phone: ${phone || "—"}\n` +
+          `Service: ${service}\n\n` +
+          `Message:\n${message}\n`;
+        const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const html =
+          `<div style="font-family:Arial,sans-serif;font-size:15px;color:#0f172a;line-height:1.6">` +
+          `<h2 style="margin:0 0 12px">New website inquiry</h2>` +
+          `<p><strong>Name:</strong> ${esc(name)}</p>` +
+          `<p><strong>Email:</strong> ${esc(email)}</p>` +
+          `<p><strong>Phone:</strong> ${esc(phone) || "—"}</p>` +
+          `<p><strong>Service:</strong> ${esc(service)}</p>` +
+          `<p><strong>Message:</strong><br>${esc(message).replace(/\n/g, "<br>")}</p>` +
+          `<hr><p style="font-size:12px;color:#64748b">Sent from the BizzOne Digital website contact form.</p></div>`;
+
+        await transporter.sendMail({
+          from: `"BizzOne Digital Website" <${SMTP_USER}>`,
+          to,
+          replyTo: `"${name}" <${email}>`,
+          subject,
+          text,
+          html,
+        });
+      } catch (emailErr) {
+        console.error("Contact form email failed (submission still saved):", emailErr);
+      }
     }
-
-    const port = Number(SMTP_PORT);
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port,
-      secure: port === 465, // true for 465, false for 587
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
-    });
-
-    const to = CONTACT_TO || SMTP_USER;
-    const subject = `New inquiry — ${service} — ${name}`;
-    const text =
-      `New website inquiry\n\n` +
-      `Name: ${name}\n` +
-      `Email: ${email}\n` +
-      `Phone: ${phone || "—"}\n` +
-      `Service: ${service}\n\n` +
-      `Message:\n${message}\n`;
-    const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    const html =
-      `<div style="font-family:Arial,sans-serif;font-size:15px;color:#0f172a;line-height:1.6">` +
-      `<h2 style="margin:0 0 12px">New website inquiry</h2>` +
-      `<p><strong>Name:</strong> ${esc(name)}</p>` +
-      `<p><strong>Email:</strong> ${esc(email)}</p>` +
-      `<p><strong>Phone:</strong> ${esc(phone) || "—"}</p>` +
-      `<p><strong>Service:</strong> ${esc(service)}</p>` +
-      `<p><strong>Message:</strong><br>${esc(message).replace(/\n/g, "<br>")}</p>` +
-      `<hr><p style="font-size:12px;color:#64748b">Sent from the BizzOne Digital website contact form.</p></div>`;
-
-    await transporter.sendMail({
-      from: `"BizzOne Digital Website" <${SMTP_USER}>`,
-      to,
-      replyTo: `"${name}" <${email}>`,
-      subject,
-      text,
-      html,
-    });
 
     sendMetaLeadEvent({
       email,

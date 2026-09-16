@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LogOut, Save, Plus, Trash2, Upload, Loader2, ExternalLink, Star } from "lucide-react";
+import { LogOut, Save, Plus, Trash2, Upload, Loader2, ExternalLink, Star, Mail, MailOpen, Phone } from "lucide-react";
 import { ICON_NAMES, getIcon } from "@/lib/iconRegistry";
 import type { SiteContent, Industry, Pkg, IndustryImage } from "@/lib/webdevData";
+import type { ContactSubmission } from "@/lib/contactData";
 
-type Tab = "content" | "industries" | "packages";
+type Tab = "content" | "industries" | "packages" | "messages";
 
 async function apiGet<T>(url: string): Promise<T> {
   const res = await fetch(url);
@@ -20,6 +21,7 @@ export default function AdminDashboard() {
   const [content, setContent] = useState<SiteContent | null>(null);
   const [industries, setIndustries] = useState<Industry[]>([]);
   const [packages, setPackages] = useState<Pkg[]>([]);
+  const [messages, setMessages] = useState<ContactSubmission[]>([]);
 
   const loadAll = async () => {
     setLoading(true);
@@ -30,7 +32,14 @@ export default function AdminDashboard() {
     setLoading(false);
   };
 
-  useEffect(() => { loadAll(); }, []);
+  const loadMessages = async () => {
+    const data = await apiGet<ContactSubmission[]>("/api/admin/messages");
+    setMessages(data);
+  };
+
+  useEffect(() => { loadAll(); loadMessages(); }, []);
+
+  const unreadCount = messages.filter((m) => !m.read).length;
 
   const logout = async () => {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -60,10 +69,16 @@ export default function AdminDashboard() {
             ["content", "Hero & Offer"],
             ["industries", "Industries"],
             ["packages", "Packages"],
+            ["messages", "Messages"],
           ] as [Tab, string][]).map(([id, label]) => (
             <button key={id} onClick={() => setTab(id)}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${tab === id ? "bg-brand-mint text-ink" : "bg-white/5 text-white/60 hover:bg-white/10"}`}>
+              className={`relative flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all ${tab === id ? "bg-brand-mint text-ink" : "bg-white/5 text-white/60 hover:bg-white/10"}`}>
               {label}
+              {id === "messages" && unreadCount > 0 && (
+                <span className={`grid h-5 min-w-5 place-items-center rounded-full px-1 text-[10px] font-bold ${tab === id ? "bg-ink text-brand-mint" : "bg-red-500 text-white"}`}>
+                  {unreadCount}
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -73,6 +88,7 @@ export default function AdminDashboard() {
         {tab === "content" && <ContentTab content={content} setContent={setContent} />}
         {tab === "industries" && <IndustriesTab industries={industries} reload={loadAll} />}
         {tab === "packages" && <PackagesTab packages={packages} reload={loadAll} />}
+        {tab === "messages" && <MessagesTab messages={messages} reload={loadMessages} />}
       </div>
     </div>
   );
@@ -138,29 +154,38 @@ function ContentTab({ content, setContent }: { content: SiteContent; setContent:
 /* ───────────────────── INDUSTRIES ───────────────────── */
 function IndustriesTab({ industries, reload }: { industries: Industry[]; reload: () => void }) {
   const [creating, setCreating] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const editingIndustry = industries.find((i) => i.id === editingId);
+
+  const scrollToTop = () => setTimeout(() => document.getElementById("industries-top")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  const openCreate = () => { setEditingId(null); setCreating(true); scrollToTop(); };
+  const openEdit = (id: string) => { setCreating(false); setEditingId(id); scrollToTop(); };
+  const closeEditor = () => { setCreating(false); setEditingId(null); };
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div id="industries-top" style={{ scrollMarginTop: "6rem" }} className="flex items-center justify-between">
         <h2 className="font-display text-lg font-bold">Industries</h2>
-        <button onClick={() => setCreating(true)} className="flex items-center gap-1.5 rounded-full bg-brand-mint px-4 py-2 text-xs font-bold text-ink hover:brightness-110">
+        <button onClick={openCreate} className="flex items-center gap-1.5 rounded-full bg-brand-mint px-4 py-2 text-xs font-bold text-ink hover:brightness-110">
           <Plus size={14} /> Add Industry
         </button>
       </div>
 
-      {creating && <IndustryEditor onDone={() => { setCreating(false); reload(); }} onCancel={() => setCreating(false)} />}
+      {creating && <IndustryEditor onDone={() => { closeEditor(); reload(); }} onCancel={closeEditor} />}
+      {editingIndustry && (
+        <IndustryEditor key={editingIndustry.id} industry={editingIndustry} onDone={() => { closeEditor(); reload(); }} onCancel={closeEditor} />
+      )}
 
       <div className="grid gap-4 lg:grid-cols-2">
         {industries.map((ind) => (
-          <IndustryCard key={ind.id} industry={ind} reload={reload} />
+          <IndustryCard key={ind.id} industry={ind} reload={reload} onEdit={() => openEdit(ind.id)} />
         ))}
       </div>
     </div>
   );
 }
 
-function IndustryCard({ industry, reload }: { industry: Industry; reload: () => void }) {
-  const [editing, setEditing] = useState(false);
+function IndustryCard({ industry, reload, onEdit }: { industry: Industry; reload: () => void; onEdit: () => void }) {
   const Icon = getIcon(industry.icon);
 
   const remove = async () => {
@@ -168,10 +193,6 @@ function IndustryCard({ industry, reload }: { industry: Industry; reload: () => 
     await fetch(`/api/admin/industries/${industry.id}`, { method: "DELETE" });
     reload();
   };
-
-  if (editing) {
-    return <IndustryEditor industry={industry} onDone={() => { setEditing(false); reload(); }} onCancel={() => setEditing(false)} />;
-  }
 
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -186,7 +207,7 @@ function IndustryCard({ industry, reload }: { industry: Industry; reload: () => 
           </div>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setEditing(true)} className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-semibold text-white/70 hover:bg-white/5">Edit</button>
+          <button onClick={onEdit} className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-semibold text-white/70 hover:bg-white/5">Edit</button>
           <button onClick={remove} className="rounded-full border border-red-400/30 px-3 py-1.5 text-xs font-semibold text-red-300 hover:bg-red-400/10"><Trash2 size={13} /></button>
         </div>
       </div>
@@ -465,6 +486,66 @@ function PackageEditor({ pkg, onDone, onCancel }: { pkg?: Pkg; onDone: () => voi
         </button>
         <button onClick={onCancel} className="rounded-full border border-white/10 px-5 py-2.5 text-sm font-semibold text-white/70 hover:bg-white/5">Cancel</button>
       </div>
+    </div>
+  );
+}
+
+/* ───────────────────── MESSAGES ───────────────────── */
+function MessagesTab({ messages, reload }: { messages: ContactSubmission[]; reload: () => void }) {
+  const toggleRead = async (m: ContactSubmission) => {
+    await fetch(`/api/admin/messages/${m.id}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ read: !m.read }) });
+    reload();
+  };
+
+  const remove = async (m: ContactSubmission) => {
+    if (!confirm(`Delete this message from ${m.name}?`)) return;
+    await fetch(`/api/admin/messages/${m.id}`, { method: "DELETE" });
+    reload();
+  };
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-center justify-between">
+        <h2 className="font-display text-lg font-bold">Contact Form Messages</h2>
+        <button onClick={reload} className="rounded-full border border-white/10 px-4 py-2 text-xs font-semibold text-white/70 hover:bg-white/5">Refresh</button>
+      </div>
+
+      {messages.length === 0 ? (
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] py-14 text-center text-white/50">
+          No messages yet. Submissions from any contact form on the site will show up here.
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {messages.map((m) => (
+            <div key={m.id} className={`rounded-2xl border p-5 ${m.read ? "border-white/10 bg-white/[0.02]" : "border-brand-mint/30 bg-brand-mint/[0.04]"}`}>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white">{m.name}</span>
+                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white/60">{m.service}</span>
+                    {!m.read && <span className="h-2 w-2 rounded-full bg-brand-mint" />}
+                  </div>
+                  <div className="mt-1 flex flex-wrap items-center gap-3 text-xs text-white/50">
+                    <a href={`mailto:${m.email}`} className="flex items-center gap-1 hover:text-brand-mint"><Mail size={12} /> {m.email}</a>
+                    {m.phone && <a href={`tel:${m.phone}`} className="flex items-center gap-1 hover:text-brand-mint"><Phone size={12} /> {m.phone}</a>}
+                    <span>{new Date(m.createdAt).toLocaleString()}</span>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={() => toggleRead(m)} title={m.read ? "Mark as unread" : "Mark as read"}
+                    className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-white/60 hover:bg-white/5">
+                    {m.read ? <Mail size={14} /> : <MailOpen size={14} />}
+                  </button>
+                  <button onClick={() => remove(m)} className="grid h-8 w-8 place-items-center rounded-full border border-red-400/30 text-red-300 hover:bg-red-400/10">
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              </div>
+              <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-white/80">{m.message}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
