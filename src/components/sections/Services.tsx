@@ -1,10 +1,12 @@
 "use client";
 
+import { SITE_STATS, MARKETS_SERVED, formatStat } from "@/data/site-stats";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, type LucideIcon } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
-import { SERVICES, type Service } from "@/lib/services";
+import { SERVICES, serviceHref, type Service } from "@/lib/services";
 
 const MARQUEE_CARDS = [...SERVICES, ...SERVICES];
 
@@ -37,9 +39,9 @@ function Pedestal({ icon: Icon, i }: { icon: LucideIcon; i: number }) {
   );
 }
 
-function ServiceCard({ c, i }: { c: Service; i: number }) {
+function ServiceCard({ c, i, hidden = false }: { c: Service; i: number; hidden?: boolean }) {
   return (
-    <Link href={c.href ?? `/service/${c.slug}`} className="block h-full">
+    <Link href={serviceHref(c)} className="block h-full" tabIndex={hidden ? -1 : undefined}>
       <motion.div
         whileHover={{ y: -12 }}
         transition={{ type: "spring", stiffness: 250, damping: 18 }}
@@ -105,7 +107,7 @@ export default function Services() {
               className="w-[280px] shrink-0 sm:w-[300px]"
               aria-hidden={i >= SERVICES.length ? "true" : undefined}
             >
-              <ServiceCard c={c} i={i} />
+              <ServiceCard c={c} i={i} hidden={i >= SERVICES.length} />
             </div>
           ))}
         </div>
@@ -121,13 +123,13 @@ export default function Services() {
                   <span key={i} className="h-10 w-10 rounded-full border-2 border-ink" style={{ background: `linear-gradient(135deg, ${col}, #0b0e18)` }} />
                 ))}
               </div>
-              <p className="text-sm leading-snug text-white/70">Trusted by <span className="font-bold text-white">500+ businesses</span> worldwide<br className="hidden sm:block" /> to grow smarter and faster.</p>
+              <p className="text-sm leading-snug text-white/70">Trusted by <span className="font-bold text-white">{formatStat(SITE_STATS.businessesServed)} businesses</span> across {MARKETS_SERVED.short}<br className="hidden sm:block" /> to grow smarter and faster.</p>
             </div>
             <span className="hidden h-10 w-px bg-white/10 sm:block" />
-            <a href="#contact" className="group inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-white transition-all hover:shadow-glow-purple sm:ml-auto">
+            <Link href="/services" className="group inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-white transition-all hover:shadow-glow-purple sm:ml-auto">
               <span><span className="text-brand-purple-light">Explore</span> All Services</span>
               <ArrowRight size={16} className="text-brand-mint transition-transform group-hover:translate-x-1" />
-            </a>
+            </Link>
           </div>
         </Reveal>
       </div>

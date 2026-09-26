@@ -6,8 +6,21 @@ import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import NeonButton from "@/components/ui/NeonButton";
 import { getService } from "@/lib/services";
+import type { CaseStudySummary } from "@/data/case-studies";
 
-export default function ServiceDetail({ slug }: { slug: string }) {
+function Highlight({ text, accent }: { text: string; accent?: string }) {
+  if (!accent || !text.includes(accent)) return <>{text}</>;
+  const [before, after] = text.split(accent);
+  return (
+    <>
+      {before}
+      <span className="text-gradient">{accent}</span>
+      {after}
+    </>
+  );
+}
+
+export default function ServiceDetail({ slug, caseStudies = [] }: { slug: string; caseStudies?: CaseStudySummary[] }) {
   const svc = getService(slug);
   if (!svc) return null;
   const Icon = svc.icon;
@@ -19,9 +32,19 @@ export default function ServiceDetail({ slug }: { slug: string }) {
         <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
         <div className="section">
           <Reveal>
-            <Link href="/#services" className="inline-flex items-center gap-2 text-sm font-medium text-white/50 transition-colors hover:text-brand-mint">
-              <ArrowLeft size={15} /> Back to Services
-            </Link>
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-2 text-sm font-medium text-white/50">
+                <li><Link href="/" className="transition-colors hover:text-brand-mint">Home</Link></li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href="/services" className="inline-flex items-center gap-1.5 transition-colors hover:text-brand-mint">
+                    <ArrowLeft size={14} /> Services
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li aria-current="page" className="text-white/75">{svc.title}</li>
+              </ol>
+            </nav>
           </Reveal>
 
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-2">
@@ -30,12 +53,12 @@ export default function ServiceDetail({ slug }: { slug: string }) {
                 Our Services
               </span>
               <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
-                <span className="text-gradient">{svc.title}</span>
+                <Highlight text={svc.h1 ?? svc.title} accent={svc.h1Accent ?? svc.title} />
               </h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/65">{svc.tagline}</p>
               <div className="mt-8 flex flex-wrap gap-4">
-                <NeonButton href="/#contact" variant="primary">Book Strategy Call <ArrowRight size={16} /></NeonButton>
-                <NeonButton href="/#services" variant="ghost">All Services</NeonButton>
+                <NeonButton href="/contact" variant="primary">Book Strategy Call <ArrowRight size={16} /></NeonButton>
+                <NeonButton href="/services" variant="ghost">All Services</NeonButton>
               </div>
             </Reveal>
 
@@ -95,6 +118,51 @@ export default function ServiceDetail({ slug }: { slug: string }) {
         </div>
       </section>
 
+      {/* RELATED SERVICES & RESOURCES (contextual internal links) */}
+      {svc.related && svc.related.length > 0 && (
+        <section className="relative py-12">
+          <div className="section">
+            <Reveal className="text-center">
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Works Well <span className="text-gradient">Together</span></h2>
+              <p className="mx-auto mt-3 max-w-xl text-base text-white/55">Services and guides that pair with {svc.title.toLowerCase()}.</p>
+            </Reveal>
+            <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
+              {svc.related.map((r) => (
+                <Link key={r.href} href={r.href} className="group flex items-start gap-4 rounded-2xl glass p-5 transition-shadow duration-300 hover:shadow-glow-mint">
+                  <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-brand-mint/40 text-brand-mint">
+                    <ArrowRight size={15} />
+                  </span>
+                  <span>
+                    <span className="block text-sm font-bold text-white group-hover:text-brand-mint">{r.label}</span>
+                    <span className="mt-1 block text-sm leading-relaxed text-white/60">{r.text}</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CASE STUDIES */}
+      {caseStudies.length > 0 && (
+        <section className="relative py-12">
+          <div className="section">
+            <Reveal className="text-center">
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Client <span className="text-gradient">Case Studies</span></h2>
+            </Reveal>
+            <div className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
+              {caseStudies.map((c) => (
+                <Link key={c.slug} href={`/case-studies/${c.slug}`} className="group block rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-mint">{c.client}</span>
+                  <span className="mt-2 block font-display text-lg font-bold text-white group-hover:text-brand-mint">{c.title}</span>
+                  <span className="mt-2 block text-sm leading-relaxed text-white/60">{c.summary}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section className="relative py-16">
         <div className="section">
@@ -107,7 +175,7 @@ export default function ServiceDetail({ slug }: { slug: string }) {
               </h2>
               <p className="relative mx-auto mt-4 max-w-md text-base text-white/60">Book a free strategy call and let&apos;s build your growth engine together.</p>
               <div className="relative mt-8 flex justify-center">
-                <NeonButton href="/#contact" variant="primary">Book Free Strategy Call <ArrowRight size={16} /></NeonButton>
+                <NeonButton href="/contact" variant="primary">Book Free Strategy Call <ArrowRight size={16} /></NeonButton>
               </div>
             </div>
           </Reveal>

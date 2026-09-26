@@ -53,7 +53,7 @@ export default function AIAutomation() {
               Our AI-powered automation systems handle repetitive tasks, nurture leads, and keep your business running on autopilot.
             </p>
             <div className="mt-8">
-              <NeonButton href="#contact" variant="primary">Explore Automation <ArrowRight size={16} /></NeonButton>
+              <NeonButton href="/service/ai-automation" variant="primary">Explore AI Automation <ArrowRight size={16} /></NeonButton>
             </div>
           </Reveal>
 

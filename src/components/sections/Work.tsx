@@ -5,18 +5,22 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import { PORTFOLIO } from "@/data/portfolio";
+
+const pick = (id: string, n: number) =>
+  (PORTFOLIO.find((c) => c.id === id)?.images ?? []).slice(0, n).map((i) => ({ src: i.src, alt: i.alt }));
 
 const CATS = [
-  { id: "logo",    title: "Logo Design",            emoji: "✏️", description: "Custom logos and brand identities that last.", color: "#B47BFF", preview: ["/portfolio/logo/1.png","/portfolio/logo/2.png","/portfolio/logo/3.png"] },
-  { id: "web",     title: "Web Design Portfolio",   emoji: "🌐", description: "High-performance websites live in 24–48 hrs.", color: "#C8F31D", preview: ["/portfolio/web/1.png","/portfolio/web/2.png","/portfolio/web/3.png"] },
-  { id: "social",  title: "Social Media",           emoji: "📱", description: "Scroll-stopping content that grows your brand.", color: "#EA4335", preview: ["/portfolio/media/1.png","/portfolio/media/2.png","/portfolio/media/3.png"] },
-  { id: "content", title: "Content Creation",       emoji: "🎬", description: "Video editing and production that converts.", color: "#FBBC05", preview: ["/portfolio/content/1.png","/portfolio/content/2.png"] },
+  { id: "logo",    title: "Logo Design",            emoji: "✏️", description: "Custom logos and brand identities that last.", color: "#B47BFF", preview: pick("logo", 3) },
+  { id: "web",     title: "Web Design Portfolio",   emoji: "🌐", description: "High-performance websites live in 24–48 hrs.", color: "#C8F31D", preview: pick("web", 3) },
+  { id: "social",  title: "Social Media",           emoji: "📱", description: "Scroll-stopping content that grows your brand.", color: "#EA4335", preview: pick("social", 3) },
+  { id: "content", title: "Content Creation",       emoji: "🎬", description: "Video editing and production that converts.", color: "#FBBC05", preview: pick("content", 2) },
 ];
 
-function PreviewImg({ src, color }: { src: string; color: string }) {
+function PreviewImg({ src, alt }: { src: string; alt: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={src} alt="" className="h-full w-full object-cover"
+    <img src={src} alt={alt} loading="lazy" decoding="async" className="h-full w-full object-cover"
       onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }} />
   );
 }
@@ -47,16 +51,16 @@ export default function OurWork() {
                 <div className="absolute inset-0">
                   {cat.preview.length >= 3 ? (
                     <div className="grid h-full grid-cols-3 gap-0.5">
-                      {cat.preview.map((src, pi) => (
+                      {cat.preview.map((img, pi) => (
                         <div key={pi} className="relative overflow-hidden"
                           style={{ background: `${cat.color}18` }}>
-                          <PreviewImg src={src} color={cat.color} />
+                          <PreviewImg src={img.src} alt={img.alt} />
                         </div>
                       ))}
                     </div>
                   ) : cat.preview.length > 0 ? (
                     <div className="relative h-full overflow-hidden" style={{ background: `${cat.color}18` }}>
-                      <PreviewImg src={cat.preview[0]} color={cat.color} />
+                      <PreviewImg src={cat.preview[0].src} alt={cat.preview[0].alt} />
                     </div>
                   ) : (
                     <div className="h-full w-full" style={{
@@ -74,7 +78,7 @@ export default function OurWork() {
 
                 {/* content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <div className="mb-2 text-2xl">{cat.emoji}</div>
+                  <div className="mb-2 text-2xl" aria-hidden="true">{cat.emoji}</div>
                   <span className="mb-1.5 inline-block w-fit rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
                     style={{ background: `${cat.color}22`, border: `1px solid ${cat.color}55`, color: cat.color }}>
                     View Work

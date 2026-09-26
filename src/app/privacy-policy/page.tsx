@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import LegalPage from "@/components/sections/LegalPage";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = buildMetadata({
+  title: "Privacy Policy | BizzOne Digital",
   description:
-    "BizzOne Digital's Privacy Policy — how we collect, use, store and protect your information.",
-};
+    "BizzOne Digital's Privacy Policy: how we collect, use, store and protect your information when you use our website and services.",
+  path: "/privacy-policy",
+});
 
 const SECTIONS = [
   {

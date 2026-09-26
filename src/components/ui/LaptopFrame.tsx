@@ -1,14 +1,38 @@
 "use client";
 
-export default function LaptopFrame({ videoSrc, label }: { videoSrc: string; label?: string }) {
+/** Default showreel: 1080p re-encode of the original 4K file (~9 MB instead of 64 MB). */
+export const SHOWREEL = {
+  src: "/bizzone-digital-showreel.mp4",
+  poster: "/bizzone-digital-showreel-poster.jpg",
+  title: "BizzOne Digital agency showreel",
+  transcript:
+    "On-screen text: BizzOne Digital. All-in-one digital agency with ROI-first solutions for service providers, sales-focused marketing, customised strategies for every market. Automotive and car businesses, e-commerce and retail brands, restaurant and food businesses, healthcare and wellness services across Canada. Video editing with a true vision. Stay smart and grow fast. BizzOne Digital.",
+};
+
+export default function LaptopFrame({
+  videoSrc = SHOWREEL.src,
+  poster = SHOWREEL.poster,
+  title = SHOWREEL.title,
+  transcript = SHOWREEL.transcript,
+  label,
+}: {
+  videoSrc?: string;
+  poster?: string;
+  title?: string;
+  transcript?: string;
+  label?: string;
+}) {
   return (
-    <div className="relative mx-auto w-full max-w-xl">
+    <figure className="relative mx-auto w-full max-w-xl">
       <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-brand-purple/20 blur-3xl" />
       {/* lid + screen */}
       <div className="relative rounded-2xl border border-white/10 glass-strong p-2.5 shadow-glass">
         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-ink">
           <video
             src={videoSrc}
+            poster={poster}
+            title={title}
+            aria-label={title}
             autoPlay
             muted
             loop
@@ -27,6 +51,16 @@ export default function LaptopFrame({ videoSrc, label }: { videoSrc: string; lab
       {/* base */}
       <div className="mx-auto h-3 w-[112%] -translate-x-[5.4%] rounded-b-2xl bg-gradient-to-b from-white/15 to-white/5" />
       <div className="mx-auto -mt-1 h-1.5 w-24 rounded-full bg-white/10" />
-    </div>
+      {transcript && (
+        <figcaption className="relative mt-4 text-center">
+          <details className="group inline-block text-left">
+            <summary className="cursor-pointer list-none text-xs font-medium text-white/45 transition-colors hover:text-brand-mint">
+              Video description <span aria-hidden="true" className="inline-block transition-transform group-open:rotate-180">▾</span>
+            </summary>
+            <p className="mt-2 max-w-md text-xs leading-relaxed text-white/55">{transcript}</p>
+          </details>
+        </figcaption>
+      )}
+    </figure>
   );
 }

@@ -1,0 +1,44 @@
+{
+ "logo": [
+  ["1","logo-design-bizzone-digital","BizzOne Digital logo design shown on a branded coffee mug","col-span-1 row-span-2"],
+  ["2","logo-design-silken-traders","Gold lion shield logo design for Silken Traders by BizzOne Digital","col-span-1 row-span-2"],
+  ["3","logo-design-hands-that-heal","Logo design for Hands That Heal, a beauty and wellness clinic, by BizzOne Digital","col-span-1"],
+  ["4","logo-design-aur-landscaping-renovation","Logo design for AUR Landscaping & Renovation by BizzOne Digital","col-span-1"],
+  ["5","logo-design-daana-paani-sweets-bar-grill","Logo design for Daana Paani Sweets, Bar & Grill shown on a storefront sign","col-span-1 row-span-2"],
+  ["6","logo-design-horizon-driving-school","Logo design for Horizon Driving School by BizzOne Digital","col-span-1"],
+  ["7","logo-design-ali-motors","Logo design for Ali Motors, a car dealership, by BizzOne Digital","col-span-1"],
+  ["8","logo-design-tint-iq","Logo design for Tint IQ, an automotive window tint brand, by BizzOne Digital","col-span-1"],
+  ["9","logo-design-baba-burger","Logo and packaging design for Baba Burger by BizzOne Digital","col-span-1 row-span-2"],
+  ["10","logo-design-royal-pizzeria-and-bar","Logo design for The Royal Pizzeria and Bar shown on a restaurant sign","col-span-1"],
+  ["12","logo-design-dollar-customs","Gold emblem logo design for Dollar Customs by BizzOne Digital","col-span-1"],
+  ["13","logo-design-canitsm","Logo design for CanITSM, an IT services company, by BizzOne Digital","col-span-1"],
+  ["14","logo-design-luxe-auto-accessories","Logo design for Luxe Auto Accessories by BizzOne Digital","col-span-1"]
+ ],
+ "web": [
+  ["1","website-design-bizzone-digital","BizzOne Digital agency website displayed on a laptop","col-span-1 row-span-2"],
+  ["2","website-design-cobb-church-network","Website design for Cobb Church Network shown on a desktop monitor","col-span-1"],
+  ["3","website-design-a1-furnished-homes","Website design for A1 Furnished Homes, a GTA furnished rentals company","col-span-1"],
+  ["4","website-design-toronto-notary","Website design for Toronto Notary, a legal documents service","col-span-1"],
+  ["5","website-design-iso-9001-consulting","Website design for an ISO 9001 certification consultancy serving SMEs","col-span-1"],
+  ["6","website-design-corner-store","Website design for Corner Store, a local convenience store","col-span-1"]
+ ],
+ "media": [
+  ["1","social-media-facebook-cover-haven-tire-garage","Facebook cover design for Haven Tire Garage by BizzOne Digital","col-span-1"],
+  ["2","social-media-facebook-cover-silken-traders","Facebook cover design for Silken Traders by BizzOne Digital","col-span-1"],
+  ["3","social-media-facebook-cover-hands-that-heal","Facebook cover design for Hands That Heal wellness clinic","col-span-1"],
+  ["4","social-media-instagram-carousel-horizon-driving-school","Instagram carousel on Ontario driving tips for Horizon Driving School","col-span-1 row-span-2"],
+  ["7","social-media-instagram-story-haven-paint-protection-film","Instagram story promoting paint protection film for Haven Tint & Tire","col-span-1 row-span-2"],
+  ["8","social-media-instagram-story-rose-pasta","Instagram story featuring rosé pasta for a restaurant client","col-span-1 row-span-2"],
+  ["9","social-media-instagram-story-wood-panel-feature-wall","Instagram story showing a wood panel feature wall for a renovation client","col-span-1 row-span-2"],
+  ["10","social-media-instagram-story-horizon-driving-school","Instagram story for Horizon Driving School aimed at new Ontario drivers","col-span-1 row-span-2"],
+  ["12","social-media-instagram-carousel-restaurant-menu","Instagram carousel of fish pakora and pasta dishes for a restaurant client","col-span-1 row-span-2"],
+  ["13","social-media-instagram-carousel-haven-ceramic-coating","Instagram carousel on PPF and ceramic coating for Haven Tint & Tire","col-span-1 row-span-2"],
+  ["14","social-media-instagram-carousel-renovation-projects","Instagram carousel of bathroom and office renovation projects","col-span-1 row-span-2"]
+ ],
+ "content": [
+  ["1","video-reel-amritsari-kulcha","Short-form food reel featuring Amritsari kulcha, shown on a phone","col-span-1 row-span-2"],
+  ["2","video-reel-haven-tint-and-tire","Short-form video for Haven Tint & Tire shown on a smartphone","col-span-1 row-span-2"],
+  ["3","video-reel-horizon-driving-school","Driving tips reel for Horizon Driving School playing on a phone","col-span-1"],
+  ["4","video-reel-teeth-whitening","Teeth whitening promo reel for a beauty and wellness client","col-span-1"]
+ ]
+}

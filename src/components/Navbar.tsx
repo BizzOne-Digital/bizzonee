@@ -1,24 +1,38 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, PhoneCall, ChevronDown } from "lucide-react";
+import { Menu, X, PhoneCall, ChevronDown, Code2 } from "lucide-react";
 import { NAV_LINKS } from "@/lib/content";
-import { SERVICES } from "@/lib/services";
+import { SERVICES, serviceHref } from "@/lib/services";
 import NeonButton from "@/components/ui/NeonButton";
 
-// Web Development has its own top-level nav item, so keep it out of the dropdown.
-const DROPDOWN_SERVICES = SERVICES.filter(
-  (s) => s.slug !== "website-design-and-development"
-);
+// Every service page, including SEO, App Development and Web Development.
+const DROPDOWN_SERVICES = [
+  ...SERVICES.map((s) => ({ key: s.slug, title: s.title, href: serviceHref(s), icon: s.icon })),
+  { key: "web-development", title: "Web Development", href: "/web-development", icon: Code2 },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
+
+  // Close the desktop dropdown with Escape or when focus/click leaves it.
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setServicesOpen(false); };
+    const onDown = (e: MouseEvent) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target as Node)) setServicesOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => { document.removeEventListener("keydown", onKey); document.removeEventListener("mousedown", onDown); };
+  }, [servicesOpen]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -46,10 +60,10 @@ export default function Navbar() {
           }`}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="BizzOne Digital home">
             <Image
               src="/fav.png"
-              alt="BizzOne Digital"
+              alt="BizzOne Digital logo"
               width={34}
               height={34}
               className="rounded-lg"
@@ -60,27 +74,38 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
             {NAV_LINKS.map((l) =>
               l.label === "Services" ? (
                 <div
                   key={l.href}
+                  ref={servicesRef}
                   className="relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesOpen(false);
+                  }}
                 >
-                  <Link
-                    href={l.href}
+                  <button
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded={servicesOpen}
+                    aria-controls="services-menu"
+                    // Hover already opens the menu for mouse users; a click (or Enter/Space
+                    // for keyboard users) opens it too. Escape or clicking outside closes it.
+                    onClick={() => setServicesOpen(true)}
                     className="flex items-center gap-1 text-sm font-medium text-white transition-colors hover:text-brand-mint"
                   >
                     {l.label}
                     <ChevronDown
                       size={14}
+                      aria-hidden="true"
                       className={`transition-transform duration-200 ${
                         servicesOpen ? "rotate-180" : ""
                       }`}
                     />
-                  </Link>
+                  </button>
 
                   <AnimatePresence>
                     {servicesOpen && (
@@ -89,6 +114,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.18 }}
+                        id="services-menu"
                         className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4"
                       >
                         <div className="grid w-[34rem] grid-cols-2 gap-1 rounded-2xl glass-strong p-3 shadow-glass">
@@ -97,13 +123,13 @@ export default function Navbar() {
 
                             return (
                               <Link
-                                key={s.slug}
-                                href={s.href ?? `/service/${s.slug}`}
+                                key={s.key}
+                                href={s.href}
                                 onClick={() => setServicesOpen(false)}
                                 className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
                               >
                                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint transition-colors group-hover:bg-brand-mint/20">
-                                  <Icon size={16} />
+                                  <Icon size={16} aria-hidden="true" />
                                 </span>
 
                                 <span className="text-sm font-medium text-white group-hover:text-brand-mint">
@@ -112,6 +138,13 @@ export default function Navbar() {
                               </Link>
                             );
                           })}
+                          <Link
+                            href="/services"
+                            onClick={() => setServicesOpen(false)}
+                            className="col-span-2 mt-1 rounded-xl border-t border-white/10 px-3 pt-3 text-center text-xs font-bold uppercase tracking-wide text-brand-mint hover:text-white"
+                          >
+                            View all services
+                          </Link>
                         </div>
                       </motion.div>
                     )}
@@ -132,7 +165,7 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden lg:block">
             <NeonButton
-              href="/#contact"
+              href="/contact"
               className="!px-5 !py-2.5 !text-xs"
             >
               <PhoneCall size={14} />
@@ -142,7 +175,10 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            aria-label="Menu"
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-xl glass text-white lg:hidden"
           >
@@ -155,6 +191,8 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.nav
+            id="mobile-menu"
+            aria-label="Mobile"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -164,6 +202,9 @@ export default function Navbar() {
               l.label === "Services" ? (
                 <div key={l.href}>
                   <button
+                    type="button"
+                    aria-expanded={mobileServices}
+                    aria-controls="mobile-services-menu"
                     onClick={() => setMobileServices((v) => !v)}
                     className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white hover:bg-white/5"
                   >
@@ -183,11 +224,12 @@ export default function Navbar() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
+                        id="mobile-services-menu"
                         className="overflow-hidden"
                       >
                         <div className="ml-3 border-l border-white/10 pl-2">
                           <Link
-                            href="/#services"
+                            href="/services"
                             onClick={closeMobile}
                             className="block rounded-lg px-4 py-2.5 text-sm font-medium text-brand-mint hover:bg-white/5"
                           >
@@ -196,8 +238,8 @@ export default function Navbar() {
 
                           {DROPDOWN_SERVICES.map((s) => (
                             <Link
-                              key={s.slug}
-                              href={s.href ?? `/service/${s.slug}`}
+                              key={s.key}
+                              href={s.href}
                               onClick={closeMobile}
                               className="block rounded-lg px-4 py-2.5 text-sm text-white hover:bg-white/5 hover:text-brand-mint"
                             >
@@ -222,7 +264,7 @@ export default function Navbar() {
             )}
 
             <Link
-              href="/#contact"
+              href="/contact"
               onClick={closeMobile}
               className="mt-2 block rounded-xl bg-brand-purple px-4 py-3 text-center text-sm font-semibold text-white"
             >

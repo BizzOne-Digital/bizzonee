@@ -12,21 +12,37 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { BUSINESS } from "@/data/site";
+
+/** Kept for backwards compatibility. NAP values come from data/site.ts. */
 export const COMPANY = {
-  name: "BizzOne Digital",
-  email: "info@bizzonedigital.com",
-  phone: "+1 (289) 412-1562",
-  address: "55 Village Centre PI , Mississauga ON L4Z IV9 , Canada",
-  googleReviewsUrl: "https://share.google/TRInEQdM2L3d3szfQ",
+  name: BUSINESS.name,
+  email: BUSINESS.email,
+  phone: BUSINESS.phoneDisplay,
+  address: BUSINESS.addressLine,
+  googleReviewsUrl: BUSINESS.googleReviewsUrl,
 };
 
+/** Main navigation. "Services" renders as a dropdown of every service page. */
 export const NAV_LINKS = [
-  { label: "Home", href: "/#home" },
+  { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Web Development", href: "/web-development" },
   { label: "Our Work", href: "/our-work" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
+];
+
+/** Footer quick links (adds resources that don't fit in the main nav). */
+export const FOOTER_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "All Services", href: "/services" },
+  { label: "Our Work", href: "/our-work" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Blog", href: "/blog" },
+  { label: "Digital Marketing in Mississauga", href: "/digital-marketing-mississauga" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export interface Service {

@@ -1,16 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { SITE_STATS, formatStat } from "@/data/site-stats";
 import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Apple, Smartphone, Layout, Boxes, Building2, UtensilsCrossed, Briefcase, ShoppingBag, Plane, Heart, Car, Users } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import H1Label from "@/components/ui/H1Label";
 import NeonButton from "@/components/ui/NeonButton";
 import AppProcess from "@/components/sections/AppProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
 
 const STATS = [
-  { icon: Layers, value: "120+", label: "Projects launched" },
-  { icon: Gauge, value: "99%", label: "Client retention" },
+  { icon: Layers, value: formatStat(SITE_STATS.appProjectsLaunched), label: SITE_STATS.appProjectsLaunched.label },
+  { icon: Gauge, value: formatStat(SITE_STATS.clientRetention), label: SITE_STATS.clientRetention.label },
   { icon: Globe, value: "iOS + Android", label: "Every platform" },
 ];
 
@@ -115,12 +117,12 @@ export default function AppDevelopment() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <Reveal className="text-center lg:text-left">
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
-                <SectionLabel>App Development</SectionLabel>
-                <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <H1Label>Mobile App Development for iOS &amp; Android</H1Label>
+                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                   Your App. Built to <span className="text-gradient">Launch & Scale.</span>
-                </h1>
+                </p>
                 <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
-                  From idea to App Store, we design and build iOS, Android and cross-platform apps that are fast, reliable and built around real users. Over 120 projects delivered for businesses across every industry.
+                  From idea to App Store, we design and build iOS, Android and cross-platform apps that are fast, reliable and built around real users. Over {SITE_STATS.appProjectsLaunched.value} projects delivered for businesses across every industry.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
                   <NeonButton href="#app-contact" variant="primary" className="px-9 py-4 text-base">Request a Quote <ArrowRight size={18} /></NeonButton>

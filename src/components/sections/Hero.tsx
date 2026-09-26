@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import NeonButton from "@/components/ui/NeonButton";
 import HeroOrb from "@/components/sections/HeroOrb";
+import { SITE_STATS, formatStat } from "@/data/site-stats";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const WORDS: { t: string; g?: boolean }[] = [
@@ -24,12 +25,12 @@ export default function Hero() {
         {/* Left copy */}
         <div className="relative z-10 order-1">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
-            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-mint">
-              <Sparkles size={13} /> AI Automation &amp; Digital Growth Agency
-            </span>
+            <h1 className="inline-flex items-center gap-2 rounded-2xl glass px-4 py-1.5 text-[11px] font-semibold uppercase leading-relaxed tracking-[0.18em] text-brand-mint">
+              <Sparkles size={13} aria-hidden="true" className="shrink-0" /> Digital Marketing &amp; AI Automation Agency for Growing Businesses
+            </h1>
           </motion.div>
 
-          <motion.h1
+          <motion.p
             className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
             initial="hidden" animate="show"
             variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
@@ -41,7 +42,7 @@ export default function Hero() {
                 <span className={w.g ? "text-gradient" : ""}>{w.t}</span>{"\u00A0"}
               </motion.span>
             ))}
-          </motion.h1>
+          </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7, ease }}
             className="mt-6 max-w-xl text-base leading-relaxed text-white/90">
@@ -51,7 +52,7 @@ export default function Hero() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.82, ease }}
             className="mt-9 flex flex-wrap items-center gap-4">
             <NeonButton href="#contact" variant="primary">Book Strategy Call <ArrowRight size={16} /></NeonButton>
-            <NeonButton href="#work" variant="ghost"><Play size={15} /> Explore Our Work</NeonButton>
+            <NeonButton href="/our-work" variant="ghost"><Play size={15} /> Explore Our Work</NeonButton>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.95, ease }}
@@ -62,7 +63,7 @@ export default function Hero() {
               ))}
             </div>
             <div>
-              <p className="text-sm font-bold text-white">100+ Businesses Scaled</p>
+              <p className="text-sm font-bold text-white">{formatStat(SITE_STATS.businessesServed)} Businesses Scaled</p>
               <p className="text-xs text-white/90">With BizzOne Digital</p>
             </div>
           </motion.div>

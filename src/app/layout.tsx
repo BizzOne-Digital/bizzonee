@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Sora, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/data/site";
+import { professionalServiceSchema, websiteSchema } from "@/lib/schema";
 
 const display = Sora({
   subsets: ["latin"],
@@ -16,43 +19,15 @@ const body = Hanken_Grotesk({
   display: "swap",
 });
 
-const siteUrl = "https://bizzonedigital.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-
+  metadataBase: new URL(SITE_URL),
+  // Fallback only (404 and private pages). Every indexable page sets its own
+  // unique title, description, canonical, Open Graph and Twitter tags via buildMetadata().
   title: {
-    default: "BizzOne Digital: AI Automation & Digital Growth Agency",
+    default: "BizzOne Digital",
     template: "%s | BizzOne Digital",
   },
-
-  description:
-    "We build growth engines, not just marketing campaigns. SEO, social media, paid ads, web development and AI automation for ambitious businesses.",
-
-  keywords: [
-    "digital marketing agency",
-    "AI automation",
-    "SEO",
-    "paid ads",
-    "web development",
-    "BizzOne Digital",
-  ],
-
-  openGraph: {
-    title: "BizzOne Digital: AI Automation & Digital Growth Agency",
-    description:
-      "From strategy to automation, we help businesses attract, engage, and convert.",
-    url: siteUrl,
-    siteName: "BizzOne Digital",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "BizzOne Digital",
-    description: "AI Automation & Digital Growth Agency",
-  },
-
+  applicationName: "BizzOne Digital",
   icons: {
     icon: "/fav.png",
     shortcut: "/fav.png",
@@ -117,6 +92,7 @@ export default function RootLayout({
             alt=""
           />
         </noscript>
+        <JsonLd data={[professionalServiceSchema(), websiteSchema()]} />
         <div className="bg-space" />
         <div className="bg-grid" />
         {children}

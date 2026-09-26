@@ -6,8 +6,8 @@ import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import type { Industry } from "@/lib/webdevData";
 
-export default function WebPortfolio() {
-  const [industries, setIndustries] = useState<Industry[] | null>(null);
+export default function WebPortfolio({ initialIndustries }: { initialIndustries?: Industry[] }) {
+  const [industries, setIndustries] = useState<Industry[] | null>(initialIndustries ?? null);
   const [selected, setSelected] = useState("all");
 
   useEffect(() => {
@@ -16,8 +16,8 @@ export default function WebPortfolio() {
 
     fetch("/api/webdev-content")
       .then((r) => r.json())
-      .then((data) => setIndustries(data.industries))
-      .catch(() => setIndustries([]));
+      .then((data) => { if (Array.isArray(data?.industries)) setIndustries(data.industries); })
+      .catch(() => setIndustries((cur) => cur ?? []));
   }, []);
 
   if (!industries) {
@@ -80,15 +80,15 @@ export default function WebPortfolio() {
             {items.map((img, i) => (
               <a
                 key={i}
-                href={img.siteUrl || "#"}
-                target="_blank"
-                rel="noreferrer"
+                href={img.siteUrl || "/our-work#websites"}
+                target={img.siteUrl ? "_blank" : undefined}
+                rel={img.siteUrl ? "noopener noreferrer" : undefined}
                 className="group relative block rounded-[1.75rem] border bg-[#0a0814] p-2 shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
                 style={{ borderColor: `${img.color}40`, boxShadow: `0 0 30px ${img.color}1a` }}
               >
                 <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img.url} alt={img.name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                  <img src={img.url} alt={`Website design for ${img.name} by BizzOne Digital`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
                   <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${img.color}1f`, color: img.color }}>

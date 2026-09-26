@@ -1,18 +1,22 @@
 "use client";
 
+import { SITE_STATS, MARKETS_SERVED, formatStat } from "@/data/site-stats";
+
 import { motion } from "framer-motion";
 import { Target, Eye, Award, Rocket, Users, TrendingUp, Globe, Zap, Heart, Shield, Lightbulb, ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import H1Label from "@/components/ui/H1Label";
 import NeonButton from "@/components/ui/NeonButton";
 import Counter from "@/components/ui/Counter";
 import LaptopFrame from "@/components/ui/LaptopFrame";
 
+// All numbers come from data/site-stats.ts (single source of truth, pending owner verification).
 const STATS = [
-  { value: 180, suffix: "+", label: "Brands Scaled" },
-  { value: 500, suffix: "+", label: "Projects Delivered" },
-  { value: 98, suffix: "%", label: "Client Retention" },
-  { value: 10, suffix: "M+", label: "Leads Generated" },
+  { ...SITE_STATS.businessesServed, label: "Brands Scaled" },
+  { ...SITE_STATS.projectsDelivered, label: "Projects Delivered" },
+  { ...SITE_STATS.clientRetention, label: "Client Retention" },
+  { ...SITE_STATS.leadsGenerated, label: "Leads Generated" },
 ];
 
 const VALUES = [
@@ -23,9 +27,9 @@ const VALUES = [
 ];
 
 const TEAM_HIGHLIGHTS = [
-  { icon: Users, stat: "25+", label: "Dedicated team members" },
-  { icon: Globe, stat: "12+", label: "Countries served" },
-  { icon: TrendingUp, stat: "$30M+", label: "Revenue generated for clients" },
+  { icon: Users, stat: formatStat(SITE_STATS.teamMembers), label: SITE_STATS.teamMembers.label },
+  { icon: Globe, stat: MARKETS_SERVED.short, label: "Markets served" },
+  { icon: TrendingUp, stat: formatStat(SITE_STATS.clientRevenue), label: SITE_STATS.clientRevenue.label },
 ];
 
 const PANELS = [
@@ -37,7 +41,7 @@ const TIMELINE = [
   { year: "Founded", title: "BizzOne Digital is Born", desc: "Started with a simple belief: businesses deserve better digital partners. We began with web development and a handful of clients who believed in our vision." },
   { year: "Growth", title: "Expanding Services", desc: "Added SEO, social media management, Meta advertising, content strategy and graphic design. Our team grew from 3 to 15+ dedicated professionals." },
   { year: "Scale", title: "AI & Automation", desc: "Launched our AI automation division: CRM integrations, intelligent workflows, WhatsApp & email automation. Helping businesses work smarter, not harder." },
-  { year: "Today", title: "180+ Brands & Counting", desc: "A full-service digital growth agency with 25+ team members, serving clients across 12+ countries. From startups to enterprises, we deliver results that compound." },
+  { year: "Today", title: `${formatStat(SITE_STATS.businessesServed)} Brands & Counting`, desc: `A full-service digital growth agency with ${formatStat(SITE_STATS.teamMembers)} team members, serving clients across ${MARKETS_SERVED.long}. From startups to enterprises, we deliver results that compound.` },
 ];
 
 export default function AboutPage() {
@@ -48,16 +52,16 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
         <div className="section">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <SectionLabel>About Us</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <H1Label>About BizzOne Digital: A Full-Service AI &amp; Digital Growth Agency</H1Label>
+            <p className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
               We Don&apos;t Just Build Websites. We Build <span className="text-gradient">Growth Engines</span>
-            </h1>
+            </p>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
               BizzOne Digital is a full-service AI automation and digital growth agency. We blend design, engineering and marketing under one roof to deliver digital ecosystems that compound your results over time.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <NeonButton href="/#contact" variant="primary">Work With Us <ArrowRight size={16} /></NeonButton>
-              <NeonButton href="/#services" variant="ghost">Our Services</NeonButton>
+              <NeonButton href="/contact" variant="primary">Work With Us <ArrowRight size={16} /></NeonButton>
+              <NeonButton href="/services" variant="ghost">Our Services</NeonButton>
             </div>
           </Reveal>
         </div>
@@ -94,7 +98,7 @@ export default function AboutPage() {
                 BizzOne Digital started with a simple belief: every business, no matter how small, deserves a premium digital presence that actually drives results. We saw too many agencies delivering pretty websites that didn&apos;t convert, flashy ads that didn&apos;t sell, and social media that didn&apos;t grow.
               </p>
               <p className="mt-4 text-base leading-relaxed text-white/90">
-                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">180+ brands</span> scale with websites, advertising, social media, SEO, AI automation and more, generating over <span className="font-semibold text-brand-mint">$30M+</span> in client revenue.
+                So we built something different. A team obsessed with performance, design and real business outcomes. Today, we&apos;ve helped <span className="font-semibold text-brand-mint">{formatStat(SITE_STATS.businessesServed)} brands</span> scale with websites, advertising, social media, SEO, AI automation and more, generating over <span className="font-semibold text-brand-mint">{formatStat(SITE_STATS.clientRevenue)}</span> in client revenue.
               </p>
               <div className="mt-8 flex flex-wrap gap-5">
                 {TEAM_HIGHLIGHTS.map((t) => (
@@ -110,7 +114,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <LaptopFrame videoSrc="/Bizz-one-Landscape-1.mp4" />
+              <LaptopFrame />
             </Reveal>
           </div>
         </div>
@@ -210,7 +214,7 @@ export default function AboutPage() {
                 Let&apos;s talk about your goals. Book a free strategy call and see how we can grow your business.
               </p>
               <div className="relative mt-8 flex justify-center">
-                <NeonButton href="/#contact" variant="primary">Book Free Strategy Call <ArrowRight size={16} /></NeonButton>
+                <NeonButton href="/contact" variant="primary">Book Free Strategy Call <ArrowRight size={16} /></NeonButton>
               </div>
             </div>
           </Reveal>

@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { SITE_STATS, formatStat } from "@/data/site-stats";
 import { ArrowRight, Check, Layers, Gauge, Globe, Send, CheckCircle2, Star, ShieldCheck, Clock, Rocket, Loader2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
+import H1Label from "@/components/ui/H1Label";
 import NeonButton from "@/components/ui/NeonButton";
 import WebProcess from "@/components/sections/WebProcess";
 import TrustReviews from "@/components/sections/TrustReviews";
@@ -11,7 +14,7 @@ import { getIcon } from "@/lib/iconRegistry";
 import type { SiteContent, Industry, Pkg } from "@/lib/webdevData";
 
 const STATS = [
-  { icon: Layers, value: "120+", label: "Sites launched" },
+  { icon: Layers, value: formatStat(SITE_STATS.websitesLaunched), label: SITE_STATS.websitesLaunched.label },
   { icon: Gauge, value: "98%", label: "Performance" },
   { icon: Globe, value: "24–48h", label: "Kickoff" },
 ];
@@ -65,15 +68,15 @@ function FeaturedWebsites({ industries, selected }: { industries: Industry[]; se
       {featured.map((img, i) => (
         <a
           key={i}
-          href={img.siteUrl || "#"}
-          target="_blank"
-          rel="noreferrer"
+          href={img.siteUrl || "/our-work#websites"}
+          target={img.siteUrl ? "_blank" : undefined}
+          rel={img.siteUrl ? "noopener noreferrer" : undefined}
           className="group relative block rounded-[1.75rem] border bg-[#0a0814] p-2 shadow-2xl transition-all duration-300 hover:-translate-y-1.5"
           style={{ borderColor: `${img.color}40`, boxShadow: `0 0 30px ${img.color}1a` }}
         >
           <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img.url} alt={img.name} className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+            <img src={img.url} alt={`Website design for ${img.name} by BizzOne Digital`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
             <div className="pointer-events-none absolute inset-2 rounded-2xl bg-gradient-to-tr from-transparent via-transparent to-white/10" />
           </div>
           <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
@@ -94,7 +97,7 @@ function FeaturedWebsites({ industries, selected }: { industries: Industry[]; se
 /* ── Stripe logo ── */
 function StripeLogo({ className = "" }: { className?: string }) {
   // eslint-disable-next-line @next/next/no-img-element
-  return <img src="/stripe.png" alt="Stripe" className={className} />;
+  return <img src="/stripe.png" alt="" aria-hidden="true" width={361} height={149} className={className} />;
 }
 
 function SecurePaymentBadge({ className = "" }: { className?: string }) {
@@ -179,19 +182,29 @@ function HeroPackageCard({ pkg, content }: { pkg: Pkg; content: SiteContent }) {
   );
 }
 
-export default function WebDevelopment() {
-  const [content, setContent] = useState<SiteContent | null>(null);
-  const [industries, setIndustries] = useState<Industry[]>([]);
-  const [packages, setPackages] = useState<Pkg[]>([]);
+export default function WebDevelopment({
+  initialContent = null,
+  initialIndustries = [],
+  initialPackages = [],
+}: {
+  initialContent?: SiteContent | null;
+  initialIndustries?: Industry[];
+  initialPackages?: Pkg[];
+}) {
+  // Server-rendered initial data keeps the H1 and all copy in the HTML Google receives.
+  // The client fetch below then refreshes it so admin-panel edits appear immediately.
+  const [content, setContent] = useState<SiteContent | null>(initialContent);
+  const [industries, setIndustries] = useState<Industry[]>(initialIndustries);
+  const [packages, setPackages] = useState<Pkg[]>(initialPackages);
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/webdev-content")
       .then((r) => r.json())
       .then((data) => {
-        setContent(data.content);
-        setIndustries(data.industries);
-        setPackages(data.packages);
+        if (data?.content) setContent(data.content);
+        if (Array.isArray(data?.industries)) setIndustries(data.industries);
+        if (Array.isArray(data?.packages)) setPackages(data.packages);
       })
       .catch(() => {});
   }, []);
@@ -216,10 +229,10 @@ export default function WebDevelopment() {
             {/* left — heading */}
             <Reveal className="text-center lg:text-left">
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
-                <SectionLabel>Web Development</SectionLabel>
-                <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <H1Label>Website Design &amp; Development for Small Businesses in Mississauga</H1Label>
+                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                   {content.heroTitleLine1} <span className="text-gradient">{content.heroTitleLine2}</span>
-                </h1>
+                </p>
                 {content.freeHostingEnabled && (
                   <p className="mt-3 text-left text-base font-semibold text-brand-mint sm:text-lg">
                     {hostingLine(content, "hero")}
@@ -303,10 +316,13 @@ export default function WebDevelopment() {
               <h3 className="font-display text-3xl font-extrabold text-white sm:text-4xl">Featured Websites</h3>
               <span className="h-px w-10 bg-gradient-to-l from-transparent to-white/20 sm:w-20" />
             </div>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/70">Take a look at some of our recent projects.</p>
-            <a href="/our-work#websites" className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-mint/40 bg-brand-mint/10 px-5 py-2.5 text-sm font-bold text-brand-mint transition-all hover:-translate-y-0.5 hover:bg-brand-mint/20">
-              View Our Website <ArrowRight size={15} />
-            </a>
+            <p className="mx-auto mt-3 max-w-xl text-base text-white/70">
+              Take a look at some of our recent projects. Every site launches with on-page SEO basics. To keep climbing on Google, pair your website with our{" "}
+              <Link href="/service/seo" className="font-semibold text-brand-mint underline-offset-4 hover:underline">SEO services</Link>.
+            </p>
+            <Link href="/our-work#websites" className="mt-5 inline-flex items-center gap-2 rounded-full border border-brand-mint/40 bg-brand-mint/10 px-5 py-2.5 text-sm font-bold text-brand-mint transition-all hover:-translate-y-0.5 hover:bg-brand-mint/20">
+              View Our Website Design Portfolio <ArrowRight size={15} />
+            </Link>
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10">

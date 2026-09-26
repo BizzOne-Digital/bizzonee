@@ -3,34 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Send } from "lucide-react";
-import { COMPANY, NAV_LINKS } from "@/lib/content";
+import { FOOTER_LINKS } from "@/lib/content";
+import { BUSINESS, SOCIAL_LINKS } from "@/data/site";
 
+/** Every service page, linked directly (no more /#services placeholders). */
 const SERVICES_LINKS = [
-  "Paid Advertising",
-  "Design & Branding",
-  "Video Editing & Production",
-  "Content Strategy",
-  "Social Media Management",
-  "AI Automation",
+  { label: "SEO", href: "/service/seo" },
+  { label: "Paid Advertising", href: "/service/paid-advertising" },
+  { label: "Design & Branding", href: "/service/design-and-branding" },
+  { label: "Video Editing & Production", href: "/service/video-editing-and-production" },
+  { label: "Content Strategy", href: "/service/content-strategy" },
+  { label: "Social Media Management", href: "/service/social-media-management" },
+  { label: "AI Automation", href: "/service/ai-automation" },
+  { label: "App Development", href: "/app-development" },
+  { label: "Web Development", href: "/web-development" },
 ];
 
-const SOCIALS = [
-  {
-    name: "Facebook",
-    icon: Facebook,
-    href: "https://www.facebook.com/Bizzonedigital",
-  },
-  {
-    name: "Instagram",
-    icon: Instagram,
-    href: "https://www.instagram.com/bizzonedigital",
-  },
-  {
-    name: "LinkedIn",
-    icon: Linkedin,
-    href: "https://www.linkedin.com/company/102540390",
-  },
-];
+const ICONS = { Facebook, Instagram, LinkedIn: Linkedin } as const;
+const SOCIALS = SOCIAL_LINKS.map((s) => ({ ...s, icon: ICONS[s.name] }));
 
 export default function Footer() {
   return (
@@ -39,10 +29,10 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
           <div>
-            <Link href="/#home" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5" aria-label="BizzOne Digital home">
               <Image
                 src="/fav.png"
-                alt="BizzOne Digital"
+                alt="BizzOne Digital logo"
                 width={34}
                 height={34}
                 className="rounded-lg"
@@ -65,7 +55,7 @@ export default function Footer() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={name}
+                  aria-label={`BizzOne Digital on ${name}`}
                   className="grid h-9 w-9 place-items-center rounded-lg glass text-white/70 transition-colors hover:text-brand-mint"
                 >
                   <Icon size={15} />
@@ -76,12 +66,12 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Quick Links
-            </h4>
+            </h2>
 
             <ul className="mt-4 space-y-2.5">
-              {NAV_LINKS.map((link) => (
+              {FOOTER_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -96,18 +86,18 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Services
-            </h4>
+            </h2>
 
             <ul className="mt-4 space-y-2.5">
               {SERVICES_LINKS.map((service) => (
-                <li key={service}>
+                <li key={service.href}>
                   <Link
-                    href="/#services"
+                    href={service.href}
                     className="text-sm text-white/55 transition-colors hover:text-brand-mint"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}
@@ -116,16 +106,18 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Newsletter
-            </h4>
+            </h2>
 
             <p className="mt-4 text-sm text-white/55">
               Get tips & insights to grow your business digitally.
             </p>
 
             <div className="mt-4 flex items-center gap-2 rounded-xl glass p-1.5">
+              <label htmlFor="footer-newsletter-email" className="sr-only">Email address</label>
               <input
+                id="footer-newsletter-email"
                 type="email"
                 placeholder="Enter your email"
                 className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/35 focus:outline-none"
@@ -143,8 +135,8 @@ export default function Footer() {
             </div>
 
             <div className="mt-6 space-y-1.5 text-sm text-white/50">
-              <p>{COMPANY.email}</p>
-              <p>{COMPANY.phone}</p>
+              <p><a href={`mailto:${BUSINESS.email}`} className="transition-colors hover:text-brand-mint">{BUSINESS.email}</a></p>
+              <p><a href={BUSINESS.phoneHref} className="transition-colors hover:text-brand-mint">{BUSINESS.phoneDisplay}</a></p>
             </div>
           </div>
         </div>
@@ -152,22 +144,26 @@ export default function Footer() {
         {/* Hours & Address */}
         <div className="mt-10 grid gap-8 border-t border-white/10 pt-8 sm:grid-cols-2">
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Business Hours
-            </h4>
+            </h2>
             <div className="mt-3 space-y-1 text-sm text-white/55">
-              <p>Monday – Saturday: 9:00 AM – 5:00 PM</p>
-              <p>Sunday: Closed</p>
+              <p>{BUSINESS.hours.display}</p>
+              <p>{BUSINESS.hours.closed}</p>
             </div>
           </div>
 
           <div>
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
               Visit Us
-            </h4>
-            <div className="mt-3 space-y-1 text-sm text-white/55">
-              <p>{COMPANY.address}</p>
-            </div>
+            </h2>
+            <address className="mt-3 space-y-1 text-sm not-italic text-white/55">
+              <p>{BUSINESS.name}</p>
+              <p>{BUSINESS.addressLine}</p>
+              <p>
+                <Link href="/contact" className="text-brand-mint underline-offset-4 hover:underline">Contact us &amp; get directions</Link>
+              </p>
+            </address>
           </div>
         </div>
       </div>
@@ -175,7 +171,7 @@ export default function Footer() {
       <div className="border-t border-white/10 py-6">
         <div className="section flex flex-col items-center justify-between gap-3 text-xs text-white/40 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+            © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </p>
 
           <div className="flex gap-4 sm:-translate-x-4">

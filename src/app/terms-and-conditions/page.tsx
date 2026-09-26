@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import LegalPage from "@/components/sections/LegalPage";
 
-export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description: "BizzOne Digital's Terms & Conditions governing all services provided to clients.",
-};
+export const metadata: Metadata = buildMetadata({
+  title: "Terms & Conditions | BizzOne Digital",
+  description:
+    "BizzOne Digital's Terms & Conditions covering payments, scope of services, cancellation and responsibilities for all client engagements.",
+  path: "/terms-and-conditions",
+});
 
 const SECTIONS = [
   {

@@ -1,5 +1,7 @@
 "use client";
 
+import { SITE_STATS, MARKETS_SERVED, formatStat } from "@/data/site-stats";
+
 import { motion } from "framer-motion";
 import { Target, Eye, Award, Rocket } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
@@ -34,7 +36,7 @@ export default function About() {
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
             <p className="max-w-md text-lg leading-relaxed text-white/75">
-              Since day one, we&apos;ve helped <span className="text-brand-mint">180+ brands</span> launch, grow and modernize. From startups to enterprises, our team ships work that feels premium and performs even better.
+              Since day one, we&apos;ve helped <span className="text-brand-mint">{formatStat(SITE_STATS.businessesServed)} brands</span> launch, grow and modernize. From startups to enterprises, our team ships work that feels premium and performs even better.
             </p>
             <div className="mt-7 grid max-w-md grid-cols-2 gap-4">
               {achievements.map((a, i) => {
@@ -55,7 +57,7 @@ export default function About() {
             <span className="mb-4 block text-center text-xs font-semibold uppercase tracking-[0.18em] text-white/90 lg:text-right">
               Our Work in Motion
             </span>
-            <LaptopFrame videoSrc="/Bizz-one-Landscape-1.mp4" />
+            <LaptopFrame />
           </Reveal>
         </div>
 
