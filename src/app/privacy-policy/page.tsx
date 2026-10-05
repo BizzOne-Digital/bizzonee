@@ -117,14 +117,21 @@ const SECTIONS = [
     footer: ["Requests can be made by contacting us directly."],
   },
   {
-    heading: "12. Updates to This Policy",
+    heading: "12. Refunds & Project Development Policy",
+    body: [
+      "If a website project has been in active development for 25 days or more, and our team has continued working on requested revisions, updates, design changes, or technical adjustments during that period, the project will be considered substantially in progress.",
+      "In such cases, refunds will not be available, as development time, resources, and services have already been provided. BizzOne Digital will continue working to complete the agreed scope and reasonable revisions in accordance with the project terms.",
+    ],
+  },
+  {
+    heading: "13. Updates to This Policy",
     body: [
       "We may update this Privacy Policy from time to time. Any changes will be posted on this page.",
       "Continued use of our services constitutes acceptance of the updated policy.",
     ],
   },
   {
-    heading: "13. Contact Information",
+    heading: "14. Contact Information",
     body: ["For questions regarding this Privacy Policy, please contact:"],
     list: ["BizzOne Digital", "info@bizzonedigital.com"],
   },
