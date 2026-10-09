@@ -9,7 +9,7 @@ type Node = { icon: LucideIcon; title: string; sub: string; top: string; left: s
 const NODES: Node[] = [
   { icon: Search,  title: "SEO",             sub: "Rank Higher",      top: "-4%",  left: "30%",  dir: "r" },
   { icon: Target,  title: "Paid Ads",         sub: "Get More Leads",   top: "8%",   left: "62%",  dir: "r" },
-  { icon: Bot,     title: "AI Automation",    sub: "Save Time & Scale",top: "40%",  left: "60%",  dir: "r" },
+  { icon: Bot,     title: "AI Automation",    sub: "Save Time & Scale",top: "40%",  left: "72%",  dir: "r" },
   { icon: Share2,  title: "Social Media",     sub: "Engage More",      top: "30%",  left: "-4%",  dir: "r" },
   { icon: Code2,   title: "Web Development",  sub: "Build Better",     top: "82%",  left: "30%",  dir: "b" },
 ];
@@ -125,7 +125,7 @@ export default function HeroOrb() {
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/fav.png" alt="BizzOne Digital" className="drop-shadow-[0_0_24px_rgba(200,243,29,0.7)]"
-                style={{ width: "clamp(3.2rem, 11vw, 7rem)", height: "auto" }} />
+                style={{ width: "clamp(2.2rem, 7.5vw, 4.8rem)", height: "auto" }} />
             </div>
           </motion.div>
         </div>
