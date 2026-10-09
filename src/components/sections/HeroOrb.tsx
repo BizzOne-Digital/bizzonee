@@ -123,10 +123,9 @@ export default function HeroOrb() {
               <span className="absolute left-[18%] top-[12%] h-[28%] w-[40%] -rotate-12 rounded-full bg-white/25 blur-xl" />
             </div>
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
-              <span className="font-display font-black text-[#C8F31D] drop-shadow-[0_0_24px_rgba(200,243,29,0.7)]"
-                style={{ fontSize: "clamp(1.8rem, 6vw, 4rem)" }}>
-                B1
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/fav.png" alt="BizzOne Digital" className="drop-shadow-[0_0_24px_rgba(200,243,29,0.7)]"
+                style={{ width: "clamp(3.2rem, 11vw, 7rem)", height: "auto" }} />
             </div>
           </motion.div>
         </div>
