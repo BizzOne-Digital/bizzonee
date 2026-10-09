@@ -45,10 +45,10 @@ export default function WebPortfolio({ initialIndustries }: { initialIndustries?
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Selected Work</SectionLabel>
-          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             Websites We&apos;re <span className="text-gradient">Proud Of</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/55">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/55">
             Real websites we&apos;ve designed and built — browse by industry.
           </p>
         </Reveal>
@@ -61,8 +61,8 @@ export default function WebPortfolio({ initialIndustries }: { initialIndustries?
                 className="rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-wide transition-all"
                 style={{
                   background: on ? `${f.color}22` : "transparent",
-                  borderColor: on ? `${f.color}60` : "rgba(255,255,255,0.12)",
-                  color: on ? f.color : "rgba(255,255,255,0.55)",
+                  borderColor: on ? `${f.color}60` : "rgba(12,15,26,0.12)",
+                  color: on ? f.color : "rgba(12,15,26,0.55)",
                 }}>
                 {f.label}
               </button>
@@ -71,9 +71,9 @@ export default function WebPortfolio({ initialIndustries }: { initialIndustries?
         </Reveal>
 
         {items.length === 0 ? (
-          <div className="mx-auto mt-14 max-w-md rounded-2xl border border-white/10 bg-white/[0.03] py-14 text-center">
-            <p className="text-base font-semibold text-white/80">More real client examples for this industry are on the way.</p>
-            <p className="mt-2 text-sm text-white/50">Browse another industry above, or reach out and we&apos;ll show you similar work.</p>
+          <div className="mx-auto mt-14 max-w-md rounded-2xl border border-ink/10 bg-ink/[0.03] py-14 text-center">
+            <p className="text-base font-semibold text-ink/80">More real client examples for this industry are on the way.</p>
+            <p className="mt-2 text-sm text-ink/50">Browse another industry above, or reach out and we&apos;ll show you similar work.</p>
           </div>
         ) : (
           <Reveal delay={0.1} className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -95,7 +95,7 @@ export default function WebPortfolio({ initialIndustries }: { initialIndustries?
                     <ArrowRight size={13} className="-rotate-45" />
                   </span>
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-bold text-white">{img.name}</div>
+                    <div className="truncate text-sm font-bold text-ink">{img.name}</div>
                     <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color: img.color }}>{img.category}</div>
                   </div>
                 </div>

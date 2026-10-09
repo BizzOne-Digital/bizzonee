@@ -6,7 +6,7 @@ import Reveal from "@/components/ui/Reveal";
 import { SERVICES } from "@/lib/services";
 
 const SERVICE_OPTIONS = ["General inquiry", ...SERVICES.map((s) => s.title), "Web Development", "Other"];
-const fieldCls = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition-colors focus:border-brand-mint/60";
+const fieldCls = "w-full rounded-xl border border-ink/10 bg-ink/[0.04] px-4 py-3 text-sm text-ink placeholder-ink/35 outline-none transition-colors focus:border-brand-mint/60";
 
 const TRUST = [
   { icon: Clock, text: "Reply within 24–48 hours" },
@@ -52,15 +52,15 @@ export default function FinalCTA() {
                 <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-mint shadow-glow-mint" /> Get In Touch
                 </span>
-                <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+                <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
                   Ready To Scale Your Business <span className="text-gradient">With Us?</span>
                 </h2>
-                <p className="mt-5 max-w-lg text-base leading-relaxed text-white/60">
+                <p className="mt-5 max-w-lg text-base leading-relaxed text-ink/60">
                   Tell us what you need and our team will reach out. Pick a service below and send us a message, it lands straight in our inbox.
                 </p>
                 <ul className="mt-8 space-y-3">
                   {TRUST.map((t) => (
-                    <li key={t.text} className="flex items-center gap-3 text-sm text-white/70">
+                    <li key={t.text} className="flex items-center gap-3 text-sm text-ink/70">
                       <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><t.icon size={16} aria-hidden="true" /></span>
                       {t.text}
                     </li>
@@ -74,8 +74,8 @@ export default function FinalCTA() {
                     <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint">
                       <CheckCircle2 size={34} />
                     </span>
-                    <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
-                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">
+                    <h3 className="mt-5 font-display text-2xl font-bold text-ink">Message sent!</h3>
+                    <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink/60">
                       Thanks {form.name.split(" ")[0] || "there"}, we&apos;ve received your message and will get back to you within 24–48 hours.
                     </p>
                   </div>
@@ -83,26 +83,26 @@ export default function FinalCTA() {
                   <>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
-                        <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-white/80">Full name <span className="text-brand-mint">*</span></label>
+                        <label htmlFor="contact-name" className="mb-1.5 block text-sm font-medium text-ink/80">Full name <span className="text-brand-mint">*</span></label>
                         <input id="contact-name" name="name" autoComplete="name" required className={fieldCls} value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" />
                       </div>
                       <div>
-                        <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-white/80">Phone</label>
+                        <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-medium text-ink/80">Phone</label>
                         <input id="contact-phone" name="phone" autoComplete="tel" type="tel" className={fieldCls} value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (___) ___-____" />
                       </div>
                     </div>
                     <div className="mt-4">
-                      <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-white/80">Email <span className="text-brand-mint">*</span></label>
+                      <label htmlFor="contact-email" className="mb-1.5 block text-sm font-medium text-ink/80">Email <span className="text-brand-mint">*</span></label>
                       <input id="contact-email" name="email" autoComplete="email" required type="email" className={fieldCls} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@business.com" />
                     </div>
                     <div className="mt-4">
-                      <label htmlFor="contact-service" className="mb-1.5 block text-sm font-medium text-white/80">Service you&apos;re interested in</label>
+                      <label htmlFor="contact-service" className="mb-1.5 block text-sm font-medium text-ink/80">Service you&apos;re interested in</label>
                       <select id="contact-service" name="service" className={fieldCls} value={form.service} onChange={(e) => set("service", e.target.value)}>
-                        {SERVICE_OPTIONS.map((opt) => <option key={opt} value={opt} style={{ background: "#0f0a1a", color: "#e9e6f2" }}>{opt}</option>)}
+                        {SERVICE_OPTIONS.map((opt) => <option key={opt} value={opt} style={{ background: "#ffffff", color: "#0c0f1a" }}>{opt}</option>)}
                       </select>
                     </div>
                     <div className="mt-4">
-                      <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-white/80">Message <span className="text-brand-mint">*</span></label>
+                      <label htmlFor="contact-message" className="mb-1.5 block text-sm font-medium text-ink/80">Message <span className="text-brand-mint">*</span></label>
                       <textarea id="contact-message" name="message" required className={`${fieldCls} min-h-[110px] resize-y leading-relaxed`} value={form.message} onChange={(e) => set("message", e.target.value)} placeholder="Tell us a little about your project or goals..." />
                     </div>
                     {status === "error" && <p role="alert" className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{errorMsg}</p>}

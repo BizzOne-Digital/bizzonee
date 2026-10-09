@@ -13,7 +13,7 @@ export default function Results() {
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.6fr]">
           <Reveal>
             <SectionLabel>Our Results</SectionLabel>
-            <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Numbers That Speak For <span className="text-gradient">Our Workk</span>.
             </h2>
           </Reveal>
@@ -25,7 +25,7 @@ export default function Results() {
                   <div className="font-display text-2xl font-black text-gradient sm:text-3xl">
                     <Counter value={s.value} suffix={s.suffix} prefix={s.prefix} />
                   </div>
-                  <p className="mt-2 text-xs font-medium text-white/55">{s.label}</p>
+                  <p className="mt-2 text-xs font-medium text-ink/55">{s.label}</p>
                 </motion.div>
               </Reveal>
             ))}

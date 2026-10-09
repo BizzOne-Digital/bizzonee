@@ -21,8 +21,8 @@ export default function ContactDetails({ showMap = true, mapTitle = "Map showing
           >
             <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><it.icon size={18} aria-hidden="true" /></span>
             <span>
-              <span className="block text-xs font-semibold uppercase tracking-wider text-white/45">{it.label}</span>
-              <span className="block text-base font-semibold text-white group-hover:text-brand-mint">{it.value}</span>
+              <span className="block text-xs font-semibold uppercase tracking-wider text-ink/45">{it.label}</span>
+              <span className="block text-base font-semibold text-ink group-hover:text-brand-mint">{it.value}</span>
             </span>
           </a>
         ))}
@@ -30,13 +30,13 @@ export default function ContactDetails({ showMap = true, mapTitle = "Map showing
         <div className="flex items-start gap-4 rounded-2xl glass p-5">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><MapPin size={18} aria-hidden="true" /></span>
           <address className="not-italic">
-            <span className="block text-xs font-semibold uppercase tracking-wider text-white/45">Office</span>
-            <span className="block text-base font-semibold text-white">{BUSINESS.name}</span>
-            <span className="block text-sm text-white/70">{BUSINESS.address.streetAddress}</span>
-            <span className="block text-sm text-white/70">
+            <span className="block text-xs font-semibold uppercase tracking-wider text-ink/45">Office</span>
+            <span className="block text-base font-semibold text-ink">{BUSINESS.name}</span>
+            <span className="block text-sm text-ink/70">{BUSINESS.address.streetAddress}</span>
+            <span className="block text-sm text-ink/70">
               {BUSINESS.address.addressLocality}, {BUSINESS.address.addressRegion} {BUSINESS.address.postalCode}
             </span>
-            <span className="block text-sm text-white/70">{BUSINESS.address.countryName}</span>
+            <span className="block text-sm text-ink/70">{BUSINESS.address.countryName}</span>
             <a href={googleMapsLinkUrl} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm font-semibold text-brand-mint underline-offset-4 hover:underline">
               Get directions on Google Maps
             </a>
@@ -46,15 +46,15 @@ export default function ContactDetails({ showMap = true, mapTitle = "Map showing
         <div className="flex items-start gap-4 rounded-2xl glass p-5">
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><Clock size={18} aria-hidden="true" /></span>
           <div>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-white/45">Business hours</span>
-            <span className="block text-sm text-white/80">{BUSINESS.hours.display}</span>
-            <span className="block text-sm text-white/80">{BUSINESS.hours.closed}</span>
+            <span className="block text-xs font-semibold uppercase tracking-wider text-ink/45">Business hours</span>
+            <span className="block text-sm text-ink/80">{BUSINESS.hours.display}</span>
+            <span className="block text-sm text-ink/80">{BUSINESS.hours.closed}</span>
           </div>
         </div>
       </div>
 
       {showMap && (
-        <div className="min-h-[360px] overflow-hidden rounded-3xl border border-white/10 glass-strong p-2">
+        <div className="min-h-[360px] overflow-hidden rounded-3xl border border-ink/10 glass-strong p-2">
           <iframe
             title={mapTitle}
             src={googleMapsEmbedUrl}

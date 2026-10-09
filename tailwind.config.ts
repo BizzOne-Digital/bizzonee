@@ -10,12 +10,12 @@ const config: Config = {
       colors: {
         brand: {
           purple: "#8C00FF",
-          "purple-light": "#B47BFF",
+          "purple-light": "#7A1FD6",
           "purple-deep": "#4C0A8F",
-          mint: "#C8F31D",
-          "mint-bright": "#DBFF5A",
+          mint: "#6B8E00",
+          "mint-bright": "#C8F31D",
         },
-        ink: { DEFAULT: "#05060A", soft: "#080A12", panel: "#0C0F1A" },
+        ink: { DEFAULT: "#0C0F1A", soft: "#1A1F2E", panel: "#FFFFFF" },
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

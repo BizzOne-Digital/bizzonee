@@ -32,10 +32,10 @@ export default function BlogIndex() {
           </Reveal>
           <Reveal className="mx-auto mt-8 max-w-3xl text-center">
             <SectionLabel>Insights</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
               Digital Marketing <span className="text-gradient">Guides &amp; Insights</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink/75">
               Straightforward advice for small and medium businesses on websites, SEO, ads, social media and automation.
             </p>
           </Reveal>
@@ -44,11 +44,11 @@ export default function BlogIndex() {
               <Reveal key={p.slug} delay={i * 0.04}>
                 <article className="group relative flex h-full flex-col rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
                   <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-mint">{p.category}</span>
-                  <h2 className="mt-3 font-display text-lg font-bold leading-snug text-white">
+                  <h2 className="mt-3 font-display text-lg font-bold leading-snug text-ink">
                     <Link href={`/blog/${p.slug}`} className="after:absolute after:inset-0 group-hover:text-brand-mint">{p.title}</Link>
                   </h2>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-white/60">{p.excerpt}</p>
-                  <div className="mt-5 flex items-center justify-between text-xs text-white/45">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/60">{p.excerpt}</p>
+                  <div className="mt-5 flex items-center justify-between text-xs text-ink/45">
                     <time dateTime={p.date}>{fmt(p.date)}</time>
                     <span className="inline-flex items-center gap-1 font-bold uppercase tracking-wide text-brand-mint">
                       {p.readingMinutes} min read <ArrowRight size={12} aria-hidden="true" />

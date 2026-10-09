@@ -24,25 +24,25 @@ export default function LegalPage({ title, intro, sections }: LegalPageProps) {
         <p className="text-sm font-medium uppercase tracking-wider text-brand-mint">
           {intro}
         </p>
-        <h1 className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl">
+        <h1 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
           {title}
         </h1>
 
         <div className="mt-10 space-y-10">
           {sections.map((sec) => (
-            <div key={sec.heading} className="border-t border-white/10 pt-8">
-              <h2 className="font-display text-lg font-bold text-white">
+            <div key={sec.heading} className="border-t border-ink/10 pt-8">
+              <h2 className="font-display text-lg font-bold text-ink">
                 {sec.heading}
               </h2>
 
               {sec.body?.map((p, i) => (
-                <p key={i} className="mt-3 text-sm leading-relaxed text-white/60">
+                <p key={i} className="mt-3 text-sm leading-relaxed text-ink/60">
                   {p}
                 </p>
               ))}
 
               {sec.list && (
-                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-white/60">
+                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/60">
                   {sec.list.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -51,8 +51,8 @@ export default function LegalPage({ title, intro, sections }: LegalPageProps) {
 
               {sec.subsections?.map((sub) => (
                 <div key={sub.heading} className="mt-4">
-                  <h3 className="text-sm font-bold text-white/85">{sub.heading}</h3>
-                  <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-white/60">
+                  <h3 className="text-sm font-bold text-ink/85">{sub.heading}</h3>
+                  <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-ink/60">
                     {sub.list.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -61,7 +61,7 @@ export default function LegalPage({ title, intro, sections }: LegalPageProps) {
               ))}
 
               {sec.footer?.map((p, i) => (
-                <p key={i} className="mt-3 text-sm leading-relaxed text-white/60">
+                <p key={i} className="mt-3 text-sm leading-relaxed text-ink/60">
                   {p}
                 </p>
               ))}

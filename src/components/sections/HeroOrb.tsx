@@ -120,7 +120,7 @@ export default function HeroOrb() {
                   className="block h-full w-full rounded-full blur-md"
                   style={{ background: "radial-gradient(circle, rgba(200,243,29,0.55), rgba(140,0,255,0.4) 60%, transparent)" }} />
               </div>
-              <span className="absolute left-[18%] top-[12%] h-[28%] w-[40%] -rotate-12 rounded-full bg-white/25 blur-xl" />
+              <span className="absolute left-[18%] top-[12%] h-[28%] w-[40%] -rotate-12 rounded-full bg-ink/25 blur-xl" />
             </div>
             <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
               <span className="font-display font-black text-[#C8F31D] drop-shadow-[0_0_24px_rgba(200,243,29,0.7)]"
@@ -145,8 +145,8 @@ export default function HeroOrb() {
                   <Hex icon={n.icon} />
                 </span>
                 <div className="text-center leading-tight">
-                  <p className="text-[10px] font-bold text-white sm:text-xs lg:text-sm">{n.title}</p>
-                  <p className="text-[9px] text-white/45 sm:text-[10px] lg:text-[11px]">{n.sub}</p>
+                  <p className="text-[10px] font-bold text-ink sm:text-xs lg:text-sm">{n.title}</p>
+                  <p className="text-[9px] text-ink/45 sm:text-[10px] lg:text-[11px]">{n.sub}</p>
                 </div>
               </div>
             ) : (
@@ -155,8 +155,8 @@ export default function HeroOrb() {
                   <Hex icon={n.icon} />
                 </span>
                 <div className="leading-tight">
-                  <p className="whitespace-nowrap text-[10px] font-bold text-white sm:text-xs lg:text-sm">{n.title}</p>
-                  <p className="whitespace-nowrap text-[9px] text-white/45 sm:text-[10px] lg:text-[11px]">{n.sub}</p>
+                  <p className="whitespace-nowrap text-[10px] font-bold text-ink sm:text-xs lg:text-sm">{n.title}</p>
+                  <p className="whitespace-nowrap text-[9px] text-ink/45 sm:text-[10px] lg:text-[11px]">{n.sub}</p>
                 </div>
               </div>
             )}
@@ -165,9 +165,9 @@ export default function HeroOrb() {
       </div>
 
       {/* SCROLL DOWN */}
-      <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-3 text-white/40 lg:flex">
+      <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-3 text-ink/40 lg:flex">
         <span className="text-[10px] font-semibold uppercase tracking-[0.35em]" style={{ writingMode: "vertical-rl" }}>Scroll Down</span>
-        <span className="h-12 w-px bg-gradient-to-b from-white/30 to-transparent" />
+        <span className="h-12 w-px bg-gradient-to-b from-ink/30 to-transparent" />
         <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }} className="text-brand-mint">
           <ChevronDown size={16} />
         </motion.span>

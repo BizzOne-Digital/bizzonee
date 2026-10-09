@@ -24,7 +24,7 @@ const SOCIALS = SOCIAL_LINKS.map((s) => ({ ...s, icon: ICONS[s.name] }));
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/10 pt-16">
+    <footer className="relative border-t border-ink/10 pt-16">
       <div className="section pb-10">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Company */}
@@ -37,13 +37,13 @@ export default function Footer() {
                 height={34}
                 className="rounded-lg"
               />
-              <span className="font-display text-base font-bold text-white">
+              <span className="font-display text-base font-bold text-ink">
                 BizzOne
                 <span className="text-brand-mint"> Digital</span>
               </span>
             </Link>
 
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/50">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink/50">
               An AI Automation & Digital Growth Agency helping businesses
               attract, engage and convert with data-driven solutions.
             </p>
@@ -56,7 +56,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`BizzOne Digital on ${name}`}
-                  className="grid h-9 w-9 place-items-center rounded-lg glass text-white/70 transition-colors hover:text-brand-mint"
+                  className="grid h-9 w-9 place-items-center rounded-lg glass text-ink/70 transition-colors hover:text-brand-mint"
                 >
                   <Icon size={15} />
                 </a>
@@ -66,7 +66,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-ink">
               Quick Links
             </h2>
 
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-mint"
+                    className="text-sm text-ink/55 transition-colors hover:text-brand-mint"
                   >
                     {link.label}
                   </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-ink">
               Services
             </h2>
 
@@ -95,7 +95,7 @@ export default function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-sm text-white/55 transition-colors hover:text-brand-mint"
+                    className="text-sm text-ink/55 transition-colors hover:text-brand-mint"
                   >
                     {service.label}
                   </Link>
@@ -106,11 +106,11 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-ink">
               Newsletter
             </h2>
 
-            <p className="mt-4 text-sm text-white/55">
+            <p className="mt-4 text-sm text-ink/55">
               Get tips & insights to grow your business digitally.
             </p>
 
@@ -120,7 +120,7 @@ export default function Footer() {
                 id="footer-newsletter-email"
                 type="email"
                 placeholder="Enter your email"
-                className="w-full bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/35 focus:outline-none"
+                className="w-full bg-transparent px-3 py-2 text-sm text-ink placeholder:text-ink/35 focus:outline-none"
               />
 
               <button
@@ -134,7 +134,7 @@ export default function Footer() {
               </button>
             </div>
 
-            <div className="mt-6 space-y-1.5 text-sm text-white/50">
+            <div className="mt-6 space-y-1.5 text-sm text-ink/50">
               <p><a href={`mailto:${BUSINESS.email}`} className="transition-colors hover:text-brand-mint">{BUSINESS.email}</a></p>
               <p><a href={BUSINESS.phoneHref} className="transition-colors hover:text-brand-mint">{BUSINESS.phoneDisplay}</a></p>
             </div>
@@ -142,22 +142,22 @@ export default function Footer() {
         </div>
 
         {/* Hours & Address */}
-        <div className="mt-10 grid gap-8 border-t border-white/10 pt-8 sm:grid-cols-2">
+        <div className="mt-10 grid gap-8 border-t border-ink/10 pt-8 sm:grid-cols-2">
           <div>
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-ink">
               Business Hours
             </h2>
-            <div className="mt-3 space-y-1 text-sm text-white/55">
+            <div className="mt-3 space-y-1 text-sm text-ink/55">
               <p>{BUSINESS.hours.display}</p>
               <p>{BUSINESS.hours.closed}</p>
             </div>
           </div>
 
           <div>
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-ink">
               Visit Us
             </h2>
-            <address className="mt-3 space-y-1 text-sm not-italic text-white/55">
+            <address className="mt-3 space-y-1 text-sm not-italic text-ink/55">
               <p>{BUSINESS.name}</p>
               <p>{BUSINESS.addressLine}</p>
               <p>
@@ -168,17 +168,17 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/10 py-6">
-        <div className="section flex flex-col items-center justify-between gap-3 text-xs text-white/40 sm:flex-row">
+      <div className="border-t border-ink/10 py-6">
+        <div className="section flex flex-col items-center justify-between gap-3 text-xs text-ink/40 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </p>
 
           <div className="flex gap-4 sm:-translate-x-4">
-            <Link href="/privacy-policy" className="text-white/80 transition-colors hover:text-brand-mint">
+            <Link href="/privacy-policy" className="text-ink/80 transition-colors hover:text-brand-mint">
               Privacy Policy
             </Link>
-            <Link href="/terms-and-conditions" className="text-white/80 transition-colors hover:text-brand-mint">
+            <Link href="/terms-and-conditions" className="text-ink/80 transition-colors hover:text-brand-mint">
               Terms & Conditions
             </Link>
           </div>

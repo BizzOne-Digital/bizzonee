@@ -106,10 +106,10 @@ export default function SeoServicePage() {
               <span className="inline-flex items-center gap-2 rounded-full neon-border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-brand-mint">
                 Our Services
               </span>
-              <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+              <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
                 <span className="text-gradient">SEO Services</span> for Businesses in Mississauga and Across Canada
               </h1>
-              <p className="mt-5 max-w-lg text-lg leading-relaxed text-white/65">
+              <p className="mt-5 max-w-lg text-lg leading-relaxed text-ink/65">
                 Get found on Google by the customers already searching for what you sell. We combine local SEO, technical fixes, on-page optimisation and content into one clear monthly plan.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
@@ -120,7 +120,7 @@ export default function SeoServicePage() {
             <Reveal delay={0.1}>
               <div className="relative mx-auto grid aspect-square w-full max-w-sm place-items-center overflow-hidden rounded-3xl glass-strong p-10">
                 <span className="absolute right-5 top-5 rounded-xl border border-brand-mint/30 bg-brand-mint/5 px-4 py-1.5 text-center leading-tight">
-                  <span className="block text-[9px] font-medium uppercase tracking-wide text-white/45">Focus</span>
+                  <span className="block text-[9px] font-medium uppercase tracking-wide text-ink/45">Focus</span>
                   <span className="block text-sm font-bold text-brand-mint">Local + Technical</span>
                 </span>
                 <span className="absolute inset-0 m-auto h-40 w-40 rounded-full bg-brand-purple/30 blur-3xl" />
@@ -137,16 +137,16 @@ export default function SeoServicePage() {
         <div className="section">
           <Reveal className="text-center">
             <SectionLabel>What&apos;s Included</SectionLabel>
-            <h2 className="mt-5 font-display text-3xl font-extrabold text-white sm:text-4xl">Everything Your Site Needs to <span className="text-gradient">Rank</span></h2>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/55">From the first audit to monthly reporting, one team handles every part of your SEO.</p>
+            <h2 className="mt-5 font-display text-3xl font-extrabold text-ink sm:text-4xl">Everything Your Site Needs to <span className="text-gradient">Rank</span></h2>
+            <p className="mx-auto mt-3 max-w-xl text-base text-ink/55">From the first audit to monthly reporting, one team handles every part of your SEO.</p>
           </Reveal>
           <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {INCLUDED.map((it, i) => (
               <Reveal key={it.title} delay={i * 0.05}>
                 <div className="h-full rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-mint">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><it.icon size={18} aria-hidden="true" /></span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-white">{it.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">{it.body}</p>
+                  <h3 className="mt-4 font-display text-lg font-bold text-ink">{it.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{it.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -159,15 +159,15 @@ export default function SeoServicePage() {
         <div className="section">
           <Reveal className="text-center">
             <SectionLabel>Our SEO Process</SectionLabel>
-            <h2 className="mt-5 font-display text-3xl font-extrabold text-white sm:text-4xl">A Clear Plan, <span className="text-gradient">Step by Step</span></h2>
+            <h2 className="mt-5 font-display text-3xl font-extrabold text-ink sm:text-4xl">A Clear Plan, <span className="text-gradient">Step by Step</span></h2>
           </Reveal>
           <ol className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-5">
             {PROCESS.map((p, i) => (
               <li key={p.n} className="list-none">
                 <Reveal delay={i * 0.06} className="h-full rounded-2xl glass-strong p-5">
                   <span className="font-display text-2xl font-extrabold text-gradient">{p.n}</span>
-                  <h3 className="mt-2 text-sm font-bold text-white">{p.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-white/60">{p.body}</p>
+                  <h3 className="mt-2 text-sm font-bold text-ink">{p.title}</h3>
+                  <p className="mt-2 text-xs leading-relaxed text-ink/60">{p.body}</p>
                 </Reveal>
               </li>
             ))}
@@ -180,11 +180,11 @@ export default function SeoServicePage() {
         <div className="section">
           <div className="mx-auto grid max-w-5xl items-center gap-10 rounded-3xl glass p-8 sm:p-10 lg:grid-cols-2">
             <Reveal>
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">SEO for <span className="text-gradient">Local Businesses</span></h2>
-              <p className="mt-4 text-base leading-relaxed text-white/65">
+              <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">SEO for <span className="text-gradient">Local Businesses</span></h2>
+              <p className="mt-4 text-base leading-relaxed text-ink/65">
                 Most small businesses win or lose customers in local search. When someone nearby searches for your service, local SEO decides whether they see you or a competitor. We help Mississauga businesses and service-area businesses across the GTA and Canada:
               </p>
-              <p className="mt-4 text-sm text-white/55">
+              <p className="mt-4 text-sm text-ink/55">
                 Start with our free{" "}
                 <Link href="/blog/local-seo-checklist-for-mississauga-businesses" className="font-semibold text-brand-mint underline-offset-4 hover:underline">local SEO checklist for Mississauga businesses</Link>.
               </p>
@@ -192,7 +192,7 @@ export default function SeoServicePage() {
             <Reveal delay={0.1}>
               <ul className="space-y-3">
                 {LOCAL_POINTS.map((p) => (
-                  <li key={p} className="flex items-start gap-3 text-sm text-white/80">
+                  <li key={p} className="flex items-start gap-3 text-sm text-ink/80">
                     <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-brand-mint/40 text-brand-mint"><Check size={13} aria-hidden="true" /></span>
                     {p}
                   </li>
@@ -207,11 +207,11 @@ export default function SeoServicePage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">How We Measure <span className="text-gradient">Results</span></h2>
-            <p className="mt-4 text-base leading-relaxed text-white/65">
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">How We Measure <span className="text-gradient">Results</span></h2>
+            <p className="mt-4 text-base leading-relaxed text-ink/65">
               Rankings are only useful if they bring customers. Every monthly report tracks keyword positions, organic traffic, Google Business Profile calls and direction requests, and the leads that came from search, so you can see the return on your investment. We never promise guaranteed rankings.
             </p>
-            <p className="mt-4 text-sm text-white/55">
+            <p className="mt-4 text-sm text-ink/55">
               See how we work with clients in our{" "}
               <Link href="/case-studies" className="font-semibold text-brand-mint underline-offset-4 hover:underline">client case studies</Link>, and pair SEO with a{" "}
               <Link href="/web-development" className="font-semibold text-brand-mint underline-offset-4 hover:underline">fast, SEO-ready website</Link> or{" "}
@@ -225,16 +225,16 @@ export default function SeoServicePage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="text-center">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">SEO <span className="text-gradient">FAQs</span></h2>
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">SEO <span className="text-gradient">FAQs</span></h2>
           </Reveal>
           <div className="mx-auto mt-8 max-w-3xl space-y-3">
             {FAQS.map((f) => (
               <details key={f.q} className="group rounded-2xl glass p-5 open:shadow-glow-mint">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold text-white">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold text-ink">
                   <h3 className="text-base font-semibold">{f.q}</h3>
                   <span aria-hidden="true" className="text-brand-mint transition-transform group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-white/65">{f.a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink/65">{f.a}</p>
               </details>
             ))}
           </div>

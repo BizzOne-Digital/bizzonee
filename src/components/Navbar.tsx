@@ -68,7 +68,7 @@ export default function Navbar() {
               height={34}
               className="rounded-lg"
             />
-            <span className="font-display text-base font-bold tracking-tight text-white">
+            <span className="font-display text-base font-bold tracking-tight text-ink">
               BizzOne<span className="text-brand-mint"> Digital</span>
             </span>
           </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
                     // Hover already opens the menu for mouse users; a click (or Enter/Space
                     // for keyboard users) opens it too. Escape or clicking outside closes it.
                     onClick={() => setServicesOpen(true)}
-                    className="flex items-center gap-1 text-sm font-medium text-white transition-colors hover:text-brand-mint"
+                    className="flex items-center gap-1 text-sm font-medium text-ink transition-colors hover:text-brand-mint"
                   >
                     {l.label}
                     <ChevronDown
@@ -126,13 +126,13 @@ export default function Navbar() {
                                 key={s.key}
                                 href={s.href}
                                 onClick={() => setServicesOpen(false)}
-                                className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-white/5"
+                                className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-colors hover:bg-ink/5"
                               >
                                 <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint transition-colors group-hover:bg-brand-mint/20">
                                   <Icon size={16} aria-hidden="true" />
                                 </span>
 
-                                <span className="text-sm font-medium text-white group-hover:text-brand-mint">
+                                <span className="text-sm font-medium text-ink group-hover:text-brand-mint">
                                   {s.title}
                                 </span>
                               </Link>
@@ -141,7 +141,7 @@ export default function Navbar() {
                           <Link
                             href="/services"
                             onClick={() => setServicesOpen(false)}
-                            className="col-span-2 mt-1 rounded-xl border-t border-white/10 px-3 pt-3 text-center text-xs font-bold uppercase tracking-wide text-brand-mint hover:text-white"
+                            className="col-span-2 mt-1 rounded-xl border-t border-ink/10 px-3 pt-3 text-center text-xs font-bold uppercase tracking-wide text-brand-mint hover:text-ink"
                           >
                             View all services
                           </Link>
@@ -154,7 +154,7 @@ export default function Navbar() {
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="text-sm font-medium text-white transition-colors hover:text-brand-mint"
+                  className="text-sm font-medium text-ink transition-colors hover:text-brand-mint"
                 >
                   {l.label}
                 </Link>
@@ -180,7 +180,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-xl glass text-white lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-xl glass text-ink lg:hidden"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -206,7 +206,7 @@ export default function Navbar() {
                     aria-expanded={mobileServices}
                     aria-controls="mobile-services-menu"
                     onClick={() => setMobileServices((v) => !v)}
-                    className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-white hover:bg-white/5"
+                    className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-sm font-medium text-ink hover:bg-ink/5"
                   >
                     Services
 
@@ -227,11 +227,11 @@ export default function Navbar() {
                         id="mobile-services-menu"
                         className="overflow-hidden"
                       >
-                        <div className="ml-3 border-l border-white/10 pl-2">
+                        <div className="ml-3 border-l border-ink/10 pl-2">
                           <Link
                             href="/services"
                             onClick={closeMobile}
-                            className="block rounded-lg px-4 py-2.5 text-sm font-medium text-brand-mint hover:bg-white/5"
+                            className="block rounded-lg px-4 py-2.5 text-sm font-medium text-brand-mint hover:bg-ink/5"
                           >
                             All Services
                           </Link>
@@ -241,7 +241,7 @@ export default function Navbar() {
                               key={s.key}
                               href={s.href}
                               onClick={closeMobile}
-                              className="block rounded-lg px-4 py-2.5 text-sm text-white hover:bg-white/5 hover:text-brand-mint"
+                              className="block rounded-lg px-4 py-2.5 text-sm text-ink hover:bg-ink/5 hover:text-brand-mint"
                             >
                               {s.title}
                             </Link>
@@ -256,7 +256,7 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={closeMobile}
-                  className="block rounded-xl px-4 py-3 text-sm font-medium text-white hover:bg-white/5 hover:text-brand-mint"
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-ink hover:bg-ink/5 hover:text-brand-mint"
                 >
                   {l.label}
                 </Link>
@@ -266,7 +266,7 @@ export default function Navbar() {
             <Link
               href="/contact"
               onClick={closeMobile}
-              className="mt-2 block rounded-xl bg-brand-purple px-4 py-3 text-center text-sm font-semibold text-white"
+              className="mt-2 block rounded-xl bg-brand-purple px-4 py-3 text-center text-sm font-semibold text-ink"
             >
               Book Strategy Call
             </Link>

@@ -35,10 +35,10 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal className="mx-auto mt-8 max-w-3xl text-center">
             <SectionLabel>Our Services</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
               Digital Marketing, Web &amp; <span className="text-gradient">AI Automation Services</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink/75">
               Everything you need to attract, engage and convert customers, from one team. Choose a single service or combine them into a complete growth system.
             </p>
           </Reveal>
@@ -47,8 +47,8 @@ export default function ServicesPage() {
               <Reveal key={s.key} delay={i * 0.04}>
                 <Link href={s.href} className="group flex h-full flex-col rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><s.icon size={20} aria-hidden="true" /></span>
-                  <h2 className="mt-4 font-display text-lg font-bold text-white group-hover:text-brand-mint">{s.title}</h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{s.short}</p>
+                  <h2 className="mt-4 font-display text-lg font-bold text-ink group-hover:text-brand-mint">{s.title}</h2>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/60">{s.short}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-brand-mint">
                     Explore {s.title} <ArrowRight size={13} aria-hidden="true" />
                   </span>

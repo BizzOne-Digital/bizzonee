@@ -19,14 +19,14 @@ const STYLES = ["Modern & minimalist", "Bold & graphic", "Corporate & profession
 const PAGES = ["Home", "About Us", "Services", "Contact", "Gallery / Portfolio", "Testimonials", "FAQ", "Pricing", "Blog / News", "Products / Shop", "Booking", "Our Team"];
 const FEATURES = ["Contact form", "Google Maps", "Social media feed", "Gallery management", "Admin portal", "Blog CMS", "Online booking", "Customer portal", "Payment integration", "Email newsletter", "CRM integration", "eCommerce / store", "Multi-language"];
 
-const field = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition-colors focus:border-brand-mint/60";
-const labelCls = "mb-1.5 block text-sm font-medium text-white/80";
-const darkOpt = { background: "#0f0a1a", color: "#e9e6f2" };
+const field = "w-full rounded-xl border border-ink/10 bg-ink/[0.04] px-4 py-3 text-sm text-ink placeholder-ink/35 outline-none transition-colors focus:border-brand-mint/60";
+const labelCls = "mb-1.5 block text-sm font-medium text-ink/80";
+const darkOpt = { background: "#ffffff", color: "#0c0f1a" };
 
 function Divider({ children }: { children: React.ReactNode }) {
   return (
     <div className="my-7 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-brand-mint/80">
-      <span className="h-px flex-1 bg-white/10" />{children}<span className="h-px flex-1 bg-white/10" />
+      <span className="h-px flex-1 bg-ink/10" />{children}<span className="h-px flex-1 bg-ink/10" />
     </div>
   );
 }
@@ -38,7 +38,7 @@ function Pills({ options, selected, onToggle }: { options: string[]; selected: s
         const on = selected.includes(o);
         return (
           <button key={o} type="button" onClick={() => onToggle(o)}
-            className={`rounded-full border px-3.5 py-2 text-sm font-medium transition-all ${on ? "border-brand-mint bg-brand-mint/15 text-brand-mint" : "border-white/12 text-white/65 hover:border-white/30"}`}>
+            className={`rounded-full border px-3.5 py-2 text-sm font-medium transition-all ${on ? "border-brand-mint bg-brand-mint/15 text-brand-mint" : "border-ink/12 text-ink/65 hover:border-ink/30"}`}>
             {o}
           </button>
         );
@@ -106,9 +106,9 @@ export default function OnboardForm() {
     return (
       <div className="mx-auto mt-10 max-w-3xl rounded-3xl glass-strong p-10 text-center">
         <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
-        <h3 className="mt-5 font-display text-2xl font-bold text-white">Submitted successfully!</h3>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/60">Thanks {f.name.split(" ")[0] || "there"}, we&apos;ll reach out within 24–48 hours.</p>
-        {taskUrl && <a href={taskUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-white transition-all hover:shadow-glow-purple">View in ClickUp</a>}
+        <h3 className="mt-5 font-display text-2xl font-bold text-ink">Submitted successfully!</h3>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink/60">Thanks {f.name.split(" ")[0] || "there"}, we&apos;ll reach out within 24–48 hours.</p>
+        {taskUrl && <a href={taskUrl} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-ink transition-all hover:shadow-glow-purple">View in ClickUp</a>}
       </div>
     );
   }
@@ -165,7 +165,7 @@ export default function OnboardForm() {
       {status === "error" && <p className="mt-5 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{err}</p>}
 
       <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-        <span className="text-xs text-white/40">🔒 Secure &amp; private. Used only for your project.</span>
+        <span className="text-xs text-ink/40">🔒 Secure &amp; private. Used only for your project.</span>
            <button onClick={submit} disabled={status === "sending"}
           className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-mint px-7 py-3.5 text-sm font-bold text-ink shadow-glow-mint transition-all hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 sm:w-auto">
           <Send size={16} /> {status === "sending" ? "Submitting..." : "Submit Onboarding"}

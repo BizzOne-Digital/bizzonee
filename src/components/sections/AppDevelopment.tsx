@@ -43,7 +43,7 @@ function IndustryPill({ ind }: { ind: typeof INDUSTRIES[0] }) {
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
         <ind.icon size={22} />
       </span>
-      <span className="flex-1 text-[15px] font-bold leading-snug text-white">{ind.label}</span>
+      <span className="flex-1 text-[15px] font-bold leading-snug text-ink">{ind.label}</span>
     </div>
   );
 }
@@ -58,13 +58,13 @@ const TIERS: Tier[] = [
 /* ── shared badges ── */
 function GoogleRatingBadge({ className = "" }: { className?: string }) {
   return (
-    <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 ${className}`}>
+    <div className={`inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 ${className}`}>
       <div className="flex items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star key={i} size={12} className="fill-yellow-400 text-yellow-400" />
         ))}
       </div>
-      <span className="text-[11px] font-semibold text-white/80">5.0 rating <span className="text-white/50">on Google</span></span>
+      <span className="text-[11px] font-semibold text-ink/80">5.0 rating <span className="text-ink/50">on Google</span></span>
     </div>
   );
 }
@@ -82,11 +82,11 @@ function HeroHighlightCard() {
         <GoogleRatingBadge />
       </div>
 
-      <p className="mt-3 text-sm leading-snug text-white/80">A full-featured app built to scale with your business.</p>
+      <p className="mt-3 text-sm leading-snug text-ink/80">A full-featured app built to scale with your business.</p>
 
-      <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
+      <ul className="mt-5 space-y-2.5 border-t border-ink/10 pt-5">
         {TIERS[1].includes.map((it) => (
-          <li key={it} className="flex items-start gap-2 text-sm text-white/75">
+          <li key={it} className="flex items-start gap-2 text-sm text-ink/75">
             <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}
           </li>
         ))}
@@ -100,7 +100,7 @@ function HeroHighlightCard() {
         Request a Quote <ArrowRight size={17} />
       </a>
       <button onClick={() => document.getElementById("app-tiers")?.scrollIntoView({ behavior: "smooth" })}
-        className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white/80 transition-all hover:bg-white/[0.08] hover:text-white">
+        className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80 transition-all hover:bg-ink/[0.08] hover:text-ink">
         See all tiers <ArrowRight size={13} />
       </button>
     </div>
@@ -118,10 +118,10 @@ export default function AppDevelopment() {
             <Reveal className="text-center lg:text-left">
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
                 <H1Label>Mobile App Development for iOS &amp; Android</H1Label>
-                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl">
                   Your App. Built to <span className="text-gradient">Launch & Scale.</span>
                 </p>
-                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
+                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink sm:text-lg lg:mx-0">
                   From idea to App Store, we design and build iOS, Android and cross-platform apps that are fast, reliable and built around real users. Over {SITE_STATS.appProjectsLaunched.value} projects delivered for businesses across every industry.
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
@@ -133,7 +133,7 @@ export default function AppDevelopment() {
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1.5 text-[11px] font-semibold text-brand-mint">
                     <ShieldCheck size={13} /> Free Consultation
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 text-[11px] font-semibold text-ink/70">
                     <ShieldCheck size={13} className="text-brand-mint" /> Post-Launch Support
                   </span>
                 </div>
@@ -142,8 +142,8 @@ export default function AppDevelopment() {
                     <div key={s.label} className="flex items-center gap-2.5">
                       <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><s.icon size={16} /></span>
                       <div className="text-left">
-                        <div className="font-display text-base font-bold text-white">{s.value}</div>
-                        <div className="text-[11px] text-white/90">{s.label}</div>
+                        <div className="font-display text-base font-bold text-ink">{s.value}</div>
+                        <div className="text-[11px] text-ink/90">{s.label}</div>
                       </div>
                     </div>
                   ))}
@@ -164,10 +164,10 @@ export default function AppDevelopment() {
         <div className="section">
           <Reveal className="mb-12 text-center">
             <SectionLabel>What We Build</SectionLabel>
-            <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold text-ink sm:text-5xl lg:text-6xl">
               Apps For <span className="text-gradient">Every Platform</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-white/70">
+            <p className="mx-auto mt-4 max-w-xl text-base text-ink/70">
               Whatever your idea, we build the right app for it — native, cross-platform, or a lean MVP to test the market.
             </p>
           </Reveal>
@@ -178,8 +178,8 @@ export default function AppDevelopment() {
                 <span className="grid h-12 w-12 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint">
                   <w.icon size={22} />
                 </span>
-                <h3 className="mt-4 font-display text-lg font-bold text-white">{w.label}</h3>
-                <p className="mt-2 text-sm leading-snug text-white/70">{w.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-bold text-ink">{w.label}</h3>
+                <p className="mt-2 text-sm leading-snug text-ink/70">{w.desc}</p>
               </div>
             ))}
           </Reveal>
@@ -191,10 +191,10 @@ export default function AppDevelopment() {
         <div className="section">
           <Reveal className="mb-12 text-center">
             <SectionLabel>Browse by Industry</SectionLabel>
-            <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold text-ink sm:text-5xl lg:text-6xl">
               We Build Apps for <span className="text-gradient">Every Business</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-white/70">
+            <p className="mx-auto mt-4 max-w-xl text-base text-ink/70">
               Custom mobile apps tailored to your industry, your customers and your workflow.
             </p>
           </Reveal>
@@ -206,7 +206,7 @@ export default function AppDevelopment() {
           </Reveal>
 
           <Reveal delay={0.15} className="mt-10 text-center">
-            <p className="text-sm text-white/60">Don&apos;t see your industry? We build for businesses everywhere.</p>
+            <p className="text-sm text-ink/60">Don&apos;t see your industry? We build for businesses everywhere.</p>
             <NeonButton href="#app-contact" variant="ghost" className="mt-4">Let&apos;s Talk About Your App</NeonButton>
           </Reveal>
         </div>
@@ -222,10 +222,10 @@ export default function AppDevelopment() {
             <span className="inline-flex items-center gap-2 rounded-full neon-border px-5 py-2 text-xs font-bold uppercase tracking-[0.22em]">
               <span className="text-brand-purple-light">Build</span><span className="text-brand-mint">Tiers</span>
             </span>
-            <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Find The Right <span className="text-gradient">Fit For Your App</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/90">
               Every app is scoped and quoted around your exact requirements. Tell us about your project and we&apos;ll send a tailored proposal.
             </p>
           </Reveal>
@@ -235,10 +235,10 @@ export default function AppDevelopment() {
                 <div className={`relative flex h-full flex-col rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 ${t.popular ? "neon-border shadow-glow-purple" : "glass hover:shadow-glow-purple"}`}>
                   {t.popular && <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-mint px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-ink shadow-glow-mint">Most Popular</span>}
                   <div className="text-sm font-semibold uppercase tracking-wide text-brand-mint">{t.name}</div>
-                  <p className="mt-2 text-sm leading-snug text-white/90">{t.tagline}</p>
-                  <ul className="mt-5 flex-1 space-y-3 border-t border-white/10 pt-5">
+                  <p className="mt-2 text-sm leading-snug text-ink/90">{t.tagline}</p>
+                  <ul className="mt-5 flex-1 space-y-3 border-t border-ink/10 pt-5">
                     {t.includes.map((it) => (
-                      <li key={it} className="flex items-start gap-2 text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
+                      <li key={it} className="flex items-start gap-2 text-sm text-ink/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
                   </ul>
                   <button onClick={() => document.getElementById("app-contact")?.scrollIntoView({ behavior: "smooth" })}
@@ -249,7 +249,7 @@ export default function AppDevelopment() {
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-center text-xs text-white/90">Every quote is free, no obligation. Tell us about your app and we&apos;ll get back to you within 24–48 hours.</p>
+          <p className="mt-6 text-center text-xs text-ink/90">Every quote is free, no obligation. Tell us about your app and we&apos;ll get back to you within 24–48 hours.</p>
         </div>
       </section>
 
@@ -266,15 +266,15 @@ export default function AppDevelopment() {
                   <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-mint shadow-glow-mint" /> Get In Touch
                   </span>
-                  <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+                  <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
                     Let&apos;s Build Your <span className="text-gradient">App</span>
                   </h2>
-                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/90">
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-ink/90">
                     Send us a quick message and our team will reach out within 24–48 hours with a tailored quote.
                   </p>
                   <ul className="mt-8 space-y-3">
                     {[{ label: "Reply within 24–48 hours" }, { label: "Free strategy consultation" }, { label: "No spam, ever" }].map((t) => (
-                      <li key={t.label} className="flex items-center gap-3 text-sm text-white/70">
+                      <li key={t.label} className="flex items-center gap-3 text-sm text-ink/70">
                         <span className="h-2 w-2 rounded-full bg-brand-mint shadow-glow-mint" />
                         {t.label}
                       </li>
@@ -292,7 +292,7 @@ export default function AppDevelopment() {
 }
 
 function AppContactForm() {
-  const fieldCls = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition-colors focus:border-brand-mint/60";
+  const fieldCls = "w-full rounded-xl border border-ink/10 bg-ink/[0.04] px-4 py-3 text-sm text-ink placeholder-ink/35 outline-none transition-colors focus:border-brand-mint/60";
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -313,8 +313,8 @@ function AppContactForm() {
     return (
       <div className="flex min-h-[340px] flex-col items-center justify-center rounded-3xl glass-strong p-10 text-center">
         <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
-        <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
-        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">Thanks {form.name.split(" ")[0] || "there"}, we&apos;ll be in touch within 24–48 hours.</p>
+        <h3 className="mt-5 font-display text-2xl font-bold text-ink">Message sent!</h3>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink/90">Thanks {form.name.split(" ")[0] || "there"}, we&apos;ll be in touch within 24–48 hours.</p>
       </div>
     );
   }
@@ -323,24 +323,24 @@ function AppContactForm() {
     <div className="rounded-3xl glass-strong p-6 sm:p-7">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-white/80">Full Name <span className="text-brand-mint">*</span></label>
+          <label className="mb-1.5 block text-sm font-medium text-ink/80">Full Name <span className="text-brand-mint">*</span></label>
           <input className={fieldCls} value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-white/80">Phone</label>
+          <label className="mb-1.5 block text-sm font-medium text-ink/80">Phone</label>
           <input type="tel" className={fieldCls} value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (___) ___-____" />
         </div>
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Email <span className="text-brand-mint">*</span></label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Email <span className="text-brand-mint">*</span></label>
         <input type="email" className={fieldCls} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@business.com" />
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Business Name</label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Business Name</label>
         <input className={fieldCls} value={form.business} onChange={(e) => set("business", e.target.value)} placeholder="ABC Company" />
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Tell us about your app</label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Tell us about your app</label>
         <textarea className={`${fieldCls} min-h-[110px] resize-y leading-relaxed`} value={form.message} onChange={(e) => set("message", e.target.value)} placeholder="What does your app do? iOS, Android, or both? Any key features?" />
       </div>
       {status === "error" && <p className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{errorMsg}</p>}

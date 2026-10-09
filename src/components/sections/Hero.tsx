@@ -31,7 +31,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.p
-            className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl"
             initial="hidden" animate="show"
             variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } } }}
           >
@@ -45,7 +45,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.7, ease }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-white/90">
+            className="mt-6 max-w-xl text-base leading-relaxed text-ink/90">
             From strategy to automation, we help businesses attract, engage, and convert through data-driven digital solutions.
           </motion.p>
 
@@ -63,8 +63,8 @@ export default function Hero() {
               ))}
             </div>
             <div>
-              <p className="text-sm font-bold text-white">{formatStat(SITE_STATS.businessesServed)} Businesses Scaled</p>
-              <p className="text-xs text-white/90">With BizzOne Digital</p>
+              <p className="text-sm font-bold text-ink">{formatStat(SITE_STATS.businessesServed)} Businesses Scaled</p>
+              <p className="text-xs text-ink/90">With BizzOne Digital</p>
             </div>
           </motion.div>
         </div>

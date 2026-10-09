@@ -46,10 +46,10 @@ export default function AIAutomation() {
         <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
             <SectionLabel>AI & Automation</SectionLabel>
-            <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Work <span className="text-gradient">Smarter</span>.<br />Scale <span className="text-gradient">Faster</span>.
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-white/90">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-ink/90">
               Our AI-powered automation systems handle repetitive tasks, nurture leads, and keep your business running on autopilot.
             </p>
             <div className="mt-8">
@@ -89,14 +89,14 @@ export default function AIAutomation() {
                 <motion.div key={n.label} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.12 }}
                   className="absolute left-0 flex -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
                   <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><n.icon size={15} /></span>
-                  <span className="text-xs font-semibold text-white">{n.label}</span>
+                  <span className="text-xs font-semibold text-ink">{n.label}</span>
                 </motion.div>
               ))}
               {RIGHT.map((n, i) => (
                 <motion.div key={n.label} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.12 }}
                   className="absolute right-0 flex -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
                   <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-purple/15 text-brand-purple-light"><n.icon size={15} /></span>
-                  <span className="text-xs font-semibold text-white">{n.label}</span>
+                  <span className="text-xs font-semibold text-ink">{n.label}</span>
                 </motion.div>
               ))}
             </div>

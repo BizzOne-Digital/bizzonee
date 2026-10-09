@@ -89,10 +89,10 @@ export default function MississaugaPage() {
           </Reveal>
           <Reveal className="mt-8 max-w-3xl">
             <SectionLabel>Mississauga, Ontario</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl lg:text-6xl">
               Digital Marketing Agency in <span className="text-gradient">Mississauga, Ontario</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/80">
               BizzOne Digital helps Mississauga businesses get found, get leads and follow up automatically, with SEO, paid ads, social media, websites and AI automation from one local team.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -107,15 +107,15 @@ export default function MississaugaPage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="text-center">
-            <h2 className="font-display text-3xl font-extrabold text-white sm:text-4xl">Why Work With a <span className="text-gradient">Mississauga Agency</span></h2>
+            <h2 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">Why Work With a <span className="text-gradient">Mississauga Agency</span></h2>
           </Reveal>
           <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
             {WHY_LOCAL.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.06}>
                 <div className="h-full rounded-2xl glass p-6">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><w.icon size={18} aria-hidden="true" /></span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-white">{w.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">{w.body}</p>
+                  <h3 className="mt-4 font-display text-lg font-bold text-ink">{w.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{w.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -128,16 +128,16 @@ export default function MississaugaPage() {
         <div className="section">
           <Reveal className="text-center">
             <SectionLabel>Services</SectionLabel>
-            <h2 className="mt-5 font-display text-3xl font-extrabold text-white sm:text-4xl">Marketing Services for <span className="text-gradient">Mississauga Businesses</span></h2>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/55">Pick one service or combine them into a complete growth system.</p>
+            <h2 className="mt-5 font-display text-3xl font-extrabold text-ink sm:text-4xl">Marketing Services for <span className="text-gradient">Mississauga Businesses</span></h2>
+            <p className="mx-auto mt-3 max-w-xl text-base text-ink/55">Pick one service or combine them into a complete growth system.</p>
           </Reveal>
           <div className="mx-auto mt-10 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s, i) => (
               <Reveal key={s.href} delay={i * 0.05}>
                 <Link href={s.href} className="group block h-full rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><s.icon size={18} aria-hidden="true" /></span>
-                  <h3 className="mt-4 font-display text-lg font-bold text-white group-hover:text-brand-mint">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">{s.body}</p>
+                  <h3 className="mt-4 font-display text-lg font-bold text-ink group-hover:text-brand-mint">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/60">{s.body}</p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-brand-mint">Learn more <ArrowRight size={13} aria-hidden="true" /></span>
                 </Link>
               </Reveal>
@@ -150,11 +150,11 @@ export default function MississaugaPage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="mx-auto max-w-3xl rounded-3xl glass p-8 sm:p-10">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Be the Business People Find <span className="text-gradient">Near Them</span></h2>
-            <p className="mt-4 text-base leading-relaxed text-white/65">
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Be the Business People Find <span className="text-gradient">Near Them</span></h2>
+            <p className="mt-4 text-base leading-relaxed text-ink/65">
               Mississauga customers search with local intent: &ldquo;near me&rdquo;, a neighbourhood name or a nearby landmark. Whether your business serves {AREAS.slice(0, -1).join(", ")} or the {AREAS[AREAS.length - 1]}, we build your visibility where those searches happen: your Google Business Profile, your service pages and your ads.
             </p>
-            <p className="mt-4 text-sm text-white/55">
+            <p className="mt-4 text-sm text-ink/55">
               Get started with our{" "}
               <Link href="/blog/local-seo-checklist-for-mississauga-businesses" className="font-semibold text-brand-mint underline-offset-4 hover:underline">local SEO checklist for Mississauga businesses</Link>{" "}
               or learn about our{" "}
@@ -168,16 +168,16 @@ export default function MississaugaPage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="text-center">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">A <span className="text-gradient">Canadian Team</span> Clients Trust</h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-white/55">From our public Google reviews.</p>
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">A <span className="text-gradient">Canadian Team</span> Clients Trust</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-ink/55">From our public Google reviews.</p>
           </Reveal>
           <div className="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
             {REVIEWS.map((r) => (
               <Reveal key={r.name}>
                 <figure className="h-full rounded-2xl glass p-6">
                   <Quote size={20} aria-hidden="true" className="text-brand-mint" />
-                  <blockquote className="mt-3 text-sm leading-relaxed text-white/75">&ldquo;{r.text}&rdquo;</blockquote>
-                  <figcaption className="mt-4 text-sm font-bold text-white">{r.name} <span className="font-normal text-white/45">· Google review</span></figcaption>
+                  <blockquote className="mt-3 text-sm leading-relaxed text-ink/75">&ldquo;{r.text}&rdquo;</blockquote>
+                  <figcaption className="mt-4 text-sm font-bold text-ink">{r.name} <span className="font-normal text-ink/45">· Google review</span></figcaption>
                 </figure>
               </Reveal>
             ))}
@@ -194,7 +194,7 @@ export default function MississaugaPage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="mb-8 text-center">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Find Us in <span className="text-gradient">Mississauga</span></h2>
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Find Us in <span className="text-gradient">Mississauga</span></h2>
           </Reveal>
           <Reveal delay={0.05}>
             <ContactDetails mapTitle="Map of BizzOne Digital's office in Mississauga, Ontario" />
@@ -206,16 +206,16 @@ export default function MississaugaPage() {
       <section className="relative py-12">
         <div className="section">
           <Reveal className="text-center">
-            <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Frequently Asked <span className="text-gradient">Questions</span></h2>
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">Frequently Asked <span className="text-gradient">Questions</span></h2>
           </Reveal>
           <div className="mx-auto mt-8 max-w-3xl space-y-3">
             {FAQS.map((f) => (
               <details key={f.q} className="group rounded-2xl glass p-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-white">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-ink">
                   <h3 className="text-base font-semibold">{f.q}</h3>
                   <span aria-hidden="true" className="text-brand-mint transition-transform group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-white/65">{f.a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink/65">{f.a}</p>
               </details>
             ))}
           </div>

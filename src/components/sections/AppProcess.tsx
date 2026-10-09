@@ -61,10 +61,10 @@ export default function AppProcess() {
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Our Process</SectionLabel>
-          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl">
             A Process Built For <span className="text-gradient">Clarity</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/90">
             Five proven steps that take your app from idea to the App Store, on time and on budget.
           </p>
         </Reveal>
@@ -138,9 +138,9 @@ export default function AppProcess() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.16 + 0.15 }}
                   >
-                    <div className="font-display text-2xl font-extrabold text-white/85">{step.n}</div>
+                    <div className="font-display text-2xl font-extrabold text-ink/85">{step.n}</div>
                     <h3 className="mt-1 font-display text-base font-semibold text-brand-mint">{step.title}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-white/90">{step.description}</p>
+                    <p className="mt-1.5 text-xs leading-relaxed text-ink/90">{step.description}</p>
                   </motion.div>
                 </div>
               </div>
@@ -163,9 +163,9 @@ export default function AppProcess() {
               <div className="absolute -left-20 top-0">
                 <Badge icon={step.icon} size={58} />
               </div>
-              <div className="font-display text-xl font-extrabold text-white/85">{step.n}</div>
+              <div className="font-display text-xl font-extrabold text-ink/85">{step.n}</div>
               <h3 className="mt-0.5 font-display text-base font-semibold text-brand-mint">{step.title}</h3>
-              <p className="mt-1 max-w-xs text-sm leading-relaxed text-white/90">{step.description}</p>
+              <p className="mt-1 max-w-xs text-sm leading-relaxed text-ink/90">{step.description}</p>
             </motion.div>
           ))}
         </div>

@@ -29,10 +29,10 @@ export default function ContactPage() {
           </Reveal>
           <Reveal className="mt-8 max-w-3xl">
             <H1Label>Contact Our Digital Marketing Agency in Mississauga</H1Label>
-            <p className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+            <p className="mt-6 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
               Let&apos;s Talk About <span className="text-gradient">Growing Your Business</span>
             </p>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
               Book a free strategy call, ask about a project or just say hello. Call, WhatsApp, email or use the form below and our team will get back to you within 24–48 hours.
             </p>
           </Reveal>

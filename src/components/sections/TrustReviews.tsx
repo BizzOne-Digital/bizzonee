@@ -79,7 +79,7 @@ function Avatar({ name }: { name: string }) {
   const palette = ["#4285F4", "#34A853", "#8C00FF", "#EA4335", "#FBBC05", "#0F9D58"];
   const color = palette[name.charCodeAt(0) % palette.length];
   return (
-    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-sm font-bold text-white" style={{ background: color }}>
+    <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-sm font-bold text-ink" style={{ background: color }}>
       {initials}
     </div>
   );
@@ -110,21 +110,21 @@ export default function TrustReviews() {
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Google Reviews</SectionLabel>
-          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             What Our Clients <span className="text-gradient">Say</span>
           </h2>
           {/* Google rating summary */}
           <div className="mt-6 inline-flex items-center gap-3 rounded-2xl glass px-5 py-3">
             <GoogleLogo />
             <div className="flex items-center gap-1.5">
-              <span className="text-lg font-bold text-white">5.0</span>
+              <span className="text-lg font-bold text-ink">5.0</span>
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={16} className="fill-[#FBBC05] text-[#FBBC05]" />
                 ))}
               </div>
             </div>
-            <span className="text-sm text-white/50">{total} Google Reviews</span>
+            <span className="text-sm text-ink/50">{total} Google Reviews</span>
           </div>
         </Reveal>
 
@@ -146,8 +146,8 @@ export default function TrustReviews() {
                       <div className="flex items-center gap-3">
                         <Avatar name={r.name} />
                         <div>
-                          <div className="text-sm font-bold text-white">{r.name}</div>
-                          <div className="text-xs text-white/45">{r.time}</div>
+                          <div className="text-sm font-bold text-ink">{r.name}</div>
+                          <div className="text-xs text-ink/45">{r.time}</div>
                         </div>
                       </div>
                       <GoogleLogo />
@@ -157,7 +157,7 @@ export default function TrustReviews() {
                         <Star key={s} size={14} className="fill-[#FBBC05] text-[#FBBC05]" />
                       ))}
                     </div>
-                    <p className="flex-1 text-sm leading-relaxed text-white/70">&ldquo;{r.text}&rdquo;</p>
+                    <p className="flex-1 text-sm leading-relaxed text-ink/70">&ldquo;{r.text}&rdquo;</p>
                   </div>
                 ))}
               </motion.div>
@@ -168,14 +168,14 @@ export default function TrustReviews() {
               <div className="flex gap-1.5">
                 {Array.from({ length: pages }).map((_, d) => (
                   <button key={d} onClick={() => { setDir(d > page ? 1 : -1); setPage(d); }}
-                    className={`h-2 rounded-full transition-all ${d === page ? "w-7 bg-brand-mint" : "w-2 bg-white/20"}`} />
+                    className={`h-2 rounded-full transition-all ${d === page ? "w-7 bg-brand-mint" : "w-2 bg-ink/20"}`} />
                 ))}
               </div>
               <div className="flex gap-2">
-                <button onClick={() => go(-1)} className="grid h-10 w-10 place-items-center rounded-full glass text-white/60 transition hover:text-brand-mint">
+                <button onClick={() => go(-1)} className="grid h-10 w-10 place-items-center rounded-full glass text-ink/60 transition hover:text-brand-mint">
                   <ChevronLeft size={18} />
                 </button>
-                <button onClick={() => go(1)} className="grid h-10 w-10 place-items-center rounded-full glass text-white/60 transition hover:text-brand-mint">
+                <button onClick={() => go(1)} className="grid h-10 w-10 place-items-center rounded-full glass text-ink/60 transition hover:text-brand-mint">
                   <ChevronRight size={18} />
                 </button>
               </div>
@@ -187,7 +187,7 @@ export default function TrustReviews() {
               href={COMPANY.googleReviewsUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:text-brand-mint"
+              className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-bold text-ink transition-all hover:-translate-y-0.5 hover:text-brand-mint"
             >
               <GoogleLogo /> View Our Google Reviews
             </a>

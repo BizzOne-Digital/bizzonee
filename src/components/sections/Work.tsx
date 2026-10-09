@@ -32,10 +32,10 @@ export default function OurWork() {
       <div className="section">
         <Reveal className="mx-auto max-w-3xl text-center">
           <SectionLabel>Our Work</SectionLabel>
-          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             Projects We&apos;re <span className="text-gradient">Proud Of</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/75">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/75">
             Real work delivered for real businesses. Click any category to explore.
           </p>
         </Reveal>
@@ -83,8 +83,8 @@ export default function OurWork() {
                     style={{ background: `${cat.color}22`, border: `1px solid ${cat.color}55`, color: cat.color }}>
                     View Work
                   </span>
-                  <h3 className="font-display text-xl font-extrabold text-white">{cat.title}</h3>
-                  <p className="mt-1.5 text-sm text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  <h3 className="font-display text-xl font-extrabold text-ink">{cat.title}</h3>
+                  <p className="mt-1.5 text-sm text-ink opacity-0 transition-all duration-300 group-hover:opacity-100">
                     {cat.description}
                   </p>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold opacity-0 transition-all duration-300 group-hover:opacity-100"

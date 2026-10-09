@@ -80,10 +80,10 @@ function Lightbox({ cat, startIdx, onClose }: { cat: Cat; startIdx: number; onCl
       <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" />
 
       <button onClick={onClose} aria-label="Close gallery"
-        className="absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/15 bg-white/10 text-white hover:bg-white/20 transition-colors">
+        className="absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full border border-ink/15 bg-ink/10 text-ink hover:bg-ink/20 transition-colors">
         <X size={18} />
       </button>
-      <div className="absolute left-5 top-5 z-10 rounded-full border border-white/15 bg-black/50 px-4 py-2 text-xs font-bold text-white/70 backdrop-blur-sm">
+      <div className="absolute left-5 top-5 z-10 rounded-full border border-ink/15 bg-black/50 px-4 py-2 text-xs font-bold text-ink/70 backdrop-blur-sm">
         {idx + 1} / {n}
       </div>
 
@@ -96,7 +96,7 @@ function Lightbox({ cat, startIdx, onClose }: { cat: Cat; startIdx: number; onCl
           <motion.div key={idx}
             initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.2 }}
-            className={`relative w-full overflow-hidden rounded-2xl border border-white/10 ${cur.video ? "aspect-[9/16] max-w-sm mx-auto" : "aspect-[4/3]"}`}>
+            className={`relative w-full overflow-hidden rounded-2xl border border-ink/10 ${cur.video ? "aspect-[9/16] max-w-sm mx-auto" : "aspect-[4/3]"}`}>
             <MediaItem src={cur.src} alt={cur.alt} width={cur.width} height={cur.height} accent={cat.accent} color={cat.color}
               video={cur.video} autoPlay={cur.video} controls={!!cur.video} eager />
           </motion.div>
@@ -105,12 +105,12 @@ function Lightbox({ cat, startIdx, onClose }: { cat: Cat; startIdx: number; onCl
         <div className="mt-5 flex items-center justify-between px-1">
           <div>
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: cat.color }}>{cat.sub}</span>
-            <p className="mt-0.5 text-base font-bold text-white">{cur.alt}</p>
+            <p className="mt-0.5 text-base font-bold text-ink">{cur.alt}</p>
           </div>
           <div className="flex gap-2 flex-wrap justify-end">
             {cat.images.map((_, i) => (
               <button key={i} onClick={() => setIdx(i)} aria-label={`Show image ${i + 1} of ${n}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "w-8" : "w-1.5 bg-white/25"}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "w-8" : "w-1.5 bg-ink/25"}`}
                 style={i === idx ? { background: cat.color } : {}} />
             ))}
           </div>
@@ -118,11 +118,11 @@ function Lightbox({ cat, startIdx, onClose }: { cat: Cat; startIdx: number; onCl
       </motion.div>
 
       <button onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="Previous image"
-        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/10 text-white hover:bg-white/20 transition-colors">
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full border border-ink/15 bg-ink/10 text-ink hover:bg-ink/20 transition-colors">
         <ChevronLeft size={22} />
       </button>
       <button onClick={(e) => { e.stopPropagation(); next(); }} aria-label="Next image"
-        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full border border-white/15 bg-white/10 text-white hover:bg-white/20 transition-colors">
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full border border-ink/15 bg-ink/10 text-ink hover:bg-ink/20 transition-colors">
         <ChevronRight size={22} />
       </button>
     </motion.div>
@@ -137,14 +137,14 @@ function CategorySection({ cat, onImageClick }: { cat: Cat; onImageClick: (i: nu
         <div className="mb-6 flex items-end justify-between gap-4 border-b pb-5" style={{ borderColor: `${cat.color}30` }}>
           <div>
             <span className="text-[11px] font-bold uppercase tracking-[0.22em]" style={{ color: cat.color }}>{cat.sub}</span>
-            <h2 className="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">{cat.title}</h2>
+            <h2 className="mt-1 font-display text-2xl font-extrabold text-ink sm:text-3xl">{cat.title}</h2>
           </div>
           <span className="shrink-0 rounded-full px-3 py-1 text-xs font-bold"
             style={{ background: `${cat.color}18`, border: `1px solid ${cat.color}40`, color: cat.color }}>
             {cat.images.length} works
           </span>
         </div>
-        <p className="-mt-2 mb-6 text-sm text-white/55">
+        <p className="-mt-2 mb-6 text-sm text-ink/55">
           Want work like this?{" "}
           <Link href={cat.serviceHref} className="font-semibold underline-offset-4 hover:underline" style={{ color: cat.color }}>
             Explore our {cat.sub.toLowerCase()} services
@@ -169,16 +169,16 @@ function CategorySection({ cat, onImageClick }: { cat: Cat; onImageClick: (i: nu
 
               {/* center icon — play for video, zoom for image */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="grid h-12 w-12 place-items-center rounded-full bg-white/20 backdrop-blur-sm">
-                  {img.video ? <Play size={20} className="text-white ml-1" /> : <ZoomIn size={20} className="text-white" />}
+                <div className="grid h-12 w-12 place-items-center rounded-full bg-ink/20 backdrop-blur-sm">
+                  {img.video ? <Play size={20} className="text-ink ml-1" /> : <ZoomIn size={20} className="text-ink" />}
                 </div>
               </div>
 
               {/* video badge */}
               {img.video && (
                 <div className="absolute left-2 top-2 flex items-center gap-1 rounded-full bg-black/60 px-2 py-1 backdrop-blur-sm">
-                  <Play size={10} className="text-white fill-white" />
-                  <span className="text-[9px] font-bold uppercase tracking-wide text-white">Video</span>
+                  <Play size={10} className="text-ink fill-white" />
+                  <span className="text-[9px] font-bold uppercase tracking-wide text-ink">Video</span>
                 </div>
               )}
 
@@ -190,7 +190,7 @@ function CategorySection({ cat, onImageClick }: { cat: Cat; onImageClick: (i: nu
         </div>
       </Reveal>
 
-      <div className="mt-16 h-px bg-white/8" />
+      <div className="mt-16 h-px bg-ink/8" />
     </section>
   );
 }
@@ -229,16 +229,16 @@ export default function OurWorkPage({
       <div className="section pt-20 pb-12 sm:pt-24">
         <Reveal className="max-w-2xl">
           <H1Label>Our Work: Websites, Logos, Social Media &amp; Video Portfolio</H1Label>
-          <p className="mt-5 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+          <p className="mt-5 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
             Work That <span className="text-gradient">Speaks For Itself</span>
           </p>
-          <p className="mt-4 max-w-lg text-base leading-relaxed text-white/75">
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-ink/75">
             Real clients, real work across Canada and the US. Scroll to explore or jump to a category.
           </p>
         </Reveal>
 
         <div className="sticky top-4 z-40 mt-10">
-          <div className="inline-flex flex-wrap gap-2 rounded-2xl border border-white/8 bg-[#07080f]/80 p-2 backdrop-blur-xl">
+          <div className="inline-flex flex-wrap gap-2 rounded-2xl border border-ink/8 bg-white/80 p-2 backdrop-blur-xl">
             {CATS.map((cat) => {
               const on = active === cat.id;
               return (
@@ -246,7 +246,7 @@ export default function OurWorkPage({
                   className="rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-200"
                   style={{
                     background: on ? `${cat.color}22` : "transparent",
-                    color: on ? cat.color : "rgba(255,255,255,0.55)",
+                    color: on ? cat.color : "rgba(12,15,26,0.55)",
                     border: on ? `1px solid ${cat.color}50` : "1px solid transparent",
                   }}>
                   {cat.title}
@@ -269,17 +269,17 @@ export default function OurWorkPage({
       {caseStudies.length > 0 && (
         <section id="case-studies" className="section scroll-mt-24 pb-24">
           <Reveal>
-            <div className="mb-6 border-b border-white/10 pb-5">
+            <div className="mb-6 border-b border-ink/10 pb-5">
               <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-mint">Behind the Work</span>
-              <h2 className="mt-1 font-display text-2xl font-extrabold text-white sm:text-3xl">Client Case Studies</h2>
+              <h2 className="mt-1 font-display text-2xl font-extrabold text-ink sm:text-3xl">Client Case Studies</h2>
             </div>
           </Reveal>
           <div className="grid gap-4 md:grid-cols-3">
             {caseStudies.map((c) => (
               <Link key={c.slug} href={`/case-studies/${c.slug}`} className="group block rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-mint">{c.client}</span>
-                <span className="mt-2 block font-display text-lg font-bold text-white group-hover:text-brand-mint">{c.title}</span>
-                <span className="mt-2 block text-sm leading-relaxed text-white/60">{c.summary}</span>
+                <span className="mt-2 block font-display text-lg font-bold text-ink group-hover:text-brand-mint">{c.title}</span>
+                <span className="mt-2 block text-sm leading-relaxed text-ink/60">{c.summary}</span>
                 <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-brand-mint">
                   Read case study <ArrowRight size={13} />
                 </span>

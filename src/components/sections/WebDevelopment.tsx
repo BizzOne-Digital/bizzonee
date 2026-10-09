@@ -28,7 +28,7 @@ function IndustryCard({ ind, active, onClick }: { ind: Industry; active: boolean
       <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full" style={{ background: `${ind.color}1f`, color: ind.color, boxShadow: `0 0 16px ${ind.color}33 inset` }}>
         <Icon size={22} />
       </span>
-      <span className="flex-1 text-left text-[15px] font-bold leading-snug text-white">{ind.label}</span>
+      <span className="flex-1 text-left text-[15px] font-bold leading-snug text-ink">{ind.label}</span>
       {hasWork && (
         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-transform group-hover:translate-x-1"
           style={{ borderColor: `${ind.color}50`, color: ind.color, background: active ? `${ind.color}30` : "transparent" }}>
@@ -56,9 +56,9 @@ function FeaturedWebsites({ industries, selected }: { industries: Industry[]; se
 
   if (featured.length === 0) {
     return (
-      <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/[0.03] py-14 text-center">
-        <p className="text-base font-semibold text-white/80">More real client examples for this industry are on the way.</p>
-        <p className="mt-2 text-sm text-white/50">Pick another industry above, or reach out and we&apos;ll show you similar work.</p>
+      <div className="mx-auto max-w-md rounded-2xl border border-ink/10 bg-ink/[0.03] py-14 text-center">
+        <p className="text-base font-semibold text-ink/80">More real client examples for this industry are on the way.</p>
+        <p className="mt-2 text-sm text-ink/50">Pick another industry above, or reach out and we&apos;ll show you similar work.</p>
       </div>
     );
   }
@@ -77,14 +77,14 @@ function FeaturedWebsites({ industries, selected }: { industries: Industry[]; se
           <div className="overflow-hidden rounded-2xl" style={{ aspectRatio: "16/10" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={img.url} alt={`Website design for ${img.name} by BizzOne Digital`} loading="lazy" className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-            <div className="pointer-events-none absolute inset-2 rounded-2xl bg-gradient-to-tr from-transparent via-transparent to-white/10" />
+            <div className="pointer-events-none absolute inset-2 rounded-2xl bg-gradient-to-tr from-transparent via-transparent to-ink/10" />
           </div>
           <div className="flex items-center gap-2.5 rounded-xl px-3 py-3">
             <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg" style={{ background: `${img.color}1f`, color: img.color }}>
               <ArrowRight size={13} className="-rotate-45" />
             </span>
             <div className="min-w-0">
-              <div className="truncate text-sm font-bold text-white">{img.name}</div>
+              <div className="truncate text-sm font-bold text-ink">{img.name}</div>
               <div className="truncate text-[11px] font-bold uppercase tracking-wide" style={{ color: img.color }}>{img.category}</div>
             </div>
           </div>
@@ -103,23 +103,23 @@ function StripeLogo({ className = "" }: { className?: string }) {
 function SecurePaymentBadge({ className = "" }: { className?: string }) {
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
+      <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 text-[11px] font-semibold text-ink/70">
         <ShieldCheck size={13} className="text-brand-mint" /> Secure Payment by Stripe
       </span>
-      <StripeLogo className="h-4 w-auto text-white/50" />
+      <StripeLogo className="h-4 w-auto text-ink/50" />
     </div>
   );
 }
 
 function GoogleRatingBadge({ className = "" }: { className?: string }) {
   return (
-    <div className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 ${className}`}>
+    <div className={`inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 ${className}`}>
       <div className="flex items-center gap-0.5">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star key={i} size={12} className="fill-yellow-400 text-yellow-400" />
         ))}
       </div>
-      <span className="text-[11px] font-semibold text-white/80">5.0 rating <span className="text-white/50">on Google</span></span>
+      <span className="text-[11px] font-semibold text-ink/80">5.0 rating <span className="text-ink/50">on Google</span></span>
     </div>
   );
 }
@@ -147,19 +147,19 @@ function HeroPackageCard({ pkg, content }: { pkg: Pkg; content: SiteContent }) {
       </div>
 
       <div className="mt-3 flex items-end gap-1">
-        <span className="font-display text-4xl font-extrabold text-white">{pkg.price}</span>
-        <span className="mb-1 text-xs text-white/70">one-time</span>
+        <span className="font-display text-4xl font-extrabold text-ink">{pkg.price}</span>
+        <span className="mb-1 text-xs text-ink/70">one-time</span>
       </div>
-      <p className="mt-2 text-sm leading-snug text-white/80">{pkg.tagline}</p>
+      <p className="mt-2 text-sm leading-snug text-ink/80">{pkg.tagline}</p>
 
-      <ul className="mt-5 space-y-2.5 border-t border-white/10 pt-5">
+      <ul className="mt-5 space-y-2.5 border-t border-ink/10 pt-5">
         {pkg.includes.map((it) => (
-          <li key={it} className="flex items-start gap-2 text-sm text-white/75">
+          <li key={it} className="flex items-start gap-2 text-sm text-ink/75">
             <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}
           </li>
         ))}
         {content.freeHostingEnabled && (
-          <li className="flex items-start gap-2 text-sm text-white/75">
+          <li className="flex items-start gap-2 text-sm text-ink/75">
             <Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> Free hosting (offer valid until {content.freeHostingDeadline})
           </li>
         )}
@@ -173,7 +173,7 @@ function HeroPackageCard({ pkg, content }: { pkg: Pkg; content: SiteContent }) {
         Get Started <ArrowRight size={17} />
       </a>
       <button onClick={() => document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" })}
-        className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-sm font-semibold text-white/80 transition-all hover:bg-white/[0.08] hover:text-white">
+        className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-5 py-2.5 text-sm font-semibold text-ink/80 transition-all hover:bg-ink/[0.08] hover:text-ink">
         View all packages <ArrowRight size={13} />
       </button>
 
@@ -230,7 +230,7 @@ export default function WebDevelopment({
             <Reveal className="text-center lg:text-left">
               <div className="mx-auto lg:mx-0" style={{ maxWidth: "36rem" }}>
                 <H1Label>Website Design &amp; Development for Small Businesses in Mississauga</H1Label>
-                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <p className="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-5xl lg:text-6xl">
                   {content.heroTitleLine1} <span className="text-gradient">{content.heroTitleLine2}</span>
                 </p>
                 {content.freeHostingEnabled && (
@@ -238,7 +238,7 @@ export default function WebDevelopment({
                     {hostingLine(content, "hero")}
                   </p>
                 )}
-                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white sm:text-lg lg:mx-0">
+                <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink sm:text-lg lg:mx-0">
                   {content.heroSubtext}
                 </p>
                 <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
@@ -254,7 +254,7 @@ export default function WebDevelopment({
                     <ShieldCheck size={13} /> 30-Day Money-Back Guarantee
                   </span>
                   {content.freeHostingEnabled && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] font-semibold text-white/70">
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-ink/[0.04] px-3 py-1.5 text-[11px] font-semibold text-ink/70">
                       <ShieldCheck size={13} className="text-brand-mint" /> {hostingLine(content, "badge")}
                     </span>
                   )}
@@ -264,8 +264,8 @@ export default function WebDevelopment({
                     <div key={s.label} className="flex items-center gap-2.5">
                       <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><s.icon size={16} /></span>
                       <div className="text-left">
-                        <div className="font-display text-base font-bold text-white">{s.value}</div>
-                        <div className="text-[11px] text-white/90">{s.label}</div>
+                        <div className="font-display text-base font-bold text-ink">{s.value}</div>
+                        <div className="text-[11px] text-ink/90">{s.label}</div>
                       </div>
                     </div>
                   ))}
@@ -289,10 +289,10 @@ export default function WebDevelopment({
         <div className="section">
           <Reveal className="mb-12 text-center">
             <SectionLabel>Browse by Industry</SectionLabel>
-            <h2 className="mt-4 font-display text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold text-ink sm:text-5xl lg:text-6xl">
               We Build for <span className="text-gradient">Every Business</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-white/70">
+            <p className="mx-auto mt-4 max-w-xl text-base text-ink/70">
               Powerful websites. Tailored solutions. Industry-focused excellence.
             </p>
           </Reveal>
@@ -312,11 +312,11 @@ export default function WebDevelopment({
           <Reveal delay={0.1} className="mt-20 text-center">
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-brand-purple-light">Our Work</span>
             <div className="mt-3 flex items-center justify-center gap-4">
-              <span className="h-px w-10 bg-gradient-to-r from-transparent to-white/20 sm:w-20" />
-              <h3 className="font-display text-3xl font-extrabold text-white sm:text-4xl">Featured Websites</h3>
-              <span className="h-px w-10 bg-gradient-to-l from-transparent to-white/20 sm:w-20" />
+              <span className="h-px w-10 bg-gradient-to-r from-transparent to-ink/20 sm:w-20" />
+              <h3 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">Featured Websites</h3>
+              <span className="h-px w-10 bg-gradient-to-l from-transparent to-ink/20 sm:w-20" />
             </div>
-            <p className="mx-auto mt-3 max-w-xl text-base text-white/70">
+            <p className="mx-auto mt-3 max-w-xl text-base text-ink/70">
               Take a look at some of our recent projects. Every site launches with on-page SEO basics. To keep climbing on Google, pair your website with our{" "}
               <Link href="/service/seo" className="font-semibold text-brand-mint underline-offset-4 hover:underline">SEO services</Link>.
             </p>
@@ -337,8 +337,8 @@ export default function WebDevelopment({
                   <Rocket size={20} />
                 </span>
                 <div>
-                  <div className="font-display text-base font-bold text-white">Don&apos;t see your industry?</div>
-                  <div className="text-sm text-white/70">We work with businesses across all industries.</div>
+                  <div className="font-display text-base font-bold text-ink">Don&apos;t see your industry?</div>
+                  <div className="text-sm text-ink/70">We work with businesses across all industries.</div>
                 </div>
               </div>
               <NeonButton href="#onboard" variant="primary" className="whitespace-nowrap">Let&apos;s Build Your Website</NeonButton>
@@ -357,10 +357,10 @@ export default function WebDevelopment({
             <span className="inline-flex items-center gap-2 rounded-full neon-border px-5 py-2 text-xs font-bold uppercase tracking-[0.22em]">
               <span className="text-brand-purple-light">Our</span><span className="text-brand-mint">Packages</span>
             </span>
-            <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Choose The <span className="text-gradient">Perfect Plan</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/90">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/90">
               Transparent pricing. Pick a package and complete onboarding, we handle the rest.
             </p>
             <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
@@ -389,20 +389,20 @@ export default function WebDevelopment({
                   <div className="mt-2">
                     {!p.contact ? (
                       <div className="flex items-end gap-1">
-                        <span className="font-display text-3xl xl:text-4xl font-extrabold text-white">{p.price}</span>
-                        <span className="mb-1 text-xs text-white/90">one-time</span>
+                        <span className="font-display text-3xl xl:text-4xl font-extrabold text-ink">{p.price}</span>
+                        <span className="mb-1 text-xs text-ink/90">one-time</span>
                       </div>
                     ) : (
                       <span className="inline-block rounded-full border border-brand-mint/30 bg-brand-mint/10 px-3 py-1 text-xs font-semibold text-brand-mint">Contact Us</span>
                     )}
                   </div>
-                  <p className="mt-2 text-sm leading-snug text-white/90">{p.tagline}</p>
-                  <ul className="mt-5 flex-1 space-y-3 border-t border-white/10 pt-5">
+                  <p className="mt-2 text-sm leading-snug text-ink/90">{p.tagline}</p>
+                  <ul className="mt-5 flex-1 space-y-3 border-t border-ink/10 pt-5">
                     {p.includes.map((it) => (
-                      <li key={it} className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
+                      <li key={it} className="flex items-start gap-2 text-xs xl:text-sm text-ink/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> {it}</li>
                     ))}
                     {content.freeHostingEnabled && (
-                      <li className="flex items-start gap-2 text-xs xl:text-sm text-white/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> Free hosting (offer valid until {content.freeHostingDeadline})</li>
+                      <li className="flex items-start gap-2 text-xs xl:text-sm text-ink/75"><Check size={14} className="mt-0.5 shrink-0 text-brand-mint" /> Free hosting (offer valid until {content.freeHostingDeadline})</li>
                     )}
                   </ul>
                   {p.paymentLink ? (
@@ -420,7 +420,7 @@ export default function WebDevelopment({
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-center text-xs text-white/90">Need something custom? Mention it in the form and we&apos;ll send a tailored quote.</p>
+          <p className="mt-6 text-center text-xs text-ink/90">Need something custom? Mention it in the form and we&apos;ll send a tailored quote.</p>
         </div>
       </section>
 
@@ -437,15 +437,15 @@ export default function WebDevelopment({
                   <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-brand-mint">
                     <span className="h-1.5 w-1.5 rounded-full bg-brand-mint shadow-glow-mint" /> Get In Touch
                   </span>
-                  <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+                  <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
                     Let&apos;s Build Your <span className="text-gradient">Website</span>
                   </h2>
-                  <p className="mt-5 max-w-lg text-base leading-relaxed text-white/90">
+                  <p className="mt-5 max-w-lg text-base leading-relaxed text-ink/90">
                     Send us a quick message and our team will reach out within 24–48 hours to get started.
                   </p>
                   <ul className="mt-8 space-y-3">
                     {[{ label: "Reply within 24–48 hours" }, { label: "Free strategy consultation" }, { label: "No spam, ever" }].map((t) => (
-                      <li key={t.label} className="flex items-center gap-3 text-sm text-white/70">
+                      <li key={t.label} className="flex items-center gap-3 text-sm text-ink/70">
                         <span className="h-2 w-2 rounded-full bg-brand-mint shadow-glow-mint" />
                         {t.label}
                       </li>
@@ -463,7 +463,7 @@ export default function WebDevelopment({
 }
 
 function WebContactForm() {
-  const fieldCls = "w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/35 outline-none transition-colors focus:border-brand-mint/60";
+  const fieldCls = "w-full rounded-xl border border-ink/10 bg-ink/[0.04] px-4 py-3 text-sm text-ink placeholder-ink/35 outline-none transition-colors focus:border-brand-mint/60";
   const [form, setForm] = useState({ name: "", email: "", phone: "", business: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -484,8 +484,8 @@ function WebContactForm() {
     return (
       <div className="flex min-h-[340px] flex-col items-center justify-center rounded-3xl glass-strong p-10 text-center">
         <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-mint/15 text-brand-mint shadow-glow-mint"><CheckCircle2 size={34} /></span>
-        <h3 className="mt-5 font-display text-2xl font-bold text-white">Message sent!</h3>
-        <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/90">Thanks {form.name.split(" ")[0] || "there"}, we&apos;ll be in touch within 24–48 hours.</p>
+        <h3 className="mt-5 font-display text-2xl font-bold text-ink">Message sent!</h3>
+        <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink/90">Thanks {form.name.split(" ")[0] || "there"}, we&apos;ll be in touch within 24–48 hours.</p>
       </div>
     );
   }
@@ -494,24 +494,24 @@ function WebContactForm() {
     <div className="rounded-3xl glass-strong p-6 sm:p-7">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-white/80">Full Name <span className="text-brand-mint">*</span></label>
+          <label className="mb-1.5 block text-sm font-medium text-ink/80">Full Name <span className="text-brand-mint">*</span></label>
           <input className={fieldCls} value={form.name} onChange={(e) => set("name", e.target.value)} placeholder="Your name" />
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-white/80">Phone</label>
+          <label className="mb-1.5 block text-sm font-medium text-ink/80">Phone</label>
           <input type="tel" className={fieldCls} value={form.phone} onChange={(e) => set("phone", e.target.value)} placeholder="+1 (___) ___-____" />
         </div>
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Email <span className="text-brand-mint">*</span></label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Email <span className="text-brand-mint">*</span></label>
         <input type="email" className={fieldCls} value={form.email} onChange={(e) => set("email", e.target.value)} placeholder="you@business.com" />
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Business Name</label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Business Name</label>
         <input className={fieldCls} value={form.business} onChange={(e) => set("business", e.target.value)} placeholder="ABC Company" />
       </div>
       <div className="mt-4">
-        <label className="mb-1.5 block text-sm font-medium text-white/80">Message</label>
+        <label className="mb-1.5 block text-sm font-medium text-ink/80">Message</label>
         <textarea className={`${fieldCls} min-h-[110px] resize-y leading-relaxed`} value={form.message} onChange={(e) => set("message", e.target.value)} placeholder="Tell us about your project or goals..." />
       </div>
       {status === "error" && <p className="mt-4 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-300">{errorMsg}</p>}

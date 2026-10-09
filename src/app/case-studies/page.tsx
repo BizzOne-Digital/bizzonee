@@ -30,10 +30,10 @@ export default function CaseStudiesIndex() {
           </Reveal>
           <Reveal className="mx-auto mt-8 max-w-3xl text-center">
             <SectionLabel>Case Studies</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
               Client <span className="text-gradient">Case Studies</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink/75">
               The brief, the work and what our clients say about it. Browse more examples in{" "}
               <Link href="/our-work" className="font-semibold text-brand-mint underline-offset-4 hover:underline">our portfolio</Link>.
             </p>
@@ -42,14 +42,14 @@ export default function CaseStudiesIndex() {
             {CASE_STUDIES.map((c, i) => (
               <Reveal key={c.slug} delay={i * 0.05}>
                 <Link href={`/case-studies/${c.slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl glass transition-shadow duration-300 hover:shadow-glow-purple">
-                  <div className="aspect-[16/10] overflow-hidden bg-white/5">
+                  <div className="aspect-[16/10] overflow-hidden bg-ink/5">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={c.images[0].src} alt={c.images[0].alt} width={c.images[0].width} height={c.images[0].height} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-mint">{c.industry}</span>
-                    <h2 className="mt-2 font-display text-lg font-bold text-white group-hover:text-brand-mint">{c.title}</h2>
-                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{c.summary}</p>
+                    <h2 className="mt-2 font-display text-lg font-bold text-ink group-hover:text-brand-mint">{c.title}</h2>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/60">{c.summary}</p>
                     <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-brand-mint">
                       Read case study <ArrowRight size={13} aria-hidden="true" />
                     </span>

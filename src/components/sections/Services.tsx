@@ -48,19 +48,19 @@ function ServiceCard({ c, i, hidden = false }: { c: Service; i: number; hidden?:
         className="group relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-3xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple"
       >
         <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-brand-mint to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <div className="pointer-events-none absolute -inset-y-2 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/8 to-transparent opacity-0 transition-all duration-700 group-hover:left-[120%] group-hover:opacity-100" />
+        <div className="pointer-events-none absolute -inset-y-2 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-ink/8 to-transparent opacity-0 transition-all duration-700 group-hover:left-[120%] group-hover:opacity-100" />
 
         <div className="mb-2 flex justify-center">
           <span className="rounded-xl border border-brand-mint/30 bg-brand-mint/5 px-4 py-1.5 text-center leading-tight">
-            <span className="block text-[9px] font-medium uppercase tracking-wide text-white/45">{c.badgeLabel}</span>
+            <span className="block text-[9px] font-medium uppercase tracking-wide text-ink/45">{c.badgeLabel}</span>
             <span className="block text-sm font-bold text-brand-mint">{c.badgeValue}</span>
           </span>
         </div>
 
         <Pedestal icon={c.icon} i={i % 5} />
 
-        <h3 className="text-center font-display text-lg font-bold text-white">{c.title}</h3>
-        <p className="mx-auto mt-3 max-w-[15rem] text-center text-sm leading-relaxed text-white/90">{c.short}</p>
+        <h3 className="text-center font-display text-lg font-bold text-ink">{c.title}</h3>
+        <p className="mx-auto mt-3 max-w-[15rem] text-center text-sm leading-relaxed text-ink/90">{c.short}</p>
 
         <div className="mt-auto flex items-center justify-center gap-2 pt-6 text-xs font-bold uppercase tracking-wide text-brand-mint">
           Learn More
@@ -88,10 +88,10 @@ export default function Services() {
           <span className="inline-flex items-center gap-2 rounded-full neon-border px-5 py-2 text-xs font-bold uppercase tracking-[0.22em]">
             <span className="text-brand-purple-light">Our</span><span className="text-brand-mint">Services</span>
           </span>
-          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             End-to-End <span className="text-gradient">Digital Solutions</span><br className="hidden sm:block" /> To Grow Your Business
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/80">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink/80">
             We combine creativity, technology, and data to deliver powerful digital experiences that drive real results.
           </p>
         </Reveal>
@@ -123,10 +123,10 @@ export default function Services() {
                   <span key={i} className="h-10 w-10 rounded-full border-2 border-ink" style={{ background: `linear-gradient(135deg, ${col}, #0b0e18)` }} />
                 ))}
               </div>
-              <p className="text-sm leading-snug text-white/70">Trusted by <span className="font-bold text-white">{formatStat(SITE_STATS.businessesServed)} businesses</span> across {MARKETS_SERVED.short}<br className="hidden sm:block" /> to grow smarter and faster.</p>
+              <p className="text-sm leading-snug text-ink/70">Trusted by <span className="font-bold text-ink">{formatStat(SITE_STATS.businessesServed)} businesses</span> across {MARKETS_SERVED.short}<br className="hidden sm:block" /> to grow smarter and faster.</p>
             </div>
-            <span className="hidden h-10 w-px bg-white/10 sm:block" />
-            <Link href="/services" className="group inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-white transition-all hover:shadow-glow-purple sm:ml-auto">
+            <span className="hidden h-10 w-px bg-ink/10 sm:block" />
+            <Link href="/services" className="group inline-flex items-center gap-2 rounded-full neon-border px-6 py-3 text-sm font-bold text-ink transition-all hover:shadow-glow-purple sm:ml-auto">
               <span><span className="text-brand-purple-light">Explore</span> All Services</span>
               <ArrowRight size={16} className="text-brand-mint transition-transform group-hover:translate-x-1" />
             </Link>
