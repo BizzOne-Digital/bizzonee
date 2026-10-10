@@ -99,6 +99,7 @@ export default function RootLayout({
         <WhatsAppButton />
         <script
           src="https://widgets.leadconnectorhq.com/loader.js"
+          async
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
           data-widget-id="6ac562f5f71147f2c22dd0a1"
           data-source="WEB_USER"
