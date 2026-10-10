@@ -99,7 +99,7 @@ export default function RootLayout({
           src="https://widgets.leadconnectorhq.com/loader.js"
           async
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6ac562f5f71147f2c22dd0a1"
+          data-widget-id="6aca82d644d50e1f79443c4f"
           data-source="WEB_USER"
         />
         {children}
