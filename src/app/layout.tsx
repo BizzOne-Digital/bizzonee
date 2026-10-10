@@ -95,8 +95,6 @@ export default function RootLayout({
         <JsonLd data={[professionalServiceSchema(), websiteSchema()]} />
         <div className="bg-space" />
         <div className="bg-grid" />
-        {children}
-        <WhatsAppButton />
         <script
           src="https://widgets.leadconnectorhq.com/loader.js"
           async
@@ -104,6 +102,8 @@ export default function RootLayout({
           data-widget-id="6ac562f5f71147f2c22dd0a1"
           data-source="WEB_USER"
         />
+        {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
