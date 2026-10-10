@@ -102,6 +102,37 @@ export default function RootLayout({
           data-widget-id="6ac562f5f71147f2c22dd0a1"
           data-source="WEB_USER"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                function pin(el) {
+                  el.style.setProperty('position', 'fixed', 'important');
+                  el.style.setProperty('bottom', '20px', 'important');
+                  el.style.setProperty('right', '20px', 'important');
+                  el.style.setProperty('left', 'auto', 'important');
+                  el.style.setProperty('top', 'auto', 'important');
+                  el.style.setProperty('z-index', '999999', 'important');
+                  el.style.setProperty('margin', '0', 'important');
+                }
+                function isChatWidget(node) {
+                  if (!(node instanceof HTMLElement)) return false;
+                  if (node.id && node.id.toLowerCase().indexOf('chat-widget') !== -1) return true;
+                  if (node.tagName && node.tagName.toLowerCase().indexOf('chat-widget') !== -1) return true;
+                  return !!node.querySelector && !!node.querySelector('iframe[src*="leadconnectorhq"]');
+                }
+                var observer = new MutationObserver(function (mutations) {
+                  mutations.forEach(function (m) {
+                    m.addedNodes.forEach(function (node) {
+                      if (isChatWidget(node)) pin(node);
+                    });
+                  });
+                });
+                observer.observe(document.body, { childList: true });
+              })();
+            `,
+          }}
+        />
         {children}
         <WhatsAppButton />
       </body>
