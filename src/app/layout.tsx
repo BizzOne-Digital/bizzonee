@@ -108,7 +108,7 @@ export default function RootLayout({
               (function () {
                 function pin(el) {
                   el.style.setProperty('position', 'fixed', 'important');
-                  el.style.setProperty('bottom', '20px', 'important');
+                  el.style.setProperty('bottom', '100px', 'important');
                   el.style.setProperty('right', '20px', 'important');
                   el.style.setProperty('left', 'auto', 'important');
                   el.style.setProperty('top', 'auto', 'important');
