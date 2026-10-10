@@ -24,6 +24,14 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep the footer visually last even if a third-party widget script
+   appends its own element to the end of <body> after page load. */
+body > footer {
+  order: 9999;
 }
 
 /* atmospheric layers */
