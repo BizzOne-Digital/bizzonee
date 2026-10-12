@@ -67,8 +67,8 @@ export default function AIAutomation() {
                     <stop offset="100%" stopColor="#C8F31D" />
                   </linearGradient>
                 </defs>
-                {LEFT.map((n, i) => <Line key={n.label} x2={15} y2={n.y} delay={i * 0.5} />)}
-                {RIGHT.map((n, i) => <Line key={n.label} x2={85} y2={n.y} delay={i * 0.5 + 0.3} />)}
+                {LEFT.map((n, i) => <Line key={n.label} x2={23} y2={n.y} delay={i * 0.5} />)}
+                {RIGHT.map((n, i) => <Line key={n.label} x2={77} y2={n.y} delay={i * 0.5 + 0.3} />)}
               </svg>
 
               {/* brain */}
@@ -87,14 +87,14 @@ export default function AIAutomation() {
               {/* nodes */}
               {LEFT.map((n, i) => (
                 <motion.div key={n.label} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.12 }}
-                  className="absolute left-0 flex -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
+                  className="absolute left-0 flex w-[150px] -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
                   <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-mint/10 text-brand-mint"><n.icon size={15} /></span>
                   <span className="text-xs font-semibold text-ink">{n.label}</span>
                 </motion.div>
               ))}
               {RIGHT.map((n, i) => (
                 <motion.div key={n.label} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.12 }}
-                  className="absolute right-0 flex -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
+                  className="absolute right-0 flex w-[150px] -translate-y-1/2 items-center gap-2 rounded-xl glass-strong px-3 py-2" style={{ top: `${n.y}%` }}>
                   <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-purple/15 text-brand-purple-light"><n.icon size={15} /></span>
                   <span className="text-xs font-semibold text-ink">{n.label}</span>
                 </motion.div>
