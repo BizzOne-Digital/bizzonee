@@ -12,29 +12,11 @@ const MARQUEE_CARDS = [...SERVICES, ...SERVICES];
 
 function Pedestal({ icon: Icon, i }: { icon: LucideIcon; i: number }) {
   return (
-    <div className="relative mx-auto mb-5 h-36 w-full">
-      <motion.span animate={{ opacity: [0.15, 0.5, 0.15] }} transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
-        className="absolute left-1/2 top-[40%] h-16 w-6 -translate-x-1/2 blur-md" style={{ background: "linear-gradient(to top, rgba(200,243,29,0.5), transparent)" }} />
-
-      <div className="absolute left-1/2 top-1 z-10 -translate-x-1/2">
-        <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 3 + (i % 5) * 0.4, repeat: Infinity, ease: "easeInOut" }}>
-          <span className="relative grid place-items-center" style={{ width: 66, height: 66 }}>
-            <span className="absolute inset-[-45%] animate-spin-slow opacity-50 blur-md" style={{ background: "conic-gradient(from 0deg, transparent, rgba(200,243,29,0.5), transparent 40%, rgba(140,0,255,0.5), transparent 80%)" }} />
-            <span className="absolute inset-0 rounded-full bg-brand-purple/30 blur-xl" />
-            <Icon className="absolute text-brand-purple/70" size={46} style={{ transform: "translate(3px,3px)", filter: "blur(0.5px)" }} />
-            <Icon className="relative text-brand-mint drop-shadow-[0_0_12px_rgba(200,243,29,0.8)]" size={46} />
-          </span>
-        </motion.div>
-      </div>
-
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2" style={{ width: 130, height: 56 }}>
-        <motion.span animate={{ opacity: [0.5, 0.9, 0.5], scale: [1, 1.06, 1] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-1/2 h-9 w-32 -translate-x-1/2 -translate-y-1/2 rounded-[50%] blur-lg" style={{ background: "radial-gradient(ellipse, rgba(140,0,255,0.6), rgba(200,243,29,0.18) 60%, transparent 75%)" }} />
-        <span className="absolute left-1/2 top-1/2 h-9 w-28 -translate-x-1/2 -translate-y-1/2 rounded-[50%]" style={{ background: "linear-gradient(180deg, rgba(26,18,44,0.95), rgba(8,6,16,0.98))", border: "1px solid rgba(140,0,255,0.5)" }} />
-        <motion.span animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[42%] h-6 w-24 -translate-x-1/2 -translate-y-1/2 rounded-[50%]" style={{ border: "1.5px solid rgba(200,243,29,0.6)", boxShadow: "0 0 16px -2px rgba(200,243,29,0.55)" }} />
-        <span className="absolute left-1/2 top-[34%] h-4 w-16 -translate-x-1/2 -translate-y-1/2 rounded-[50%] bg-brand-purple-light/25 blur-sm" />
-      </div>
+    <div className="relative mx-auto mb-5 flex h-36 w-full items-center justify-center">
+      <motion.div animate={{ y: [0, -8, 0] }} transition={{ duration: 3 + (i % 5) * 0.4, repeat: Infinity, ease: "easeInOut" }}
+        className="grid h-20 w-20 place-items-center rounded-2xl bg-brand-mint/10">
+        <Icon className="text-brand-mint" size={36} />
+      </motion.div>
     </div>
   );
 }

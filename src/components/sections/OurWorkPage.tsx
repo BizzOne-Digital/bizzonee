@@ -9,10 +9,12 @@ import Reveal from "@/components/ui/Reveal";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import WebPortfolio from "@/components/sections/WebPortfolio";
+import FeaturedWork from "@/components/sections/FeaturedWork";
+import StartProject from "@/components/sections/StartProject";
 import H1Label from "@/components/ui/H1Label";
 import { PORTFOLIO, type PortfolioCategory, type PortfolioImage } from "@/data/portfolio";
 import type { Industry } from "@/lib/webdevData";
-import type { CaseStudySummary } from "@/data/case-studies";
+import type { CaseStudy } from "@/data/case-studies";
 
 const CATS: Cat[] = PORTFOLIO;
 
@@ -201,7 +203,7 @@ export default function OurWorkPage({
   caseStudies = [],
 }: {
   initialIndustries?: Industry[];
-  caseStudies?: CaseStudySummary[];
+  caseStudies?: CaseStudy[];
 }) {
   const [lightbox, setLightbox] = useState<{ cat: Cat; idx: number } | null>(null);
   const [active, setActive] = useState("logo");
@@ -257,6 +259,8 @@ export default function OurWorkPage({
         </div>
       </div>
 
+      <FeaturedWork caseStudies={caseStudies.slice(0, 3)} />
+
       <WebPortfolio initialIndustries={initialIndustries} />
 
       <div className="section pb-20">
@@ -288,6 +292,8 @@ export default function OurWorkPage({
           </div>
         </section>
       )}
+
+      <StartProject />
 
       <AnimatePresence>
         {lightbox && (

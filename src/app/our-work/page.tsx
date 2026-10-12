@@ -15,6 +15,5 @@ export const metadata: Metadata = buildMetadata({
 
 export default async function OurWork() {
   const industries = await getIndustries();
-  const caseStudies = CASE_STUDIES.map(({ slug, client, title, summary }) => ({ slug, client, title, summary }));
-  return <OurWorkPage initialIndustries={industries} caseStudies={caseStudies} />;
+  return <OurWorkPage initialIndustries={industries} caseStudies={CASE_STUDIES} />;
 }
