@@ -108,7 +108,7 @@ export default function TrustReviews() {
     <section className="relative py-20 sm:py-24">
       <div className="pointer-events-none absolute hidden sm:block right-0 top-1/3 h-72 w-72 rounded-full bg-brand-mint/8 blur-[120px]" />
       <div className="section">
-        <Reveal className="mx-auto max-w-3xl text-center">
+        <Reveal from="right" className="mx-auto max-w-3xl text-center">
           <SectionLabel>Google Reviews</SectionLabel>
           <h2 className="mt-6 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             What Our Clients <span className="text-gradient">Say</span>

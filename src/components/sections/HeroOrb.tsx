@@ -5,13 +5,13 @@ import { Search, Target, Bot, Share2, Code2, ChevronDown, type LucideIcon } from
 
 const HEX = "polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)";
 
-type Node = { icon: LucideIcon; title: string; sub: string; top: string; left: string; dir: "r" | "b" };
+type Node = { icon: LucideIcon; title: string; sub: string; top: string; left: string; dir: "r" | "b"; from: { x: number; y: number } };
 const NODES: Node[] = [
-  { icon: Search,  title: "SEO",             sub: "Rank Higher",      top: "-4%",  left: "30%",  dir: "r" },
-  { icon: Target,  title: "Paid Ads",         sub: "Get More Leads",   top: "8%",   left: "62%",  dir: "r" },
-  { icon: Bot,     title: "AI Automation",    sub: "Save Time & Scale",top: "40%",  left: "72%",  dir: "r" },
-  { icon: Share2,  title: "Social Media",     sub: "Engage More",      top: "30%",  left: "-4%",  dir: "r" },
-  { icon: Code2,   title: "Web Development",  sub: "Build Better",     top: "82%",  left: "30%",  dir: "b" },
+  { icon: Search,  title: "SEO",             sub: "Rank Higher",      top: "-4%",  left: "30%",  dir: "r", from: { x: 0, y: -180 } },
+  { icon: Target,  title: "Paid Ads",         sub: "Get More Leads",   top: "8%",   left: "62%",  dir: "r", from: { x: 160, y: -140 } },
+  { icon: Bot,     title: "AI Automation",    sub: "Save Time & Scale",top: "40%",  left: "72%",  dir: "r", from: { x: 200, y: 0 } },
+  { icon: Share2,  title: "Social Media",     sub: "Engage More",      top: "30%",  left: "-4%",  dir: "r", from: { x: -200, y: 0 } },
+  { icon: Code2,   title: "Web Development",  sub: "Build Better",     top: "82%",  left: "30%",  dir: "b", from: { x: -140, y: 160 } },
 ];
 
 type Orbit = { rx: number; ry: number; rot: number; c: string; dur: number };
@@ -133,9 +133,14 @@ export default function HeroOrb() {
         {/* SERVICE NODES — text scales on small screens */}
         {NODES.map((n, i) => (
           <motion.div key={n.title}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1, y: [0, i % 2 ? -9 : 9, 0] }}
-            transition={{ opacity: { delay: 0.4 + i * 0.12 }, scale: { delay: 0.4 + i * 0.12 }, y: { duration: 4 + i, repeat: Infinity, ease: "easeInOut" } }}
+            initial={{ opacity: 0, scale: 0.85, x: n.from.x, y: n.from.y }}
+            animate={{ opacity: 1, scale: 1, x: 0, y: [0, i % 2 ? -9 : 9, 0] }}
+            transition={{
+              opacity: { delay: 0.4 + i * 0.12, duration: 0.7 },
+              scale: { delay: 0.4 + i * 0.12, duration: 0.7 },
+              x: { delay: 0.4 + i * 0.12, type: "spring", stiffness: 90, damping: 14 },
+              y: { delay: 0.4 + i * 0.12, duration: 4 + i, repeat: Infinity, ease: "easeInOut" },
+            }}
             className="absolute z-20" style={{ top: n.top, left: n.left }}>
             {n.dir === "b" ? (
               <div className="flex flex-col items-center gap-1">

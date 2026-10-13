@@ -30,7 +30,7 @@ export default function OurWork() {
     <section id="work" className="relative py-24 sm:py-28">
       <div className="pointer-events-none absolute hidden sm:block left-0 top-1/4 h-72 w-72 rounded-full bg-brand-purple/15 blur-[120px]" />
       <div className="section">
-        <Reveal className="mx-auto max-w-3xl text-center">
+        <Reveal from="right" className="mx-auto max-w-3xl text-center">
           <SectionLabel>Our Work</SectionLabel>
           <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             Projects We&apos;re <span className="text-gradient">Proud Of</span>

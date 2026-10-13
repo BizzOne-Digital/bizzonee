@@ -9,7 +9,7 @@ export default function Process() {
   return (
     <section id="process" className="relative py-24 sm:py-28">
       <div className="section">
-        <Reveal>
+        <Reveal from="left">
           <SectionLabel>Our Process</SectionLabel>
           <h2 className="mt-5 max-w-2xl font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             A Proven Roadmap To Your <span className="text-gradient">Growth</span>.

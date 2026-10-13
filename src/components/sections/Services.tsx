@@ -66,7 +66,7 @@ export default function Services() {
       `}</style>
 
       <div className="section">
-        <Reveal className="mx-auto max-w-3xl text-center">
+        <Reveal from="left" className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full neon-border px-5 py-2 text-xs font-bold uppercase tracking-[0.22em]">
             <span className="text-brand-purple-light">Our</span><span className="text-brand-mint">Services</span>
           </span>

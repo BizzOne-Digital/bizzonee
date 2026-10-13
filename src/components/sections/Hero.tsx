@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="section grid items-center gap-10 lg:grid-cols-2">
         {/* Left copy */}
         <div className="relative z-10 order-1">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}>
+          <motion.div initial={{ opacity: 0, x: "-100vw" }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.8, ease: "easeOut" }}>
             <h1 className="inline-flex items-center gap-2 rounded-2xl glass px-4 py-1.5 text-[11px] font-semibold uppercase leading-relaxed tracking-[0.18em] text-brand-mint">
               <Sparkles size={13} aria-hidden="true" className="shrink-0" /> Digital Marketing &amp; AI Automation Agency for Growing Businesses
             </h1>
@@ -37,8 +37,8 @@ export default function Hero() {
           >
             {WORDS.map((w, i) => (
               <motion.span key={i} className="inline-block"
-                variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0 } }}
-                transition={{ duration: 0.6, ease }}>
+                variants={{ hidden: { opacity: 0, y: -160 }, show: { opacity: 1, y: 0 } }}
+                transition={{ type: "spring", stiffness: 140, damping: 11, mass: 1 }}>
                 <span className={w.g ? "text-gradient" : ""}>{w.t}</span>{"\u00A0"}
               </motion.span>
             ))}

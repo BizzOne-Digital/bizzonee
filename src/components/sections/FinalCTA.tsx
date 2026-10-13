@@ -42,7 +42,7 @@ export default function FinalCTA() {
   return (
     <section id="contact" className="relative py-24 sm:py-28">
       <div className="section">
-        <Reveal>
+        <Reveal from="left">
           <div className="relative overflow-hidden rounded-3xl neon-border px-6 py-12 sm:px-12 sm:py-14">
             <div className="pointer-events-none absolute hidden sm:block -left-20 top-0 h-72 w-72 rounded-full bg-brand-purple/30 blur-[100px]" />
             <div className="pointer-events-none absolute hidden sm:block -right-10 bottom-0 h-72 w-72 rounded-full bg-brand-mint/20 blur-[100px]" />

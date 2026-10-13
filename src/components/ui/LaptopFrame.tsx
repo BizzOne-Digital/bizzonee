@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 /** Default showreel: 1080p re-encode of the original 4K file (~9 MB instead of 64 MB). */
 export const SHOWREEL = {
   src: "/bizzone-digital-showreel.mp4",
@@ -26,8 +28,15 @@ export default function LaptopFrame({
     <figure className="relative mx-auto w-full max-w-xl">
       <div className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-brand-purple/20 blur-3xl" />
       {/* lid + screen */}
-      <div className="relative rounded-2xl border border-ink/10 glass-strong p-2.5 shadow-glass">
-        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-ink">
+      <div className="relative rounded-2xl border border-ink/10 glass-strong p-2.5 shadow-glass" style={{ perspective: 1400 }}>
+        <motion.div
+          initial={{ rotateX: -92, opacity: 0.4 }}
+          whileInView={{ rotateX: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: "bottom center", transformStyle: "preserve-3d" }}
+          className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-ink"
+        >
           <video
             src={videoSrc}
             poster={poster}
@@ -46,7 +55,7 @@ export default function LaptopFrame({
           {label && (
             <span className="absolute bottom-3 right-3 rounded-full glass-strong px-3 py-1.5 text-xs font-semibold text-ink">{label}</span>
           )}
-        </div>
+        </motion.div>
       </div>
       {/* base */}
       <div className="mx-auto h-3 w-[112%] -translate-x-[5.4%] rounded-b-2xl bg-gradient-to-b from-ink/15 to-ink/5" />

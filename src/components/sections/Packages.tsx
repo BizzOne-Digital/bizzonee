@@ -45,7 +45,7 @@ export default function Packages() {
   return (
     <section id="packages" className="relative py-20 sm:py-24">
       <div className="section">
-        <Reveal className="mx-auto max-w-2xl text-center">
+        <Reveal from="right" className="mx-auto max-w-2xl text-center">
           <SectionLabel>Simple Starting Points</SectionLabel>
           <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             Start Small Or <span className="text-gradient">Go All-In</span>

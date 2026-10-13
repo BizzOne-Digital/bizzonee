@@ -44,7 +44,7 @@ export default function AIAutomation() {
     <section id="ai" className="relative py-24 sm:py-28">
       <div className="section">
         <div className="grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
-          <Reveal>
+          <Reveal from="left">
             <SectionLabel>AI & Automation</SectionLabel>
             <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Work <span className="text-gradient">Smarter</span>.<br />Scale <span className="text-gradient">Faster</span>.

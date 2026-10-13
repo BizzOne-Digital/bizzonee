@@ -22,7 +22,7 @@ export default function About() {
   return (
     <section id="about" className="relative py-24 sm:py-28">
       <div className="section">
-        <Reveal className="max-w-3xl">
+        <Reveal from="left" className="max-w-3xl">
           <SectionLabel>Who We Are</SectionLabel>
           <h2 className="mt-5 font-display text-3xl font-extrabold leading-tight text-ink sm:text-4xl lg:text-5xl">
             A Technology Partner <span className="text-gradient">Built for Growth</span>
@@ -34,7 +34,7 @@ export default function About() {
 
         {/* intro + laptop playing our showreel */}
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-2">
-          <Reveal>
+          <Reveal from="left">
             <p className="max-w-md text-lg leading-relaxed text-ink/75">
               Since day one, we&apos;ve helped <span className="text-brand-mint">{formatStat(SITE_STATS.businessesServed)} brands</span> launch, grow and modernize. From startups to enterprises, our team ships work that feels premium and performs even better.
             </p>
@@ -53,7 +53,7 @@ export default function About() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="relative">
+          <Reveal from="left" delay={0.1} className="relative">
             <span className="mb-4 block text-center text-xs font-semibold uppercase tracking-[0.18em] text-ink/90 lg:text-right">
               Our Work in Motion
             </span>
@@ -66,7 +66,7 @@ export default function About() {
           {panels.map((p, i) => {
             const Icon = p.icon;
             return (
-              <Reveal key={p.title} delay={i * 0.1}>
+              <Reveal key={p.title} from={i === 0 ? "left" : "right"} delay={i * 0.1}>
                 <div className="group flex h-full items-start gap-5 rounded-3xl glass p-7 transition-shadow duration-300 hover:shadow-glow-mint">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl neon-border text-brand-mint">
                     <Icon className="h-5 w-5" />
