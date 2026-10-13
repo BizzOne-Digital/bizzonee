@@ -9,7 +9,7 @@ import Reveal from "@/components/ui/Reveal";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import WebPortfolio from "@/components/sections/WebPortfolio";
-import FeaturedWork from "@/components/sections/FeaturedWork";
+import ProjectExplorer from "@/components/sections/ProjectExplorer";
 import StartProject from "@/components/sections/StartProject";
 import H1Label from "@/components/ui/H1Label";
 import { PORTFOLIO, type PortfolioCategory, type PortfolioImage } from "@/data/portfolio";
@@ -259,7 +259,7 @@ export default function OurWorkPage({
         </div>
       </div>
 
-      <FeaturedWork caseStudies={caseStudies.slice(0, 3)} />
+      <ProjectExplorer caseStudies={caseStudies.slice(0, 3)} />
 
       <WebPortfolio initialIndustries={initialIndustries} />
 
