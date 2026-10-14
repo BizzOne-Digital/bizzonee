@@ -16,11 +16,11 @@ const FILTERS = [
 
 const FEATURED = {
   pill: "WEBSITE • DESIGN CONCEPT",
-  name: "Silken Beauty",
-  nameAccent: "& Wellness",
-  image: "/project-previews/silken-beauty-website.png",
-  description: "An example of the premium, elegant website experience we design for beauty and wellness brands.",
-  highlights: ["Custom luxury design", "Online booking flow", "Mobile-first build"],
+  name: "A1 Furnished",
+  nameAccent: "Homes",
+  image: "/project-previews/a1-furnished-homes-website.png",
+  description: "A furnished-home website featuring property search and accommodation across the GTA.",
+  highlights: ["Property search", "Furnished accommodation", "GTA locations"],
 };
 
 const CARDS = [
