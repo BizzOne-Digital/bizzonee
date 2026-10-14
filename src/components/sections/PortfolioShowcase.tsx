@@ -15,12 +15,12 @@ const FILTERS = [
 ];
 
 const FEATURED = {
-  pill: "WEBSITE • FEATURED PROJECT",
-  name: "A1 Furnished",
-  nameAccent: "Homes",
-  image: "/portfolio/web/website-design-a1-furnished-homes.webp",
-  description: "A clean, modern website built to showcase furnished rental properties and turn visitors into booking enquiries.",
-  highlights: ["Custom responsive design", "Property listing pages", "Fast 24–48h launch"],
+  pill: "WEBSITE • DESIGN CONCEPT",
+  name: "Silken Beauty",
+  nameAccent: "& Wellness",
+  image: "/project-previews/silken-beauty-website.png",
+  description: "An example of the premium, elegant website experience we design for beauty and wellness brands.",
+  highlights: ["Custom luxury design", "Online booking flow", "Mobile-first build"],
 };
 
 const CARDS = [
@@ -34,9 +34,9 @@ const CARDS = [
   },
   {
     label: "SOCIAL MEDIA",
-    project: "Haven Tint & Tire",
+    project: "BizzOne Digital",
     sub: "Social Media Campaigns",
-    image: "/portfolio/media/social-media-instagram-carousel-haven-ceramic-coating.webp",
+    image: "/project-previews/bizzone-social-media.png",
     href: "/our-work#social",
     icon: Share2,
   },
@@ -44,15 +44,15 @@ const CARDS = [
     label: "AI & AUTOMATION",
     project: "Smart Workflows",
     sub: "CRM & Lead Automation",
+    image: "/project-previews/business-automation.png",
     href: "/service/ai-automation",
     icon: Bot,
-    service: true,
   },
   {
     label: "CONTENT CREATION",
     project: "Restaurant Content Series",
     sub: "Video Editing & Content Creation",
-    image: "/portfolio/content/video-reel-amritsari-kulcha.webp",
+    image: "/project-previews/restaurant-content.png",
     href: "/our-work#content",
     icon: Film,
   },
