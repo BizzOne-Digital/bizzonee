@@ -6,7 +6,7 @@ import Services from "@/components/sections/Services";
 import IndustriesCarousel from "@/components/sections/IndustriesCarousel";
 import Packages from "@/components/sections/Packages";
 import Process from "@/components/sections/Process";
-import Work from "@/components/sections/Work";
+import PortfolioShowcase from "@/components/sections/PortfolioShowcase";
 import AIAutomation from "@/components/sections/AIAutomation";
 import TrustReviews from "@/components/sections/TrustReviews";
 import BookCallCTA from "@/components/sections/BookCallCTA";
@@ -33,7 +33,7 @@ export default function Home() {
         <IndustriesCarousel />
         <Packages />
         <Process />
-        <Work />
+        <PortfolioShowcase />
         <AIAutomation />
         <TrustReviews />
         <BookCallCTA />

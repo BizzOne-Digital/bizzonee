@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Home, UtensilsCrossed, ShoppingBag, Leaf, Building2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Home, UtensilsCrossed, ShoppingBag, Leaf, Building2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -59,7 +59,7 @@ export default function IndustriesCarousel() {
       <div className="relative mt-12 w-full">
         <div
           ref={trackRef}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-4 sm:px-8 lg:px-12 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="flex justify-center snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-4 sm:px-8 lg:px-12 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {INDUSTRIES.map((ind, i) => (
             <div
@@ -85,21 +85,6 @@ export default function IndustriesCarousel() {
           ))}
         </div>
 
-        {/* nav arrows */}
-        <button
-          aria-label="Previous industry"
-          onClick={() => scrollToIndex(active - 1)}
-          className="absolute left-2 top-1/2 hidden -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
-        >
-          <ChevronLeft size={18} />
-        </button>
-        <button
-          aria-label="Next industry"
-          onClick={() => scrollToIndex(active + 1)}
-          className="absolute right-2 top-1/2 hidden -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
-        >
-          <ChevronRight size={18} />
-        </button>
       </div>
 
       {/* pagination dots */}
