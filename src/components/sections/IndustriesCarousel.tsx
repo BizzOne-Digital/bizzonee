@@ -1,16 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { Home, UtensilsCrossed, ShoppingBag, Leaf, Building2, ChevronLeft, ChevronRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 
 const INDUSTRIES = [
-  { label: "Home Services", icon: Home, gradient: "linear-gradient(160deg, #F59E0B, #7c4a03)" },
-  { label: "Restaurants & Food", icon: UtensilsCrossed, gradient: "linear-gradient(160deg, #EF4444, #7a1414)" },
-  { label: "E-commerce & Retail", icon: ShoppingBag, gradient: "linear-gradient(160deg, #8C00FF, #3a0066)", highlight: true },
-  { label: "Healthcare & Wellness", icon: Leaf, gradient: "linear-gradient(160deg, #10B981, #064e3b)" },
-  { label: "Real Estate", icon: Building2, gradient: "linear-gradient(160deg, #06B6D4, #0c3e47)" },
+  { label: "Home Services", image: "/industries/home-services.png", icon: Home, gradient: "linear-gradient(160deg, #F59E0B, #7c4a03)" },
+  { label: "Restaurants & Food", image: "/industries/restaurants-food.png", icon: UtensilsCrossed, gradient: "linear-gradient(160deg, #EF4444, #7a1414)" },
+  { label: "E-commerce & Retail", image: "/industries/ecommerce-retail.png", icon: ShoppingBag, gradient: "linear-gradient(160deg, #8C00FF, #3a0066)", highlight: true },
+  { label: "Healthcare & Wellness", image: "/industries/healthcare-wellness.png", icon: Leaf, gradient: "linear-gradient(160deg, #10B981, #064e3b)" },
+  { label: "Real Estate", image: "/industries/real-estate.png", icon: Building2, gradient: "linear-gradient(160deg, #06B6D4, #0c3e47)" },
 ];
 
 export default function IndustriesCarousel() {
@@ -52,57 +53,65 @@ export default function IndustriesCarousel() {
             We work with businesses of all sizes across multiple industries, delivering customized digital solutions that drive real results.
           </p>
         </Reveal>
+      </div>
 
-        <div className="relative mt-12">
-          <div
-            ref={trackRef}
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {INDUSTRIES.map((ind, i) => (
-              <div
-                key={ind.label}
-                className={`relative flex h-80 w-56 shrink-0 snap-center flex-col justify-end overflow-hidden rounded-[20px] p-5 shadow-lg transition-transform duration-300 sm:w-64 ${
-                  ind.highlight ? "ring-2 ring-brand-purple shadow-glow-purple" : ""
-                }`}
-                style={{ background: ind.gradient }}
-              >
-                <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <span className="relative mb-auto grid h-11 w-11 place-items-center rounded-full bg-white/90 text-brand-purple shadow-md">
-                  <ind.icon size={20} />
-                </span>
-                <span className="relative font-display text-lg font-bold text-white">{ind.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* nav arrows */}
-          <button
-            aria-label="Previous industry"
-            onClick={() => scrollToIndex(active - 1)}
-            className="absolute left-0 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
-          >
-            <ChevronLeft size={18} />
-          </button>
-          <button
-            aria-label="Next industry"
-            onClick={() => scrollToIndex(active + 1)}
-            className="absolute right-0 top-1/2 hidden translate-x-1/2 -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
-          >
-            <ChevronRight size={18} />
-          </button>
-        </div>
-
-        {/* pagination dots */}
-        <div className="mt-6 flex justify-center gap-2">
+      {/* Full-bleed carousel — outside the section container, no left/right gap */}
+      <div className="relative mt-12 w-full">
+        <div
+          ref={trackRef}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-4 sm:px-8 lg:px-12 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
           {INDUSTRIES.map((ind, i) => (
-            <button
+            <div
               key={ind.label}
-              aria-label={`Go to ${ind.label}`}
-              onClick={() => scrollToIndex(i)}
-              className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-brand-purple" : "w-2 bg-ink/15"}`}
-            />
+              className={`relative flex h-80 w-56 shrink-0 snap-center flex-col justify-end overflow-hidden rounded-[20px] p-5 shadow-lg transition-transform duration-300 sm:w-64 ${
+                ind.highlight ? "ring-2 ring-brand-purple shadow-glow-purple" : ""
+              }`}
+              style={{ background: ind.gradient }}
+            >
+              <Image
+                src={ind.image}
+                alt=""
+                fill
+                sizes="(min-width: 640px) 256px, 224px"
+                className="object-cover"
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <span className="relative mb-auto grid h-11 w-11 place-items-center rounded-full bg-white/90 text-brand-purple shadow-md">
+                <ind.icon size={20} />
+              </span>
+              <span className="relative font-display text-lg font-bold text-white">{ind.label}</span>
+            </div>
           ))}
         </div>
+
+        {/* nav arrows */}
+        <button
+          aria-label="Previous industry"
+          onClick={() => scrollToIndex(active - 1)}
+          className="absolute left-2 top-1/2 hidden -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
+        >
+          <ChevronLeft size={18} />
+        </button>
+        <button
+          aria-label="Next industry"
+          onClick={() => scrollToIndex(active + 1)}
+          className="absolute right-2 top-1/2 hidden -translate-y-1/2 grid h-11 w-11 place-items-center rounded-full border border-ink/10 bg-white text-ink shadow-md transition-transform hover:scale-105 sm:grid"
+        >
+          <ChevronRight size={18} />
+        </button>
+      </div>
+
+      {/* pagination dots */}
+      <div className="section relative mt-6 flex justify-center gap-2">
+        {INDUSTRIES.map((ind, i) => (
+          <button
+            key={ind.label}
+            aria-label={`Go to ${ind.label}`}
+            onClick={() => scrollToIndex(i)}
+            className={`h-2 rounded-full transition-all ${i === active ? "w-6 bg-brand-purple" : "w-2 bg-ink/15"}`}
+          />
+        ))}
       </div>
     </section>
   );
