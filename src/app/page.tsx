@@ -9,6 +9,7 @@ import Process from "@/components/sections/Process";
 import Work from "@/components/sections/Work";
 import AIAutomation from "@/components/sections/AIAutomation";
 import TrustReviews from "@/components/sections/TrustReviews";
+import BookCallCTA from "@/components/sections/BookCallCTA";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 import { buildMetadata } from "@/lib/seo";
@@ -35,6 +36,7 @@ export default function Home() {
         <Work />
         <AIAutomation />
         <TrustReviews />
+        <BookCallCTA />
         <FinalCTA />
       </main>
       <Footer />
