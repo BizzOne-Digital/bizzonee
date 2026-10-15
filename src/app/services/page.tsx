@@ -1,64 +1,58 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Code2 } from "lucide-react";
-import PageShell from "@/components/content/PageShell";
-import Breadcrumbs from "@/components/content/Breadcrumbs";
-import CtaBanner from "@/components/content/CtaBanner";
-import JsonLd from "@/components/seo/JsonLd";
-import Reveal from "@/components/ui/Reveal";
-import SectionLabel from "@/components/ui/SectionLabel";
-import { buildMetadata } from "@/lib/seo";
-import { breadcrumbSchema } from "@/lib/schema";
+import PromoBar from "@/components/simple/PromoBar";
+import NavBar from "@/components/simple/NavBar";
+import Footer from "@/components/simple/Footer";
+import FinalCTA from "@/components/simple/FinalCTA";
 import { SERVICES, serviceHref } from "@/lib/services";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = buildMetadata({
+export const metadata = buildMetadata({
   title: "Digital Marketing & Web Services | BizzOne Digital",
   description:
-    "Explore BizzOne Digital's services: SEO, paid ads, branding, video, content strategy, social media, AI automation, web design and app development.",
+    "Explore BizzOne Digital's services: Meta & Google Ads, SEO, branding, video, content strategy, social media, AI automation, web and app development.",
   path: "/services",
 });
 
-const ALL = [
-  ...SERVICES.map((s) => ({ key: s.slug, title: s.title, href: serviceHref(s), icon: s.icon, short: s.short })),
-  { key: "web-development", title: "Web Development", href: "/web-development", icon: Code2, short: "Fast, mobile-friendly websites with SEO setup, booking and payments, built for small businesses." },
-];
-
 export default function ServicesPage() {
   return (
-    <PageShell>
-      <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }])} />
-      <section className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
-        <div className="section">
-          <Reveal>
-            <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Services", path: "/services" }]} />
-          </Reveal>
-          <Reveal className="mx-auto mt-8 max-w-3xl text-center">
-            <SectionLabel>Our Services</SectionLabel>
-            <h1 className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
-              Digital Marketing, Web &amp; <span className="text-gradient">AI Automation Services</span>
-            </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/75">
-              Everything you need to attract, engage and convert customers, from one team. Choose a single service or combine them into a complete growth system.
-            </p>
-          </Reveal>
-          <div className="mx-auto mt-12 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {ALL.map((s, i) => (
-              <Reveal key={s.key} delay={i * 0.04}>
-                <Link href={s.href} className="group flex h-full flex-col rounded-2xl glass p-6 transition-shadow duration-300 hover:shadow-glow-purple">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-brand-mint/10 text-brand-mint"><s.icon size={20} aria-hidden="true" /></span>
-                  <h2 className="mt-4 font-display text-lg font-bold text-white group-hover:text-brand-mint">{s.title}</h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-white/60">{s.short}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-brand-mint">
-                    Explore {s.title} <ArrowRight size={13} aria-hidden="true" />
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
+    <>
+      <PromoBar />
+      <NavBar active="Services" />
+      <main className="bg-white text-simple-ink">
+        <section className="border-b border-simple-border bg-simple-surface-alt">
+          <div className="mx-auto max-w-[1240px] px-6 py-16 sm:py-20">
+            <div className="max-w-2xl">
+              <div className="text-sm font-bold uppercase tracking-[0.12em] text-simple-purple-deep">Our Services</div>
+              <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight sm:text-5xl">
+                Everything you need to grow, managed by <span className="text-simple-purple">one team</span>
+              </h1>
+              <p className="mt-5 text-lg text-simple-ink-soft">
+                Pick one service or let us run the whole system — ads, SEO, content, websites and
+                CRM follow-up all connect.
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-      <CtaBanner title="Not Sure Where to" accent="Start?" text="Book a free strategy call and we'll recommend the services that will move your numbers fastest." />
-    </PageShell>
+        </section>
+
+        <section className="mx-auto max-w-[1240px] px-6 py-16 sm:py-20">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SERVICES.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div key={s.slug} className="flex flex-col gap-3 rounded-2xl border border-simple-border bg-white p-[30px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(15,10,26,0.10)]">
+                  <Icon size={32} color="#8C00FF" strokeWidth={2} aria-hidden="true" />
+                  <div className="font-display text-[22px] font-bold">{s.title}</div>
+                  <div className="flex-grow text-base text-simple-ink-soft">{s.short}</div>
+                  <Link href={serviceHref(s)} className="py-2 font-bold text-simple-purple no-underline">Learn more →</Link>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <FinalCTA />
+      </main>
+      <Footer />
+    </>
   );
 }

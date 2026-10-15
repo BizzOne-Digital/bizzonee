@@ -1,36 +1,42 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/sections/Hero";
-import TrustedBy from "@/components/sections/TrustedBy";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Process from "@/components/sections/Process";
-import Work from "@/components/sections/Work";
-import AIAutomation from "@/components/sections/AIAutomation";
-import TrustReviews from "@/components/sections/TrustReviews";
-import FinalCTA from "@/components/sections/FinalCTA";
-import Footer from "@/components/sections/Footer";
+import PromoBar from "@/components/simple/PromoBar";
+import NavBar from "@/components/simple/NavBar";
+import Hero from "@/components/simple/Hero";
+import TrustedLogos from "@/components/simple/TrustedLogos";
+import MetaGooglePartners from "@/components/simple/MetaGooglePartners";
+import PromiseStrip from "@/components/simple/PromiseStrip";
+import Services from "@/components/simple/Services";
+import GrowthSystem from "@/components/simple/GrowthSystem";
+import Results from "@/components/simple/Results";
+import WhyUs from "@/components/simple/WhyUs";
+import Pricing from "@/components/simple/Pricing";
+import FAQ from "@/components/simple/FAQ";
+import FinalCTA from "@/components/simple/FinalCTA";
+import Footer from "@/components/simple/Footer";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Digital Marketing & AI Automation Agency | BizzOne Digital",
   description:
-    "Mississauga digital marketing and AI automation agency. SEO, paid ads, social media, web design and apps built to attract, engage and convert. Book a call.",
+    "Mississauga digital marketing agency. Meta & Google Ads, SEO, content, websites and AI automation & CRM — managed by one team. Book a free growth audit.",
   path: "/",
 });
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <main className="relative">
+      <PromoBar />
+      <NavBar />
+      <main className="bg-white text-simple-ink">
         <Hero />
-        <TrustedBy />
-        <About />
+        <TrustedLogos />
+        <MetaGooglePartners />
+        <PromiseStrip />
         <Services />
-        <Process />
-        <Work />
-        <AIAutomation />
-        <TrustReviews />
+        <GrowthSystem />
+        <Results />
+        <WhyUs />
+        <Pricing />
+        <FAQ />
         <FinalCTA />
       </main>
       <Footer />

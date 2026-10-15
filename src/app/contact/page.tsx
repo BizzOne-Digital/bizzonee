@@ -1,49 +1,49 @@
-import type { Metadata } from "next";
-import PageShell from "@/components/content/PageShell";
-import Breadcrumbs from "@/components/content/Breadcrumbs";
-import ContactDetails from "@/components/content/ContactDetails";
-import FinalCTA from "@/components/sections/FinalCTA";
-import JsonLd from "@/components/seo/JsonLd";
-import H1Label from "@/components/ui/H1Label";
-import Reveal from "@/components/ui/Reveal";
+import PromoBar from "@/components/simple/PromoBar";
+import NavBar from "@/components/simple/NavBar";
+import Footer from "@/components/simple/Footer";
+import ContactForm from "@/components/simple/ContactForm";
+import { BUSINESS } from "@/data/site";
 import { buildMetadata } from "@/lib/seo";
+import JsonLd from "@/components/seo/JsonLd";
 import { breadcrumbSchema, contactPageSchema } from "@/lib/schema";
 
-export const metadata: Metadata = buildMetadata({
+export const metadata = buildMetadata({
   title: "Contact BizzOne Digital | Free Strategy Call",
   description:
-    "Contact BizzOne Digital, a digital marketing agency in Mississauga. Call, email, WhatsApp or send us a message to book your free strategy call.",
+    "Contact BizzOne Digital, a digital marketing agency in Mississauga. Call, email or send us a message to book your free strategy call.",
   path: "/contact",
 });
 
 export default function ContactPage() {
   return (
-    <PageShell>
+    <>
       <JsonLd data={[contactPageSchema(), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }])]} />
-
-      <section className="relative py-16 sm:py-20">
-        <div className="pointer-events-none absolute hidden sm:block -top-10 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-[130px]" />
-        <div className="section">
-          <Reveal>
-            <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]} />
-          </Reveal>
-          <Reveal className="mt-8 max-w-3xl">
-            <H1Label>Contact Our Digital Marketing Agency in Mississauga</H1Label>
-            <p className="mt-6 font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl">
-              Let&apos;s Talk About <span className="text-gradient">Growing Your Business</span>
-            </p>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              Book a free strategy call, ask about a project or just say hello. Call, WhatsApp, email or use the form below and our team will get back to you within 24–48 hours.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.1} className="mt-12">
-            <ContactDetails />
-          </Reveal>
-        </div>
-      </section>
-
-      <FinalCTA />
-    </PageShell>
+      <PromoBar />
+      <NavBar active="Contact" />
+      <main className="bg-white text-simple-ink">
+        <section className="border-b border-simple-border bg-simple-surface-alt">
+          <div className="mx-auto flex max-w-[1240px] flex-wrap gap-14 px-6 py-16 sm:py-20">
+            <div className="flex min-w-0 flex-[1_1_440px] flex-col gap-5">
+              <div className="text-sm font-bold uppercase tracking-[0.12em] text-simple-purple-deep">Contact Us</div>
+              <h1 className="font-display text-4xl font-extrabold leading-tight sm:text-5xl">
+                Let&apos;s talk about <span className="text-simple-purple">growing your business</span>
+              </h1>
+              <p className="max-w-xl text-lg text-simple-ink-soft">
+                Book a free strategy call, ask about a project or just say hello. Call, email or
+                use the form and our team will get back to you within 24–48 hours.
+              </p>
+              <div className="mt-2 flex flex-col gap-2 text-base text-simple-ink-soft">
+                <a href={BUSINESS.phoneHref} className="font-bold text-simple-ink no-underline hover:text-simple-purple">{BUSINESS.phoneDisplay}</a>
+                <a href={`mailto:${BUSINESS.email}`} className="font-bold text-simple-ink no-underline hover:text-simple-purple">{BUSINESS.email}</a>
+                <div>{BUSINESS.addressLine}</div>
+                <div>{BUSINESS.hours.display}</div>
+              </div>
+            </div>
+            <ContactForm />
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -16,6 +16,17 @@ const config: Config = {
           "mint-bright": "#DBFF5A",
         },
         ink: { DEFAULT: "#05060A", soft: "#080A12", panel: "#0C0F1A" },
+        // "simple" theme tokens — scoped to src/components/simple and the
+        // simple-theme-preview pages only. Kept under this namespace so they
+        // never collide with the dark-theme `brand`/`ink` tokens above.
+        "simple-ink": { DEFAULT: "#0F0A1A", soft: "#4A4458", faint: "#6B6580" },
+        "simple-purple": { DEFAULT: "#8C00FF", dark: "#6B00C7", light: "#B47BFF", deep: "#4C0A8F", accent: "#5A00A8" },
+        "simple-lime": "#C8F31D",
+        "simple-surface": { DEFAULT: "#FFFFFF", alt: "#F7F5FC" },
+        "simple-border": { DEFAULT: "#ECEAF2", soft: "#CFC9DD" },
+        "simple-chip": { bg: "#F1E6FF", text: "#5A00A8" },
+        "simple-muted": "#C9C4D6",
+        "simple-footer": { bg: "#0F0A1A", text: "#B4AEC6", line: "#2A2338" },
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
