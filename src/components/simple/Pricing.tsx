@@ -94,6 +94,15 @@ export default function Pricing() {
         <div className="rounded-2xl border border-simple-border bg-simple-surface-alt p-6 text-center text-base text-simple-ink-soft">
           AI Automation &amp; CRM: <strong className="text-simple-ink">$299/mo</strong> + $499 one-time setup
         </div>
+
+        <div className="flex justify-center">
+          <Link href="/pricing" className="flex items-center gap-2 text-[15px] font-bold text-simple-purple no-underline">
+            See every price &amp; compare all plans
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C00FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </Link>
+        </div>
       </Reveal>
     </div>
   );

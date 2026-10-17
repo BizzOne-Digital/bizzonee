@@ -30,7 +30,7 @@ export default function MetaGooglePartners() {
               Certified on the platforms that drive leads
             </div>
             <h2 className="m-0 font-display font-extrabold leading-[1.15] tracking-tight text-[clamp(1.8rem,3.2vw,2.4rem)]">
-              Partnered with Meta and Google, built for small business budgets
+              Verified on Meta and Google, built for small business budgets
             </h2>
           </div>
 
@@ -42,7 +42,7 @@ export default function MetaGooglePartners() {
                     <path d="M3 9c0-4 2.5-7 6-7 2.5 0 4.2 1.8 5.5 4 1.3-2.2 3-4 5.5-4 3.5 0 6 3 6 7s-2.5 7-6 7c-2.5 0-4.2-1.8-5.5-4-1.3 2.2-3 4-5.5 4-3.5 0-6-3-6-7z" fill="none" stroke="#0081FB" strokeWidth="3" />
                   </svg>
                   <div className="flex items-center gap-1.5">
-                    <div className="font-display text-lg font-bold">Meta Verified Partner</div>
+                    <div className="font-display text-lg font-bold">Meta Verified</div>
                     <VerifiedBadge />
                   </div>
                 </div>
@@ -77,7 +77,7 @@ export default function MetaGooglePartners() {
                     <path fill="#1976D2" d="M43.6 20.5H24v8h11.3c-0.8 2.3-2.2 4.2-4 5.6l6.3 5.3C40.5 36.9 44 31 44 24c0-1.3-.1-2.7-.4-3.5z" />
                   </svg>
                   <div className="flex items-center gap-1.5">
-                    <div className="font-display text-lg font-bold">Google Verified Partner</div>
+                    <div className="font-display text-lg font-bold">Google Verified</div>
                     <VerifiedBadge />
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { SERVICES } from "@/lib/services";
 
 const SERVICE_OPTIONS = ["General inquiry", ...SERVICES.map((s) => s.title), "Other"];
@@ -126,6 +127,14 @@ export default function ContactForm() {
           >
             {status === "sending" ? "Sending..." : "Send Message"}
           </button>
+          <div className="text-center text-xs text-simple-ink-faint">
+            By submitting, you consent to BizzOne Digital contacting you by phone, email or text about
+            your request. See our{" "}
+            <Link href="/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>
+            .
+          </div>
         </form>
       )}
     </div>

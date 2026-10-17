@@ -1,154 +1,152 @@
-import type { Metadata } from "next";
+import PromoBar from "@/components/simple/PromoBar";
+import NavBar from "@/components/simple/NavBar";
+import Footer from "@/components/simple/Footer";
+import Reveal from "@/components/simple/Reveal";
+import { BUSINESS } from "@/data/site";
 import { buildMetadata } from "@/lib/seo";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/sections/Footer";
-import LegalPage from "@/components/sections/LegalPage";
 
-export const metadata: Metadata = buildMetadata({
+export const metadata = buildMetadata({
   title: "Terms & Conditions | BizzOne Digital",
-  description:
-    "BizzOne Digital's Terms & Conditions covering payments, scope of services, cancellation and responsibilities for all client engagements.",
+  description: "The terms that govern using our website and BizzOne Digital's services.",
   path: "/terms-and-conditions",
 });
 
-const SECTIONS = [
-  {
-    heading: "1. Introduction",
-    body: [
-      `These Terms & Conditions ("Terms") govern all services provided by BizzOne Digital ("we", "us", "our") to the client ("you", "your").`,
-      "By engaging our services, approving a proposal, or making a payment, you agree to be bound by these Terms.",
-    ],
-  },
-  {
-    heading: "2. Scope of Services",
-    body: ["Services are provided based on the agreed proposal, estimate, or written communication.", "Our services may include:"],
-    list: [
-      "Digital advertising (Meta, Google, TikTok, etc.)",
-      "Lead generation and marketing campaigns",
-      "Sales support and consultation",
-      "CRM setup and automation",
-      "Content creation and creative services",
-      "Ongoing optimization and reporting",
-    ],
-    footer: ["Any services outside the agreed scope may require additional approval, timelines, and costs."],
-  },
-  {
-    heading: "3. Term & Cancellation",
-    body: [
-      "Services are provided on a month-to-month basis unless otherwise agreed.",
-      "Either party may terminate services with 30 days' written notice.",
-      "All work scheduled or in progress during the notice period will be completed and billed accordingly.",
-    ],
-  },
-  {
-    heading: "4. Payment Terms",
-    body: [
-      "The first payment is required to initiate services. Ongoing services are billed on a recurring monthly basis.",
-      "All fees are exclusive of applicable taxes (13%).",
-      "Failure to make payments on time may result in suspension or termination of services.",
-    ],
-  },
-  {
-    heading: "5. Third-Party Costs",
-    body: [
-      "Any third-party expenses (including but not limited to advertising spend, domains, hosting, software, plugins, content production, talent, or locations) must be pre-approved and will be billed separately or paid directly by the client.",
-    ],
-  },
-  {
-    heading: "6. Sales, Marketing & Performance Disclaimer",
-    body: ["BizzOne Digital provides marketing, advertising, and sales support services; however:"],
-    list: [
-      "We do not guarantee specific results, revenue, or conversions",
-      "Performance depends on multiple factors including market conditions, competition, pricing, and client responsiveness",
-      "Sales outcomes are influenced by both our systems and the client's internal processes",
-    ],
-  },
-  {
-    heading: "7. Advertising & Platform Responsibility",
-    body: [
-      "All campaigns are managed in accordance with platform policies (e.g., Meta, Google, TikTok).",
-      "BizzOne Digital is not responsible for:",
-    ],
-    list: ["Account suspensions or bans", "Rejected ads due to policy violations", "Issues arising from client-provided content or instructions"],
-    footer: ["The client is responsible for ensuring their business complies with applicable platform policies and regulations."],
-  },
-  {
-    heading: "8. Client Responsibilities",
-    body: ["The client agrees to:"],
-    list: [
-      "Provide accurate and complete information",
-      "Respond to requests, approvals, and feedback in a timely manner",
-      "Maintain internal readiness for sales and operations",
-      "Provide necessary access to accounts and systems",
-    ],
-    footer: ["Delays or failure to meet these responsibilities may impact performance and delivery timelines."],
-  },
-  {
-    heading: "9. Communication & Approvals",
-    body: [
-      "All approvals, feedback, and decisions must be provided through official communication channels (email, CRM, or designated platforms).",
-      "Verbal or informal communication is not considered binding unless documented.",
-      "If feedback or approval is not provided within a reasonable timeframe, BizzOne Digital reserves the right to proceed to maintain project timelines.",
-    ],
-  },
-  {
-    heading: "10. Data, Access & Systems",
-    body: [
-      "The client is responsible for granting and managing access to required platforms and accounts.",
-      "While BizzOne Digital maintains structured processes for handling systems and data:",
-    ],
-    list: [
-      "We do not assume ownership of client accounts",
-      "We are not responsible for issues caused by third-party access, external changes, or client-side actions",
-    ],
-  },
-  {
-    heading: "11. Project Timelines & Delivery",
-    body: ["We aim to deliver services within agreed timelines; however, timelines may be affected by:"],
-    list: ["Delays in client feedback or approvals", "Changes in scope", "Third-party dependencies"],
-    footer: ["We will make reasonable efforts to maintain consistency and performance."],
-  },
-  {
-    heading: "12. Rescheduling (Filming & Production)",
-    body: ["A minimum of 48 hours' notice is required to reschedule any filming or production activities.", "The client is responsible for:"],
-    list: ["Securing permits and permissions", "Ensuring a safe and accessible environment"],
-    footer: ["Additional costs may apply for last-minute changes or cancellations."],
-  },
-  {
-    heading: "13. Complaints & Issue Resolution",
-    body: ["Any concerns or issues must be reported promptly through official communication channels.", "BizzOne Digital maintains an internal process to:"],
-    list: ["Review complaints", "Identify root causes", "Implement corrective actions"],
-    footer: ["Our goal is continuous improvement and consistent service quality."],
-  },
-  {
-    heading: "14. Limitation of Liability",
-    body: ["BizzOne Digital is not liable for:"],
-    list: ["Indirect, incidental, or consequential damages", "Performance fluctuations due to external factors", "Platform-related issues beyond our control"],
-    footer: ["Our total liability is limited to the amount paid for services during the relevant billing period."],
-  },
-  {
-    heading: "15. Modifications",
-    body: [
-      "We reserve the right to update these Terms & Conditions at any time. Updated terms will be posted on this page.",
-      "Continued use of our services constitutes acceptance of any updates.",
-    ],
-  },
-  {
-    heading: "16. Acceptance",
-    body: ["By approving a proposal, engaging services, or making payment, you acknowledge and agree to these Terms & Conditions."],
-  },
-];
+function Section({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
+  return (
+    <div className={n === 1 ? "" : "mt-10"}>
+      <h2 className="mb-3 font-display text-xl font-extrabold">
+        {n}. {title}
+      </h2>
+      <div className="flex flex-col gap-3 text-base leading-[1.7] text-simple-ink-faint">{children}</div>
+    </div>
+  );
+}
 
-export default function TermsAndConditions() {
+export default function TermsPage() {
   return (
     <>
-      <Navbar />
-      <main className="relative pt-20">
-        <LegalPage
-          title="Terms & Conditions"
-          intro="BizzOne Digital - Terms And Conditions"
-          sections={SECTIONS}
-        />
+      <PromoBar />
+      <NavBar />
+      <main className="bg-white text-simple-ink">
+        <div className="border-b border-simple-border bg-simple-surface-alt">
+          <Reveal className="mx-auto flex max-w-[760px] flex-col gap-3 px-6 pb-11 pt-14">
+            <div className="text-sm font-bold uppercase tracking-[0.12em] text-simple-purple-deep">Legal</div>
+            <h1 className="m-0 font-display font-extrabold leading-[1.1] tracking-tight text-[clamp(2rem,3.6vw,2.8rem)]">
+              Terms &amp; Conditions
+            </h1>
+            <p className="m-0 text-base text-simple-ink-soft">Last updated: October 2026</p>
+          </Reveal>
+        </div>
+
+        <Reveal className="mx-auto max-w-[760px] px-6 py-12">
+          <p className="text-base leading-[1.7] text-simple-ink-faint">
+            These Terms &amp; Conditions (&quot;Terms&quot;) govern your use of our website and any services
+            provided by {BUSINESS.legalName} (&quot;BizzOne,&quot; &quot;we,&quot; &quot;us&quot; or
+            &quot;our&quot;). By using our Site or engaging our services, you agree to these Terms.
+          </p>
+
+          <Section n={1} title="Our Services">
+            <p>
+              BizzOne provides digital marketing and related services, including websites, paid advertising
+              (Meta, Google, TikTok), SEO, content and social media management, video editing, design, app
+              development, and AI automation and CRM setup. The specific scope, deliverables and price for your
+              project are confirmed with you before work begins.
+            </p>
+          </Section>
+
+          <Section n={2} title="Pricing & Payment">
+            <ul className="flex list-disc flex-col gap-1.5 pl-6">
+              <li>Website packages are a one-time fee, due before work begins unless otherwise agreed.</li>
+              <li>
+                Monthly services (ads management, SEO, content, video, automation) are billed month-to-month.
+                There is no long-term contract — you can cancel anytime, effective at the end of the current
+                billing period.
+              </li>
+              <li>
+                Advertising spend for Meta, Google or TikTok campaigns is billed directly by those platforms and
+                is separate from our service fee. We never mark up ad spend.
+              </li>
+              <li>
+                Website packages come with a 30-day money-back guarantee. Monthly services can be cancelled
+                anytime; fees already paid for the current period are not refunded.
+              </li>
+            </ul>
+          </Section>
+
+          <Section n={3} title="Client Responsibilities">
+            <p>
+              To deliver your project on time, we rely on you to provide necessary content, approvals, access
+              and feedback within a reasonable timeframe. Delays on your end may delay delivery.
+            </p>
+          </Section>
+
+          <Section n={4} title="Intellectual Property">
+            <p>
+              Once a project is paid in full, ownership of the final deliverables (such as your website or
+              designed assets) transfers to you. BizzOne retains the right to showcase completed work in our
+              portfolio and marketing, unless you ask us not to in writing.
+            </p>
+          </Section>
+
+          <Section n={5} title="Advertising Accounts">
+            <p>
+              For ad management services, campaigns typically run through your own Meta, Google or TikTok ad
+              accounts. You remain the account owner and are responsible for complying with each platform&apos;s
+              own advertising policies.
+            </p>
+          </Section>
+
+          <Section n={6} title="Limitation of Liability">
+            <p>
+              We work to deliver real results, but we can&apos;t guarantee specific outcomes (such as a set
+              number of leads or sales), since results depend on factors outside our control, including your
+              market, offer and ad platform policies. To the extent permitted by law, BizzOne&apos;s liability
+              for any claim relating to our services is limited to the amount you paid us for that service in
+              the 3 months before the claim.
+            </p>
+          </Section>
+
+          <Section n={7} title="Termination">
+            <p>
+              Either party may end a monthly service agreement at any time, effective at the end of the current
+              billing period. We reserve the right to pause or end services if payment is not received.
+            </p>
+          </Section>
+
+          <Section n={8} title="Governing Law">
+            <p>
+              These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada
+              applicable in Ontario.
+            </p>
+          </Section>
+
+          <Section n={9} title="Changes to These Terms">
+            <p>
+              We may update these Terms from time to time. The &quot;Last updated&quot; date at the top of this
+              page reflects the most recent changes. Continuing to use our services after changes take effect
+              means you accept the updated Terms.
+            </p>
+          </Section>
+
+          <Section n={10} title="Contact Us">
+            <p>Questions about these Terms?</p>
+            <ul className="flex list-disc flex-col gap-1.5 pl-6">
+              <li>
+                Email:{" "}
+                <a href={`mailto:${BUSINESS.email}`} className="underline">
+                  {BUSINESS.email}
+                </a>
+              </li>
+              <li>
+                Phone:{" "}
+                <a href={BUSINESS.phoneHref} className="underline">
+                  {BUSINESS.phoneDisplay}
+                </a>
+              </li>
+              <li>Mail: {BUSINESS.addressLine}</li>
+            </ul>
+          </Section>
+        </Reveal>
       </main>
       <Footer />
     </>

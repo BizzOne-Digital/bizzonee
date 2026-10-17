@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 
 const NEEDS = [
   "More leads from ads (Meta / Google)",
@@ -125,7 +126,14 @@ export default function LeadForm() {
             {status === "sending" ? "Sending..." : "Book My Free Audit"}
           </button>
 
-          <div className="text-center text-[13px] text-simple-ink-soft">We reply within 24–48 hours. No spam, ever.</div>
+          <div className="text-center text-[13px] text-simple-ink-soft">
+            We reply within 24–48 hours. No spam, ever. By submitting, you consent to BizzOne Digital
+            contacting you by phone, email or text about your request. See our{" "}
+            <Link href="/privacy-policy" className="underline">
+              Privacy Policy
+            </Link>
+            .
+          </div>
         </form>
       )}
     </div>
