@@ -51,8 +51,10 @@ export default function MetaGooglePartners() {
                 </span>
               </div>
               <p className="m-0 text-base text-simple-ink-faint">
-                We manage Facebook and Instagram campaigns built for small business budgets, where
-                every dollar has to work.
+                We&apos;re verified on Meta — giving you confidence you&apos;re working with a real,
+                accountable business, not a freelancer. Our team is certified in Meta Ads
+                management: Facebook and Instagram campaigns built for small business budgets,
+                where every dollar has to work.
               </p>
               <div className="font-display text-[34px] font-extrabold">
                 $99<span className="text-sm font-medium text-simple-ink-soft"> /month</span>
@@ -86,8 +88,9 @@ export default function MetaGooglePartners() {
                 </span>
               </div>
               <p className="m-0 text-base text-simple-ink-faint">
-                We run Google Ads campaigns across Search, Maps and YouTube, putting your business
-                in front of people the moment they&apos;re searching for what you sell.
+                We&apos;re verified on Google — a mark of a legitimate, accountable business, not a
+                side hustle. Our team is Google Ads certified, putting your business in front of
+                people at the exact moment they&apos;re searching for what you sell.
               </p>
               <div className="font-display text-[34px] font-extrabold">
                 $99<span className="text-sm font-medium text-simple-ink-soft"> /month</span>
@@ -114,12 +117,14 @@ export default function MetaGooglePartners() {
             </h2>
             <p className="m-0 text-[17px] text-simple-ink-soft">
               BizzOne Digital started with a simple belief: every business, no matter how small,
-              deserves a premium digital presence that actually drives results.
+              deserves a premium digital presence that actually drives results. We saw too many
+              agencies delivering pretty websites that didn&apos;t convert, flashy ads that didn&apos;t
+              sell, and social media that didn&apos;t grow.
             </p>
             <p className="m-0 text-[17px] text-simple-ink-soft">
-              So we built a team focused on performance, design and real business outcomes,
-              helping businesses scale with websites, advertising, social media, SEO and AI
-              automation.
+              So we built something different — a team obsessed with performance, design and real
+              business outcomes, helping 500+ brands scale with websites, advertising, social
+              media, SEO and AI automation.
             </p>
           </div>
           <div className="grid min-w-0 flex-[1_1_320px] grid-cols-2 gap-4">
@@ -149,8 +154,10 @@ export default function MetaGooglePartners() {
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-5 border-t border-simple-border pt-2">
-            <div className="flex flex-wrap gap-5 text-sm font-semibold text-simple-ink-soft">
-              <span>{formatStat(SITE_STATS.businessesServed)} brands scaled</span>
+            <div className="flex flex-wrap items-center gap-5 text-sm font-semibold text-simple-ink-soft">
+              <span>500+ brands scaled</span>
+              <span className="text-simple-border">|</span>
+              <span>3 years in business</span>
             </div>
             <a href="https://www.instagram.com/bizzonedigital" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 text-inherit no-underline">
               <Image src="/fav.png" alt="BizzOne Digital logo" width={28} height={28} className="h-7 w-7 rounded-md object-contain" />

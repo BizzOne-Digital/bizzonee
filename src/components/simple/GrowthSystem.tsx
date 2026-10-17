@@ -23,7 +23,7 @@ const STEPS = [
   {
     step: "STEP 03",
     title: "Follow Up",
-    desc: "Your CRM replies quickly, sends reminders and books appointments automatically.",
+    desc: "Your CRM replies in seconds, sends reminders and books appointments automatically.",
     icon: <path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4 8.6 8.6 0 0 1-3.6-.9L3 20l1.1-5.4A8.4 8.4 0 1 1 21 11.5z" />,
     dark: false,
   },

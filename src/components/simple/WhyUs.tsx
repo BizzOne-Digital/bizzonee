@@ -26,7 +26,8 @@ export default function WhyUs() {
         </p>
         <p className="m-0 text-lg text-simple-ink-soft">
           Our mission is simple: turn your digital presence into real revenue. Based in
-          {" "}{BUSINESS.address.addressLocality}, working with businesses across {BUSINESS.areaServed.join(" and ")}.
+          {" "}{BUSINESS.address.addressLocality}, working with automotive, home service, retail,
+          restaurant and wellness businesses across {BUSINESS.areaServed.join(" and ")}.
         </p>
         <Link href="/#book" className="self-start py-2 text-[17px] font-bold no-underline text-simple-purple">
           Talk to Our Team →

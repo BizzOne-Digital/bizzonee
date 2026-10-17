@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 
 const NEEDS = [
-  "More leads from ads (Meta / Google)",
+  "More leads from ads (Meta / Google / TikTok)",
   "SEO — rank higher on Google",
   "Content, social media & video",
   "Design & branding",

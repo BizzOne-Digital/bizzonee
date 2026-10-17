@@ -56,7 +56,7 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-7 pt-2 text-[15px] text-simple-ink-soft">
             <div className="flex items-center gap-2">
-              <Check /> Meta &amp; Google Ads
+              <Check /> Meta, Google &amp; TikTok Ads
             </div>
             <div className="flex items-center gap-2">
               <Check /> Clear monthly reporting
